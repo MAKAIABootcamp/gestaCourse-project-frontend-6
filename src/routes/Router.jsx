@@ -4,7 +4,7 @@ import { BrowserRouter,Route, Routes  } from 'react-router-dom'
 import Home from '../components/Home/Home'
 import Layout from '../components/Layout/Layout'
 import QuienesSomos from '../components/QuienesSomos/QuienesSomos'
-import CourseManagement from '../components/courseManagement/courseManagement'
+import CourseManagement from '../pages/courseManagement/CourseManagement'
 
 
 const Router = () => {
