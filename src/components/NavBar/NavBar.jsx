@@ -6,7 +6,7 @@ const NavBar = () => {
     const items = [
         'ofertasInscripciones',
         'quienesSomos',
-    
+        'gestionCursos'
     ]
   return (
     <div className='navDestock'>
