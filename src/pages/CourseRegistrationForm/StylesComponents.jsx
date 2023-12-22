@@ -51,7 +51,7 @@ export const DivLabelAndInput= styled.div`
     select{
         background-image: url('../../../public/arrow.png');
         background-repeat: no-repeat;
-        background-position: 92% center;
+        background-position: 90% center;
         -webkit-appearance: none;
         -moz-appearance: none;
         -o-appearance: none;
@@ -79,4 +79,7 @@ export const ButtonInscription= styled.button`
     border: none;
     padding-top: 1%;
     padding-bottom: 1%;
+    &:hover{
+        cursor: pointer;
+    }
 `;
