@@ -1,6 +1,9 @@
 import CourseManagementTable from "../../components/courseManagementTable/courseManagementTable";
 import styled from "styled-components";
 
+const  ContendDiv = styled.div`
+    padding: 2%;
+`
 const TitleDiv = styled.div`
     display: flex;
     justify-content: space-between;
@@ -30,18 +33,29 @@ const SearchDiv = styled.div`
 `
 const ButtonsDiv = styled.div`
     display: flex;
+    width: 100%;
     justify-content: center;
+    align-items: center;
+    button{
+        margin: 10px;
+    }
 `
 const NextButton = styled.button`
     color: #04153B;
     background-color: #ECECEC;
     border: none;
     border-radius: 5px;
+    padding: 15px;
 `
-
+const NumPage = styled.button`
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #04153B;
+    color: #fff;
+`
 function CourseManagement() {
   return (
-    <div>
+    <ContendDiv>
       <div>
         <TitleDiv>
             <h2>Gestión de Cursos</h2>
@@ -57,10 +71,10 @@ function CourseManagement() {
       <hr size="2px" color="black" />
       <ButtonsDiv>
         <NextButton>Atrás</NextButton>
-        <p>1</p>
+        <NumPage>1</NumPage>
         <NextButton>Siguiente</NextButton>
       </ButtonsDiv>
-    </div>
+    </ContendDiv>
   );
 }
 

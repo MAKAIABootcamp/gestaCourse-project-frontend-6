@@ -11,23 +11,32 @@ const DeleteButton = styled.button`
 `;
 const TdButtons = styled.td`
   display: flex;
+  width: 100%;
+  height: 100%;
+  background-color:#ECECEC;
 `;
 const Table = styled.table`
   border-collapse: collapse;
-  tr,th,td {
-    background-color: #ECECEC;
-    border: none;
+  thead {
+    tr{
+      color: #3B4848;
+    }
+  }
+  tbody {
+    tr,th,td {
+      color: #8F8E8E;
+      border: none;
+    }
   }
 `;
 
 // Define los estilos para filas pares
 const EvenRow = styled.tr`
-  background-color: #ECECEC;
 `;
 
 // Define los estilos para filas impares
 const OddRow = styled.tr`
-  background-color: #282829;
+  background-color:#ECECEC;
   td{
     background-color:#ECECEC;
   }
@@ -71,7 +80,7 @@ function CourseManagementTable() {
       accessor: "cost",
     },
     {
-      Header: "Accón",
+      Header: "Acción",
       accessor: "action",
     },
   ];
@@ -103,10 +112,37 @@ function CourseManagementTable() {
       costo: "200000",
       accion: "Editar",
     },
+    {
+      numero: "1",
+      nombre: "Diplomado en Rehabilitación Vestibular",
+      descripcion:
+        "El diplomado en Rehabilitación Vestibular es un programa de formación que busca desarrollar competencias en el profesional de la salud para la evaluación y tratamiento de pacientes con alteraciones vestibulares.",
+      categoria: "Salud",
+      intensidad: "120 horas",
+      fechaInicio: "2021-09-01",
+      fechaFinal: "2021-12-01",
+      resolucion: "12345",
+      costo: "200000",
+      accion: "Editar",
+    },
+    {
+      numero: "2",
+      nombre:
+        "Diplomado en Medicina tradicional china con énfasis en acupuntura",
+      descripcion:
+        "El diplomado en Medicina tradicional china con énfasis en acupuntura es un programa de formación que busca desarrollar competencias en el profesional de la salud para la evaluación y tratamiento de pacientes con alteraciones vestibulares.",
+      categoria: "Salud",
+      intensidad: "120 horas",
+      fechaInicio: "2021-09-01",
+      fechaFinal: "2021-12-01",
+      resolucion: "12345",
+      costo: "200000",
+      accion: "Editar",
+    },
   ];
   return (
-    <div className="table-responsive">
-      <Table className="table table-bordered table-hover">
+    <div >
+      <Table >
         <thead>
           <tr>
             {columns.map((column) => (
@@ -128,7 +164,7 @@ function CourseManagementTable() {
                 <td>{row.resolucion}</td>
                 <td>{row.costo}</td>
                 <TdButtons>
-                  <EditButton>Editar</EditButton>{" "}
+                  <EditButton>Editar</EditButton>
                   <DeleteButton>Eliminar</DeleteButton>
                 </TdButtons>
               </EvenRow>
@@ -144,7 +180,7 @@ function CourseManagementTable() {
                 <td>{row.resolucion}</td>
                 <td>{row.costo}</td>
                 <TdButtons>
-                  <EditButton>Editar</EditButton>{" "}
+                  <EditButton>Editar</EditButton>
                   <DeleteButton>Eliminar</DeleteButton>
                 </TdButtons>
               </OddRow>
