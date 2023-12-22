@@ -4,10 +4,14 @@ import styled from "styled-components";
 const EditButton = styled.button`
   color: #fff;
   background-color: #34a853;
+  border: none;
+  border-radius: 5px;
 `;
 const DeleteButton = styled.button`
   color: #fff;
   background-color: #c50b0a;
+  border: none;
+  border-radius: 5px;
 `;
 const TdButtons = styled.td`
   display: flex;
