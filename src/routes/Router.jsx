@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter,Route, Routes  } from 'react-router-dom'
-import Home from '../components/Home/Home'
 import Layout from '../components/Layout/Layout'
 import QuienesSomos from '../components/QuienesSomos/QuienesSomos'
+import OfertasInscripciones from '../pages/OfertasInscripciones/OfertasInscripciones'
 
 
 const Router = () => {
@@ -11,8 +11,8 @@ const Router = () => {
     <BrowserRouter>
         <Routes>
             <Route  element={<Layout/>} >
-                <Route index element={<Home/>} />
-                <Route path="ofertasInscripciones" element={<Home/>} />
+                <Route index element={<OfertasInscripciones/>} />
+                <Route path="ofertasInscripciones" element={<OfertasInscripciones/>} />
                 <Route path="quienesSomos" element={<QuienesSomos/>} />
             </Route>
         </Routes>
