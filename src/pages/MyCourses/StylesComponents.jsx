@@ -16,6 +16,7 @@ export const ScrollStyled =  styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
     @media only screen and (max-width: 600px) {
         display: block;
         width: 90%;
@@ -78,6 +79,9 @@ export const PaginationStyled =  styled.div`
     align-items: center;
     width: 20%;
     justify-content: space-around;
+    @media only screen and (max-width: 800px) {
+        width: 30%;
+    }
     @media only screen and (max-width: 600px) {
         width: 50%;
     }
