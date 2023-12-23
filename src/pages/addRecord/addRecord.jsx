@@ -2,7 +2,8 @@ import styled from "styled-components"
 
 
 const ContendDiv = styled.div`
-    width: 100%;
+    width: 90%;
+    margin: 3%;
 `
 
 const TitleDiv = styled.div`
@@ -10,6 +11,7 @@ const TitleDiv = styled.div`
     justify-content: space-between;
     align-items: center;
     margin: 20px;
+    color: #3B4848;
 `
 const AddButton = styled.button`
     color: #fff;

@@ -4,6 +4,8 @@ const ContendDiv = styled.div`
     display: flex;
     width: 100%;
     flex-direction: row;
+    color: #04153B;
+    text-color: #04153B;
 `
 const Divsecundary = styled.div`
     display: flex;
@@ -26,7 +28,20 @@ const Input = styled.input`
     border-radius: 15px;
     background-color: #ECECEC;
     padding: 10px;
-    width: 50%;
+    width: 90%;
+`
+const InputFile = styled.input`
+    border: none;
+    border-radius: 15px;
+    background-color: #ECECEC;
+    padding: 10px;
+    label {
+        background-color: #4285F4;
+        color: #fff;
+        border-radius: 15px;
+        border: none;
+        padding: 10px;
+    }
 `
 const Select = styled.select`
     width: 55%;
@@ -34,6 +49,24 @@ const Select = styled.select`
     border-radius: 15px;
     padding: 10px;
     background-color: #ECECEC;
+`
+const DivButtons = styled.div`
+    display: flex;
+    justify-content: end;
+    margin: 5px;
+`
+const ButtonSave = styled.button`
+    background-color: #4285F4;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 15px;
+`
+const ButtonCancel = styled.button`
+    background-color: #8F8E8E;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
 `
 function FormCourse() {
     return (
@@ -80,7 +113,7 @@ function FormCourse() {
                     <Divsecundary>
                         <Div>
                             <h3>Seleciona una Imagen</h3>
-                            <Input type="file" name="imagen" id="imagen" />
+                            <InputFile type="file" name="imagen" id="imagen"  />
                         </Div>
                         <Div>
                             <h3>Poblacion Objetivo</h3>
@@ -121,10 +154,10 @@ function FormCourse() {
                     </Divsecundary>
                 </ContendDiv>
                 <hr size="2px" color="black" />
-                <div>
-                    <button>Cancelar</button>
-                    <button>Guardar</button>
-                </div>
+                <DivButtons>
+                    <ButtonCancel>Cancelar</ButtonCancel>
+                    <ButtonSave>Guardar</ButtonSave>
+                </DivButtons>
             </form>
         </div>
     )
