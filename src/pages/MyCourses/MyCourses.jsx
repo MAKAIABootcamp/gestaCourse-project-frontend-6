@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { TableStyled, ArticleStyled, StateButtonStyled, PaginationStyled} from './StylesComponents'
-import arrowPageInicial from '../../../public/hacia-atras.png'
-import arrowPageBefore from '../../../public/arrow-izq.png'
-import arrowPageAfter from '../../../public/arrow-der.png'
-import arrowPageFinal from '../../../public/hacia-adelante.png'
+import arrowPageInicial from '../../assets/hacia-atras.png'
+import arrowPageBefore from '../../assets/arrow-izq.png'
+import arrowPageAfter from '../../assets/arrow-der.png'
+import arrowPageFinal from '../../assets/hacia-adelante.png'
 
 function MyCourses() {
   const data = [

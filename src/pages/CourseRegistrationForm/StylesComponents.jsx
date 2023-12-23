@@ -18,9 +18,6 @@ export const ContainerData= styled.div`
     width: 100%;
     flex-wrap: wrap;
     justify-content: space-around;
-    div:last-of-type{
-        padding-right: 50%;
-    }
 `;
 export const DivLabelAndInput= styled.div`
     width: 40%;
