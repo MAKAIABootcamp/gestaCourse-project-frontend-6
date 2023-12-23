@@ -1,5 +1,5 @@
 import React from 'react'
-import {Title, StylesPrincipal, Search,Lupa,Input,BotonBuscar,DivCards,Cards,ImgCard,TitleCard,TextCard,BotonDetalles,Botones,BotonInscripcion} from './StyleOfertasInscripciones'
+import {Title, StylesPrincipal, Search,Lupa,Input,BotonBuscar,DivCards,Cards,CardImg,ImgCard,TitleCard,TextCard,BotonDetalles,Botones,BotonInscripcion} from './StyleOfertasInscripciones'
 
 const OfertasInscripciones = () => {
   return (
@@ -16,7 +16,9 @@ const OfertasInscripciones = () => {
         </Search>
         <DivCards>
             <Cards>
-                <ImgCard src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703291763/DemoDay/CDPPW_ed17-medium_apjiha.jpg" alt="course" />
+                <CardImg>
+                    <ImgCard src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703291763/DemoDay/CDPPW_ed17-medium_apjiha.jpg" alt="course" />
+                </CardImg>
                 <div>
                     <TitleCard>Diseño de página web - FrontEnd</TitleCard>
                     <TextCard>
@@ -31,7 +33,9 @@ const OfertasInscripciones = () => {
                 </Botones>
             </Cards>
             <Cards>
-                <ImgCard src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703291749/DemoDay/desarrollo-web_bl9tsg.jpg" alt="course" />
+                <CardImg>
+                    <ImgCard src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703291749/DemoDay/desarrollo-web_bl9tsg.jpg" alt="course" />
+                </CardImg>
                 <div>
                     <TitleCard>Curso Desarrollo web full stack</TitleCard>
                     <TextCard>
@@ -46,7 +50,10 @@ const OfertasInscripciones = () => {
                 </Botones>
             </Cards>
             <Cards>
-                <ImgCard src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703291747/DemoDay/curso-app-sin-programar_xg2j2e.webp" alt="course" />
+                <CardImg>
+                    <ImgCard src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703291747/DemoDay/curso-app-sin-programar_xg2j2e.webp" alt="course" />
+                    
+                </CardImg>
                 <div>
                     <TitleCard> Introducción al desarrollo móvil</TitleCard>
                     <TextCard> 

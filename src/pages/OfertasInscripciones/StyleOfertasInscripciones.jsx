@@ -43,18 +43,22 @@ export const DivCards = styled.div`
     display: grid;
     grid-template-columns: repeat(3,1fr);
     justify-items: center;  
-
 `;
 export const Cards = styled.div`
     margin-top: 20px;
     width:30rem;
-    height:45rem;
+    &:hover{
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 
+    }
 `;
-
+export const CardImg = styled.div`
+    display: flex;
+    justify-content:center;
+`;
 export const ImgCard = styled.img`
-    width:100%;
-    height:30rem;
+    width:15rem;
+    height:15rem;
     border-radius:15px;
 `;
 export const TitleCard = styled.h2`
@@ -65,7 +69,7 @@ export const TextCard = styled.p`
     height:160px;
     color:#8F8E8E;  
     font-size:18px;
- 
+    
 `;
 export const Botones = styled.div`
     display: flex;
@@ -91,4 +95,5 @@ export const BotonInscripcion = styled.button`
     color:white;
     font-size:16px;
     background-color:#004AAD;
+   
 `;
