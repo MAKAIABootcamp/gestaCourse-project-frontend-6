@@ -18,12 +18,21 @@ export const ContainerData= styled.div`
     width: 100%;
     flex-wrap: wrap;
     justify-content: space-around;
+    @media only screen and (max-width: 600px) {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items: center;
+    }
 `;
 export const DivLabelAndInput= styled.div`
     width: 40%;
     display: flex;
     flex-direction: column;
     margin-bottom: 1%;
+    @media only screen and (max-width: 600px) {
+        width: 80%;
+    }
     label {
         display: flex;
         color: #04153B;
@@ -65,9 +74,9 @@ export const DivLabelAndInput= styled.div`
     }
 `;
 export const ButtonInscription= styled.button`
+    width: 40%;
     margin-top: 2%;
     margin-bottom: 2%;
-    width: 40%;
     background-color: #04153B;
     color: #FFFFFF;
     font-family: 'DM Sans', sans-serif;
@@ -76,6 +85,9 @@ export const ButtonInscription= styled.button`
     border: none;
     padding-top: 1%;
     padding-bottom: 1%;
+    @media only screen and (max-width: 600px) {
+        width: 80%;
+    }
     &:hover{
         cursor: pointer;
     }

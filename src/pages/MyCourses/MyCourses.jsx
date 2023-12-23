@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TableStyled, ArticleStyled, StateButtonStyled, PaginationStyled} from './StylesComponents'
+import { TableStyled, ArticleStyled, StateButtonStyled, PaginationStyled, ScrollStyled} from './StylesComponents'
 import arrowPageInicial from '../../assets/hacia-atras.png'
 import arrowPageBefore from '../../assets/arrow-izq.png'
 import arrowPageAfter from '../../assets/arrow-der.png'
@@ -41,33 +41,35 @@ function MyCourses() {
   return (
     <ArticleStyled>
       <h1>MIS CURSOS</h1>
-      <TableStyled>
-        <thead>
-          <tr>
-            <th>Nombre del Curso</th>
-            <th>Año</th>
-            <th>Estado</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentItems.map((item, index) => (
-            <tr key={index}>
-              <td>{item.name}</td>
-              <td>{item.year}</td>
-              <td>{item.state}</td>
-              {
-                item.state === "Inscrito"?
-                <StateButtonStyled>
-                  <button>Cancelar Solicitud</button>
-                </StateButtonStyled>: 
-                <td></td>
-              }
-              
+      <ScrollStyled>
+        <TableStyled>
+          <thead>
+            <tr>
+              <th>Nombre del Curso</th>
+              <th>Año</th>
+              <th>Estado</th>
+              <th></th>
             </tr>
-          ))}
-        </tbody>
-      </TableStyled>
+          </thead>
+          <tbody>
+            {currentItems.map((item, index) => (
+              <tr key={index}>
+                <td>{item.name}</td>
+                <td>{item.year}</td>
+                <td>{item.state}</td>
+                {
+                  item.state === "Inscrito"?
+                  <StateButtonStyled>
+                    <button>Cancelar Solicitud</button>
+                  </StateButtonStyled>: 
+                  <td></td>
+                }
+
+              </tr>
+            ))}
+          </tbody>
+        </TableStyled>
+      </ScrollStyled>
       <PaginationStyled>
         <button onClick={goToFirstPage}><img src={arrowPageInicial}/></button>
         <button onClick={goToPrevPage}><img src={arrowPageBefore}/></button>

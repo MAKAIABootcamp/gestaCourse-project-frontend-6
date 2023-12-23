@@ -11,10 +11,25 @@ export const ArticleStyled =  styled.article`
         font-weight: 400;
     }
 `;
+
+export const ScrollStyled =  styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media only screen and (max-width: 600px) {
+        display: block;
+        width: 90%;
+        overflow-x: scroll;
+    }
+`;
+
 export const TableStyled =  styled.table`
     width: 80%;
     margin-bottom: 4%;
     margin-top: 2%;
+    @media only screen and (max-width: 600px) {
+        width: 150%;
+    }
     th{
         color: #3B4848;
         border-bottom: 2px solid #B8B9BB;
@@ -63,6 +78,12 @@ export const PaginationStyled =  styled.div`
     align-items: center;
     width: 20%;
     justify-content: space-around;
+    @media only screen and (max-width: 600px) {
+        width: 50%;
+    }
+    @media only screen and (max-width: 400px) {
+        width: 80%;
+    }
     button {
         border: none;
         border-radius: 50px;
