@@ -2,10 +2,12 @@ import styled from "styled-components"
 
 const ContendDiv = styled.div`
     display: flex;
+    margin: 0;
     width: 100%;
     flex-direction: row;
     color: #04153B;
     text-color: #04153B;
+    font-family: 'DM Sans', sans-serif;
 `
 const Divsecundary = styled.div`
     display: flex;
@@ -19,6 +21,7 @@ const Div = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
+    margin: 10px
 `
 const H3 = styled.h3`
 `
@@ -29,18 +32,24 @@ const Input = styled.input`
     background-color: #ECECEC;
     padding: 10px;
     width: 90%;
+    color: #4D4C4C;
+    outline: none;
 `
+
 const InputFile = styled.input`
-    border: none;
-    border-radius: 15px;
+    width: 90%;
     background-color: #ECECEC;
-    padding: 10px;
-    label {
-        background-color: #4285F4;
-        color: #fff;
-        border-radius: 15px;
+    border-radius: 15px;
+    color: #4D4C4C;
+    &::file-selector-button{
+        margin-right: 20px;
         border: none;
-        padding: 10px;
+        background: #D9D9D9;
+        padding: 10px 20px;
+        border-radius: 10px;
+        color: #4D4C4C;
+        cursor: pointer;
+        transition: background .2s ease-in-out;
     }
 `
 const Select = styled.select`
@@ -49,25 +58,33 @@ const Select = styled.select`
     border-radius: 15px;
     padding: 10px;
     background-color: #ECECEC;
+    color: #4D4C4C;
+    outline: none;
 `
 const DivButtons = styled.div`
     display: flex;
-    justify-content: end;
-    margin: 5px;
+    justify-content: flex-end;
+    width: 100%;
 `
 const ButtonSave = styled.button`
+    display: flex;
+    align-items: center;
     background-color: #4285F4;
     color: #fff;
     border: none;
-    padding: 10px;
     border-radius: 15px;
+    margin: 2px;
 `
 const ButtonCancel = styled.button`
+    display: flex;
+    align-items: center;
     background-color: #8F8E8E;
     color: #fff;
     border: none;
     border-radius: 15px;
+    margin-right: 10px;
 `
+
 function FormCourse() {
     return (
         <div>
@@ -153,10 +170,10 @@ function FormCourse() {
                         </Div>
                     </Divsecundary>
                 </ContendDiv>
-                <hr size="2px" color="black" />
+                <hr size="2px" color="#B8B9BB" />
                 <DivButtons>
                     <ButtonCancel>Cancelar</ButtonCancel>
-                    <ButtonSave>Guardar</ButtonSave>
+                    <ButtonSave><svg width="20px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="##FFFFFF"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 5H9C7.11438 5 6.17157 5 5.58579 5.58579C5 6.17157 5 7.11438 5 9V15C5 16.8856 5 17.8284 5.58579 18.4142C6.17157 19 7.11438 19 9 19H15C16.8856 19 17.8284 19 18.4142 18.4142C19 17.8284 19 16.8856 19 15V12M9.31899 12.6911L15.2486 6.82803C15.7216 6.36041 16.4744 6.33462 16.9782 6.76876C17.5331 7.24688 17.5723 8.09299 17.064 8.62034L11.2329 14.6702L9 15L9.31899 12.6911Z" stroke="#FFFFFF" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg> Guardar</ButtonSave>
                 </DivButtons>
             </form>
         </div>
