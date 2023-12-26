@@ -2,29 +2,43 @@ import React, { useEffect } from 'react';
 
 const Funct = () => {
   useEffect(() => {
-    const signUpButton = document.getElementById('signUp');
-    const signInButton = document.getElementById('signIn');
-    const container = document.getElementById('container');
+    const sign_in_btn = document.querySelector("#sign-in-btn");
+    const sign_up_btn = document.querySelector("#sign-up-btn");
+    const container = document.querySelector(".container");
+    const sign_in_btn2 = document.querySelector("#sign-in-btn2");
+    const sign_up_btn2 = document.querySelector("#sign-up-btn2");
 
-    const abrirFormularioRegistro = () => {
-      container.classList.add('right-panel-active');
+    const handleSignUpClick = () => {
+      container.classList.add("sign-up-mode");
     };
 
-    const volverFormularioInicioSesion = () => {
-      container.classList.remove('right-panel-active');
+    const handleSignInClick = () => {
+      container.classList.remove("sign-up-mode");
     };
 
-    signUpButton.addEventListener('click', abrirFormularioRegistro);
-    signInButton.addEventListener('click', volverFormularioInicioSesion);
+    const handleSignUpClick2 = () => {
+      container.classList.add("sign-up-mode2");
+    };
+
+    const handleSignInClick2 = () => {
+      container.classList.remove("sign-up-mode2");
+    };
+
+    sign_up_btn.addEventListener("click", handleSignUpClick);
+    sign_in_btn.addEventListener("click", handleSignInClick);
+    sign_up_btn2.addEventListener("click", handleSignUpClick2);
+    sign_in_btn2.addEventListener("click", handleSignInClick2);
 
     return () => {
       // Limpiar los event listeners al desmontar el componente
-      signUpButton.removeEventListener('click', abrirFormularioRegistro);
-      signInButton.removeEventListener('click', volverFormularioInicioSesion);
+      sign_up_btn.removeEventListener("click", handleSignUpClick);
+      sign_in_btn.removeEventListener("click", handleSignInClick);
+      sign_up_btn2.removeEventListener("click", handleSignUpClick2);
+      sign_in_btn2.removeEventListener("click", handleSignInClick2);
     };
-  }, []); // El segundo argumento del useEffect es un array vacío para que se ejecute solo una vez al montar el componente
-  return null;
+  }, []);
 
+  return null;
 };
 
 export default Funct;

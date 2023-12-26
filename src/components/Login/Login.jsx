@@ -1,69 +1,98 @@
-import React from 'react';
+import logo from "../Login/logodemoday.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
-import logo from "../Login/logodemoday.png";
 import './stylelogin.css'
-import Funct from '../Login/funct';
+import React from 'react';
+import Funct from "./funct";
 
 const Login = () => {
-  return (    
-    <div className="container" id="container">
-      <div className="form-container sign-up-container">
-        <form action="#">
-          <h3>Crear Cuenta</h3>
-          
-          {/* <span>o usa tu email como registro</span> */}
-          <input type="text" placeholder="Nombre(s)" />
-          <input type="text" placeholder="Apellido(s)" />
-          <select>
-            <option value="opcion1">Cedula de Ciudadania</option>
-            <option value="opcion2">Opción 2</option>
-            <option value="opcion3">Opción 3</option>
-            <option value="opcion4">Opción 4</option>
-          </select>
-          <input type="text" placeholder="Numero de Identificación" />
-          <input type="email" placeholder="Correo Electronico" />
-          <input type="number" placeholder="Numero de Telefono" />
-          <input type="password" placeholder="Contraseña" />
-          <input type="password" placeholder="Confirmar Contraseña" />
-          <button >Registrar</button>
-        </form>
-      </div>
-      <div className="form-container sign-in-container">
-        <form action="#">
-          <h3>INICIO DE SESIÓN</h3>
-          {/* <span>o usa tu email</span> */}
-          <input type="email" placeholder="Correo Electronico" />
-          <input type="password" placeholder="Contraseña" />
-          <button>Entrar</button>
-          <div className="social-container">
-            <a href="#" className="social">
-              <FontAwesomeIcon icon={faGoogle} id="red" />
+  return (
+    <div className="container">
+      <div className="signin-signup">
+        <form action="" className="sign-in-form">
+          <h2 className="title">INICIO DE SESIÓN</h2>
+          <div className="input-field">
+            <i className="fas fa-user"></i>
+            <input type="email" placeholder="Correo Electronico" />
+          </div>
+          <div className="input-field">
+            <i className="fas fa-lock"></i>
+            <input type="password" placeholder="Contraseña" />
+          </div>
+          <input type="submit" value="Entrar" className="btn" />
+          <p className="social-text">Continuar con Google</p>
+          <div className="social-media">
+            <a href="" className="social-icon">
+                <FontAwesomeIcon icon={faGoogle} id="red" />
             </a>
           </div>
-          <input type="button"  className="regis" id="signUp" value='¿No tienes cuenta? Registrate'/>
-          {/* <a href="" className="ghost" id="signUp">¿No tienes cuenta? Registrate</a> */}
-          <a href="#">¿Olvidaste tú contraseña? Click Aquí</a>
-          
+          <a href="#" className="social-text" >¿Olvidaste tú contraseña? Click Aquí</a>
+          <p className="account-text">
+          ¿No tienes cuenta?<a href="#" id="sign-up-btn2">Registrate</a>
+          </p>
+        </form>
+        <form action="" className="sign-up-form">
+          <h2 className="title">Crear Cuenta</h2>
+          <div className="input-field">
+            <i className="fas fa-user"></i>
+            <input type="text" placeholder="Nombre(s)" />
+          </div>
+          <div className="input-field">
+            <i className="fas fa-envelope"></i>
+            <input type="text" placeholder="Apellido(s)" />
+          </div>
+          <div className="input-field">
+            <i className="fas fa-lock"></i>
+                <select>
+                    <option value="opcion1">Cedula de Ciudadania</option>
+                    <option value="opcion2">Opción 2</option>
+                    <option value="opcion3">Opción 3</option>
+                    <option value="opcion4">Opción 4</option>
+                </select>
+          </div>
+          <div className="input-field">
+            <i className="fas fa-user"></i>
+            <input type="number" placeholder="Numero de Identificación" />
+          </div>
+          <div className="input-field">
+            <i className="fas fa-user"></i>
+            <input type="email" placeholder="Correo Electronico" />
+          </div>
+          <div className="input-field">
+            <i className="fas fa-user"></i>
+            <input type="number" placeholder="Numero de Telefono" />
+          </div>
+          <div className="input-field">
+            <i className="fas fa-user"></i>
+            <input type="password" placeholder="Contraseña" />
+          </div>
+          <div className="input-field">
+            <i className="fas fa-user"></i>
+            <input type="password" placeholder="Confirmar Contraseña" />
+          </div>
+          <input type="submit" value="Registrar" className="btn" />
+          <p className="account-text">
+          ¿Ya estas registrado?<a href="#" id="sign-in-btn2"> Inicio Sesión</a>
+          </p>
         </form>
       </div>
-      <div className="overlay-container">
-        <div className="overlay">
-          <div className="overlay-panel overlay-left">
-            <img className="logo" src={logo} alt="Logo" />
-            <p>Inicia sesión con tu cuenta</p>
-            <button className="ghost" id="signIn">
-              Inicia sesión
-            </button>
-          </div>
-          <div className="overlay-panel overlay-right">
-            <img className="logo" src={logo} alt="Logo" />
-            
-            <p>SISTEMA DE GESTIÓN DE LA OFERTA ACADÉMICA Y SIMPLIFICACIÓN DE PROCESOS DE INSCRIPCIÓN</p>
+      <div className="panels-container">
+        <div className="panel left-panel">
+        <img className="image" src={logo} alt="Logo" />
+          <div className="content">
+                <button className="btn" id="sign-in-btn">INICIO DE SESIÓN</button>
+                <p>SISTEMA DE GESTIÓN DE LA OFERTA ACADÉMICA Y SIMPLIFICACIÓN DE PROCESOS DE INSCRIPCIÓN</p>
           </div>
         </div>
+        <div className="panel right-panel">
+            <img className="image" src={logo} alt="Logo" />
+            <div className="content">
+                <button className="btn" id="sign-up-btn">Registrar</button>
+                <p>SISTEMA DE GESTIÓN DE LA OFERTA ACADÉMICA Y SIMPLIFICACIÓN DE PROCESOS DE INSCRIPCIÓN</p>
+            </div>
+        </div>
       </div>
-      <Funct signUpId="signUp" signInId="signIn" containerId="container" />
+      <Funct signUpId="sign-up-btn" signInId="sign-in-btn" containerId="container" />
     </div>
   );
 };
