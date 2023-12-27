@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const  ContendDiv = styled.div`
     padding: 2%;
+    font-family: 'DM Sans', sans-serif;
 `
 const TitleDiv = styled.div`
     display: flex;
@@ -16,6 +17,7 @@ const AddButton = styled.button`
     border-radius: 15px;
     border: none;
     padding: 10px;
+    cursor: pointer;
 `
 const SearchDiv = styled.div`
     display: flex;
@@ -46,12 +48,15 @@ const NextButton = styled.button`
     border: none;
     border-radius: 5px;
     padding: 15px;
+    cursor: pointer;
+    font-weight: bold;
 `
 const NumPage = styled.button`
     padding: 15px;
     border-radius: 5px;
     background-color: #04153B;
     color: #fff;
+    border: none;
 `
 function CourseManagement() {
   return (
@@ -61,14 +66,14 @@ function CourseManagement() {
             <h2>Gestión de Cursos</h2>
             <AddButton>+ Añadir</AddButton>
         </TitleDiv>
-        <hr size="2px" color="black" />
+        <hr size="2px" color="#B8B9BB" />
         <SearchDiv>
           <p>Buscar</p>
           <input type="text" name="" id="" />
         </SearchDiv>
         <CourseManagementTable />
       </div>
-      <hr size="2px" color="black" />
+      <hr size="2px" color="#B8B9BB" />
       <ButtonsDiv>
         <NextButton>Atrás</NextButton>
         <NumPage>1</NumPage>
