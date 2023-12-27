@@ -4,6 +4,7 @@ import { BrowserRouter,Route, Routes  } from 'react-router-dom'
 import Home from '../components/Home/Home'
 import Layout from '../components/Layout/Layout'
 import QuienesSomos from '../components/QuienesSomos/QuienesSomos'
+import Recuperacion from '../components/Recuperacion/Recuperacion'
 import Login from '../components/Login/Login'
 import EditProfile from '../pages/EditProfile/EditProfile'
 import MyCourses from '../pages/MyCourses/MyCourses'
@@ -16,6 +17,7 @@ const Router = () => {
         <Routes>
             <Route  element={<Layout/>} >
                 <Route path="/login" element={<Login />}></Route>
+                <Route path="/recuperacion" element={<Recuperacion />}></Route>
                 <Route index element={<Home/>} />
                 <Route path="ofertasInscripciones" element={<Home/>} />
                 <Route path="quienesSomos" element={<QuienesSomos/>} />
