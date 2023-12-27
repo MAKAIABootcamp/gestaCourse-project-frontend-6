@@ -8,6 +8,7 @@ import OfertasInscripciones from '../pages/OfertasInscripciones/OfertasInscripci
 import EditProfile from '../pages/EditProfile/EditProfile'
 import MyCourses from '../pages/MyCourses/MyCourses'
 import CourseRegistrationForm from '../pages/CourseRegistrationForm/CourseRegistrationForm'
+import DetailsCourse from '../pages/DeatailsCourse/DetailsCourse'
 
 const Router = () => {
   return (
@@ -17,7 +18,7 @@ const Router = () => {
                 <Route index element={<OfertasInscripciones/>} />
                 <Route path="ofertasInscripciones" element={<OfertasInscripciones/>} />
                 <Route path="acercaNosotros" element={<QuienesSomos/>} />
-                <Route path="ingresar" element={<Ingresar/>} />
+                <Route path="ingresar" element={<DetailsCourse/>} />
                 <Route path="formatoInscripcionACurso" element={<CourseRegistrationForm/>} />
                 <Route path="editarPerfil" element={<EditProfile/>} />
                 <Route path="misCursos" element={<MyCourses/>} />
