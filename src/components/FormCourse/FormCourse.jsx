@@ -8,6 +8,15 @@ const ContendDiv = styled.div`
     color: #04153B;
     text-color: #04153B;
     font-family: 'DM Sans', sans-serif;
+
+    @media screen and (max-width: 767px) {
+        /* Estilos para dispositivos móviles */
+        flex-direction: column;
+      }
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+        /* Estilos para tabletas */
+        flex-direction: column;
+      }
 `
 const Divsecundary = styled.div`
     display: flex;
@@ -65,6 +74,15 @@ const DivButtons = styled.div`
     display: flex;
     justify-content: flex-end;
     width: 100%;
+
+    @media screen and (max-width: 767px) {
+        /* Estilos para dispositivos móviles */
+        justify-content: center;
+      }
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+        /* Estilos para tabletas */
+        justify-content: center;
+      }
 `
 const ButtonSave = styled.button`
     display: flex;
