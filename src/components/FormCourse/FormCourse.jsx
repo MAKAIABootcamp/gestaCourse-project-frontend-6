@@ -8,6 +8,13 @@ const ContendDiv = styled.div`
     color: #04153B;
     text-color: #04153B;
     font-family: 'DM Sans', sans-serif;
+
+    @media screen and (max-width: 767px) {
+        /* Estilos para dispositivos móviles */
+        flex-direction: column;
+        
+      }
+      
 `
 const Divsecundary = styled.div`
     display: flex;
