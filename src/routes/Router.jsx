@@ -5,7 +5,9 @@ import Layout from '../components/Layout/Layout'
 import QuienesSomos from '../components/QuienesSomos/QuienesSomos'
 import Ingresar from '../components/Ingresar/Ingresar'
 import OfertasInscripciones from '../pages/OfertasInscripciones/OfertasInscripciones'
-
+import EditProfile from '../pages/EditProfile/EditProfile'
+import MyCourses from '../pages/MyCourses/MyCourses'
+import CourseRegistrationForm from '../pages/CourseRegistrationForm/CourseRegistrationForm'
 
 const Router = () => {
   return (
@@ -16,6 +18,10 @@ const Router = () => {
                 <Route path="ofertasInscripciones" element={<OfertasInscripciones/>} />
                 <Route path="acercaNosotros" element={<QuienesSomos/>} />
                 <Route path="ingresar" element={<Ingresar/>} />
+                <Route path="formatoInscripcionACurso" element={<CourseRegistrationForm/>} />
+                <Route path="editarPerfil" element={<EditProfile/>} />
+                <Route path="misCursos" element={<MyCourses/>} />
+            
             </Route>
         </Routes>
     </BrowserRouter>
