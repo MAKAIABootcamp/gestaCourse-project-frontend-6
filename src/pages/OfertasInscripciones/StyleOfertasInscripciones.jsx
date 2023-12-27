@@ -47,9 +47,11 @@ export const DivCards = styled.div`
 export const Cards = styled.div`
     margin-top: 20px;
     width:30rem;
+    transition: transform 0.3s ease;
     &:hover{
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-
+        border-radius:10px;
+        transform: scale(1.05);
     }
 `;
 export const CardImg = styled.div`
@@ -66,15 +68,17 @@ export const TitleCard = styled.h2`
     justify-content:center;
 `;
 export const TextCard = styled.p`
-    height:160px;
+    height:180px;
     color:#8F8E8E;  
     font-size:18px;
-    
+    padding-left:10px;
+    padding-right:10px;
 `;
 export const Botones = styled.div`
     display: flex;
     width:100%;
-    justify-content:space-between;
+    justify-content:space-around;
+    margin-bottom:10px;
 
 `;
 export const BotonDetalles = styled.button`

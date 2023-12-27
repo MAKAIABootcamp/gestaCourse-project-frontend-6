@@ -28,4 +28,10 @@ export const Stylelink= styled(Link)`
 export const StyleUl = styled.ul`
      display:flex;  
      gap:1rem;
+     align-items:center;
+`;
+export const StyleUser = styled.img`
+     width:4rem;
+     border-radius:30px;
+     
 `;
