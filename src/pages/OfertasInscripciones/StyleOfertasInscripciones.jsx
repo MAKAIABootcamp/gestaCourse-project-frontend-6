@@ -47,12 +47,14 @@ export const DivCards = styled.div`
 export const Cards = styled.div`
     margin-top: 20px;
     width:30rem;
+    margin-bottom:10px;
     transition: transform 0.3s ease;
     &:hover{
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
         border-radius:10px;
-        transform: scale(1.05);
+        transform: scale(1.04);
     }
+    
 `;
 export const CardImg = styled.div`
     display: flex;
