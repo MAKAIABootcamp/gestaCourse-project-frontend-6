@@ -1,4 +1,4 @@
-import logo from "../Login/logodemoday.png";
+import logo from "../../assets/logodemoday.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import './stylelogin.css'

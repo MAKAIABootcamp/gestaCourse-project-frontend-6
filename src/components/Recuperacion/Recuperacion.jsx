@@ -1,31 +1,25 @@
 import React from 'react';
-import logo from "../Recuperacion/logodemoday.png";
-import './stylerecu.css'
-
+import logo from "../../assets/logodemoday.png";
+import {ContainerRecu, BackgroundColor, DivRecu} from './styleComRecu'
 
 const Recuperacion = () => {
   return (
-    <div className="container">
-      <div className="signin-signup">
-        <form action="" className="sign-in-form">
-          <h2 className="title">RECUPERAR CONTRASEÑA</h2>
-          <div className="input-field">
-            <i className="fas fa-user"></i>
-            <input type="email" placeholder="Correo Electronico" />
-          </div>
-          <input type="submit" value="Recuperar" className="btn" />
+    <ContainerRecu>
+      <DivRecu>
+        <h2>RECUPERAR CONTRASEÑA</h2>
+        <p>Ingresa tu correo electrónico para buscar tu cuenta.</p>
+        <form action="">
+          <input className="input-field" type="email" placeholder="Correo Electronico" />
+          <button type="submit" className="btn">Recuperar</button>        
         </form>
-      </div>
-      <div className="panels-container">
-        <div className="panel right-panel">
-            <img className="image" src={logo} alt="Logo" />
-            <div className="content">
-                <p>SISTEMA DE GESTIÓN DE LA OFERTA ACADÉMICA Y SIMPLIFICACIÓN DE PROCESOS DE INSCRIPCIÓN</p>
-            </div>
+      </DivRecu>
+      <BackgroundColor>
+        <img src={logo} alt="Logo" />
+        <div>
+          <p>SISTEMA DE GESTIÓN DE LA OFERTA ACADÉMICA Y SIMPLIFICACIÓN DE PROCESOS DE INSCRIPCIÓN</p>
         </div>
-      </div>
-
-    </div>
+      </BackgroundColor>
+    </ContainerRecu>
   );
 };
 
