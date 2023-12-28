@@ -1,5 +1,5 @@
 import React from 'react'
-import {StyleContenedor, StyleLeft, StyleRigth, StyleTitle,StylePararfo} from './StyleAcercaNosotros'
+import {StyleContenedor, StyleLeft, StyleRigth, StyleTitle,StylePararfo,StyleImg,StyleImgMision} from './StyleAcercaNosotros'
 const AcercaNosotros = () => {
   return (
     <>
@@ -19,7 +19,30 @@ const AcercaNosotros = () => {
 
             </StyleLeft>
             <StyleRigth>
-                <img src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703726245/DemoDay/descarga_fyijpp.png" alt="imgAcerca de nosotros" />
+                <StyleImg src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703733249/FOTO-CAMBIO-768x589_udhnvq.png" alt='img quienes somos'/>
+            </StyleRigth>
+            
+        </StyleContenedor>
+        <StyleContenedor>
+            <StyleRigth>
+                <StyleImgMision src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703741560/2_du3okb.jpg" alt='img mision'/>
+            </StyleRigth>
+            <StyleLeft>
+                <StyleTitle>Misión  </StyleTitle>
+                <StylePararfo>
+                    En GestaCourse, nuestra misión es redefinir la forma en que las instituciones académicas gestionan y ofrecen cursos. Nos proponemos ser el mecanismo de servicio, apoyo y acompañamiento que las instituciones necesitan para adaptarse y prosperar en un mundo educativo en constante cambio.    
+                </StylePararfo>
+            </StyleLeft>
+        </StyleContenedor>
+        <StyleContenedor>
+            <StyleLeft>
+                <StyleTitle>Visión  </StyleTitle>
+                <StylePararfo>
+                    Imaginamos un mundo donde la gestión académica no sea una tarea ardua, sino una experiencia fluida y enriquecedora. GestaCourse aspira a ser un socio estratégico para las instituciones académicas, allanando el camino hacia la excelencia en la educación.  
+                </StylePararfo>
+            </StyleLeft>
+            <StyleRigth>
+                <StyleImgMision src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703741559/3_pb87rr.jpg" alt='img vision'/>
             </StyleRigth>
         </StyleContenedor>
     </>
