@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+export const StylePrincipal= styled.div`
+    padding-bottom:20px;
+`;
 export const StyleContenedor = styled.div`
     width:90%;
     display: flex;

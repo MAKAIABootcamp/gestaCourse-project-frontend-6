@@ -1,8 +1,8 @@
 import React from 'react'
-import {StyleContenedor, StyleLeft, StyleRigth, StyleTitle,StylePararfo,StyleImg,StyleImgMision} from './StyleAcercaNosotros'
+import {StylePrincipal,StyleContenedor, StyleLeft, StyleRigth, StyleTitle,StylePararfo,StyleImg,StyleImgMision} from './StyleAcercaNosotros'
 const AcercaNosotros = () => {
   return (
-    <>
+    <StylePrincipal>
         <StyleContenedor>
             <StyleLeft>
                 <StyleTitle>¿Quiénes Somos? </StyleTitle>
@@ -45,7 +45,7 @@ const AcercaNosotros = () => {
                 <StyleImgMision src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703741559/3_pb87rr.jpg" alt='img vision'/>
             </StyleRigth>
         </StyleContenedor>
-    </>
+    </StylePrincipal>
   )
 }
 
