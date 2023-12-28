@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from "../../assets/logodemoday.png";
-import {ContainerRecu, BackgroundColor, DivRecu} from './styleComRecu'
+import {ContainerRecu, BackgroundColor, DivRecu} from './styleRecuperacion'
 
 const Recuperacion = () => {
   return (
