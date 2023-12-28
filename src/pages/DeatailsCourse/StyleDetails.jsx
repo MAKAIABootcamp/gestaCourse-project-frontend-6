@@ -31,12 +31,15 @@ export const StyleParrafo = styled.p`
 export const StyleDivSecundario = styled.div`
     padding-right:30px;
     padding-left:30px;
+   
 `;
 export const StyleDivPuntos = styled.div`
     display: flex;
     text-align:justify;
     align-items:center;
     gap:10px;
+    line-height: 0;
+
 `;
 export const StylePunto = styled.img`
     width:15px;
@@ -56,11 +59,16 @@ export const StyleDivInversion = styled.div`
     gap: 10px;
     align-items:center;
     font-size:18px;
+    line-height:0;
+    
 `;
 export const StyleInversion = styled.div` 
-      color: #8F8E8E;
-      
+    color: #8F8E8E;  
+    
 `;
+
 export const StyleCupos = styled.h4`
-     font-size:18px;
+    font-size:18px;
+    line-height:0;
+
 `;
