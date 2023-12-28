@@ -1,16 +1,23 @@
 import styled from 'styled-components';
 
 export const ContainerArticle =  styled.article`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-family: 'DM Sans', sans-serif;
     h1{
         color: #04153B;
         text-align: center;
     }
     form {
+        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        @media only screen and (min-width: 1367px) {
+            width: 70%;
+        }
     }
 `;
 export const ContainerData= styled.div`
