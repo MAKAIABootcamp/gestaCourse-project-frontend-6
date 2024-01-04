@@ -16,16 +16,20 @@ const EditButton = styled.button`
   background-color: #34a853;
   border: none;
   border-radius: 5px;
-  padding: 5px;
   cursor: pointer;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
 `;
 const DeleteButton = styled.button`
   color: #fff;
   background-color: #c50b0a;
   border: none;
   border-radius: 5px;
-  padding: 5px;
   cursor: pointer;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
 `;
 
 const Table = styled.table`
@@ -38,6 +42,7 @@ const Table = styled.table`
   }
   tbody {
     tr,th,td {
+      height: 100%;
       text-align: center;
       justify-content: center;
       color: #8F8E8E;
@@ -48,7 +53,6 @@ const Table = styled.table`
 
 // Define los estilos para filas pares
 const EvenRow = styled.tr`
-
 `;
 
 // Define los estilos para filas impares
@@ -60,12 +64,8 @@ const OddRow = styled.tr`
 `;
 
 const TdAccion = styled.td`
-    display: flex;
-    height: 100%;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
+  border: none;
+  padding: 0;
 `;
 
 function CourseManagementTable() {
@@ -202,6 +202,8 @@ function CourseManagementTable() {
                 <td>{row.costo}</td>
                 <TdAccion >
                     <EditButton>Editar</EditButton>
+                </TdAccion>
+                <TdAccion>
                     <DeleteButton>Eliminar</DeleteButton>
                 </TdAccion>
               </EvenRow>
@@ -218,6 +220,8 @@ function CourseManagementTable() {
                 <td>{row.costo}</td>
                 <TdAccion >
                     <EditButton>Editar</EditButton>
+                </TdAccion>
+                <TdAccion>
                     <DeleteButton>Eliminar</DeleteButton>
                 </TdAccion>
               </OddRow>
