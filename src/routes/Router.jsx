@@ -1,6 +1,5 @@
 import { BrowserRouter,Route, Routes  } from 'react-router-dom'
 import Layout from '../components/Layout/Layout'
-import QuienesSomos from '../components/QuienesSomos/QuienesSomos'
 import EditRecord from '../pages/EditRecord/EditRecord'
 import OfertasInscripciones from '../pages/OfertasInscripciones/OfertasInscripciones'
 import Recuperacion from '../components/Recuperacion/Recuperacion'
@@ -27,7 +26,6 @@ const Router = () => {
                 <Route path="formatoInscripcionACurso" element={<CourseRegistrationForm/>} />
                 <Route path="editarPerfil" element={<EditProfile/>} />
                 <Route path="misCursos" element={<MyCourses/>} />
-                <Route path="quienesSomos" element={<QuienesSomos/>} />
                 <Route path="EditarCurso" element={<EditRecord/>} />
                 <Route path="gestionCursos" element={<CourseManagement/>} />
             </Route>
