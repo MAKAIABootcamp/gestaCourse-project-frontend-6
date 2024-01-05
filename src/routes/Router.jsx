@@ -10,6 +10,8 @@ import MyCourses from '../pages/MyCourses/MyCourses'
 import CourseRegistrationForm from '../pages/CourseRegistrationForm/CourseRegistrationForm'
 import DetailsCourse from '../pages/DeatailsCourse/DetailsCourse'
 import AcercaNosotros from '../pages/AcercaNosotros/AcercaNosotros'
+import CourseManagement from '../pages/courseManagement/CourseManagement'
+
 
 const Router = () => {
   return (
@@ -27,6 +29,7 @@ const Router = () => {
                 <Route path="misCursos" element={<MyCourses/>} />
                 <Route path="quienesSomos" element={<QuienesSomos/>} />
                 <Route path="EditarCurso" element={<EditRecord/>} />
+                <Route path="gestionCursos" element={<CourseManagement/>} />
             </Route>
         </Routes>
     </BrowserRouter>
