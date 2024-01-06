@@ -4,7 +4,7 @@ import { setAuthenticated, setError, setUser } from "./userSlice";
 export const createAccountAsync = (newUsers) => async (dispatch) => {
     try {
         const {user} = await createUserWithEmailAndPassword(auth, newUsers.email,newUsers.password);
-       await updateProfile(auth.currentUser, {
+        await updateProfile(auth.currentUser, {
             displayName: newUsers.displayName,
             photoURL: newUsers.photoURL
         });
