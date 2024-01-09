@@ -1,4 +1,13 @@
 import styled from "styled-components";
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import {
+  createData,
+  deleteData,
+  getData,
+  updateData,
+} from '../../store/courses/courseActions';
 const DivTable = styled.div`
   width: 100%;
   overflow: auto;
@@ -24,6 +33,16 @@ const EditButton = styled.button`
 const DeleteButton = styled.button`
   color: #fff;
   background-color: #c50b0a;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+`;
+const StudentsButton = styled.button`
+  color: #fff;
+  background-color: #10a4d1;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -177,6 +196,11 @@ function CourseManagementTable() {
       accion: "Editar",
     },
   ];
+  const dispatch = useDispatch();
+  useEffect(() => {
+    console.log("ENTROOOOO")
+    dispatch(getData());
+  }, []);
   return (
     <DivTable >
       <Table >
@@ -206,6 +230,9 @@ function CourseManagementTable() {
                 <TdAccion>
                     <DeleteButton>Eliminar</DeleteButton>
                 </TdAccion>
+                <TdAccion>
+                    <StudentsButton>Estudiantes</StudentsButton>
+                </TdAccion>
               </EvenRow>
             ) : (
               <OddRow key={index}>
@@ -223,6 +250,9 @@ function CourseManagementTable() {
                 </TdAccion>
                 <TdAccion>
                     <DeleteButton>Eliminar</DeleteButton>
+                </TdAccion>
+                <TdAccion>
+                    <StudentsButton>Estudiantes</StudentsButton>
                 </TdAccion>
               </OddRow>
             )
