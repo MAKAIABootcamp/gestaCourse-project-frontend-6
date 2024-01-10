@@ -9,9 +9,7 @@ export const getData = () => {
     try {
       const tempArr = []
       const response = await getDocs(courseCollection);
-      console.log("getData");
       response.forEach((item) => {
-        console.log("item", item);
           tempArr.push({ id: item.id, ...item.data() })
       });
       console.log("courses get ", tempArr);

@@ -5,7 +5,7 @@ const NavBar = () => {
         ['ofertasInscripciones','Ofertas e inscripciones'],
         ['acercaNosotros', 'Acerca de nosotros'],
         ['gestionCursos','Gestion de cursos'],
-        ['ingresar', 'Ingresar']
+        ['login', 'Ingresar']
     ]
   return (
     <StyleNavBar>

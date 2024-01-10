@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -8,84 +7,8 @@ import {
   getData,
   updateData,
 } from '../../store/courses/courseActions';
-const DivTable = styled.div`
-  width: 100%;
-  overflow: auto;
-  
-`
-const DivTableTitle = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+import { DeleteButton, DivTable, DivTableTitle, EditButton, EvenRow, OddRow, StudentsButton, Table, TdAccion } from './courseManagementTableStyle';
 
-`;
-const EditButton = styled.button`
-  color: #fff;
-  background-color: #34a853;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-  height: 100%;
-  padding: 0.5rem;
-`;
-const DeleteButton = styled.button`
-  color: #fff;
-  background-color: #c50b0a;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-  height: 100%;
-  padding: 0.5rem;
-`;
-const StudentsButton = styled.button`
-  color: #fff;
-  background-color: #10a4d1;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-  height: 100%;
-  padding: 0.5rem;
-`;
-
-const Table = styled.table`
-  width: 120%;
-  thead {
-    tr{
-      text-align: center;
-      color: #3B4848;
-    }
-  }
-  tbody {
-    tr,th,td {
-      height: 100%;
-      text-align: center;
-      justify-content: center;
-      color: #8F8E8E;
-      border: none;
-    }
-  }
-`;
-
-// Define los estilos para filas pares
-const EvenRow = styled.tr`
-`;
-
-// Define los estilos para filas impares
-const OddRow = styled.tr`
-  td{
-    text-align: center;
-    background-color:#ECECEC;
-  }
-`;
-
-const TdAccion = styled.td`
-  border: none;
-  padding: 0;
-`;
 
 function CourseManagementTable() {
   const columns = [
@@ -125,8 +48,8 @@ function CourseManagementTable() {
       arrows: true,
     },
     {
-      Header: "Resolucion",
-      accessor: "resolution",
+      Header: "Entidad",
+      accessor: "entity",
       arrows: true,
     },
     {
@@ -140,65 +63,9 @@ function CourseManagementTable() {
       arrows: false,
     },
   ];
-  const data = [
-    {
-      numero: "1",
-      nombre: "Diplomado en Rehabilitación Vestibular",
-      descripcion:
-        "El diplomado en Rehabilitación Vestibular es un programa de formación que busca desarrollar competencias en el profesional de la salud para la evaluación y tratamiento de pacientes con alteraciones vestibulares.",
-      categoria: "Salud",
-      intensidad: "120 horas",
-      fechaInicio: "2021-09-01",
-      fechaFinal: "2021-12-01",
-      resolucion: "12345",
-      costo: "200000",
-      accion: "Editar",
-    },
-    {
-      numero: "2",
-      nombre:
-        "Diplomado en Medicina tradicional china con énfasis en acupuntura",
-      descripcion:
-        "El diplomado en Medicina tradicional china con énfasis en acupuntura es un programa de formación que busca desarrollar competencias en el profesional de la salud para la evaluación y tratamiento de pacientes con alteraciones vestibulares.",
-      categoria: "Salud",
-      intensidad: "120 horas",
-      fechaInicio: "2021-09-01",
-      fechaFinal: "2021-12-01",
-      resolucion: "12345",
-      costo: "200000",
-      accion: "Editar",
-    },
-    {
-      numero: "1",
-      nombre: "Diplomado en Rehabilitación Vestibular",
-      descripcion:
-        "El diplomado en Rehabilitación Vestibular es un programa de formación que busca desarrollar competencias en el profesional de la salud para la evaluación y tratamiento de pacientes con alteraciones vestibulares.",
-      categoria: "Salud",
-      intensidad: "120 horas",
-      fechaInicio: "2021-09-01",
-      fechaFinal: "2021-12-01",
-      resolucion: "12345",
-      costo: "200000",
-      accion: "Editar",
-    },
-    {
-      numero: "2",
-      nombre:
-        "Diplomado en Medicina tradicional china con énfasis en acupuntura",
-      descripcion:
-        "El diplomado en Medicina tradicional china con énfasis en acupuntura es un programa de formación que busca desarrollar competencias en el profesional de la salud para la evaluación y tratamiento de pacientes con alteraciones vestibulares.",
-      categoria: "Salud",
-      intensidad: "120 horas",
-      fechaInicio: "2021-09-01",
-      fechaFinal: "2021-12-01",
-      resolucion: "12345",
-      costo: "200000",
-      accion: "Editar",
-    },
-  ];
   const dispatch = useDispatch();
+  const { courses } = useSelector(store => store.course);
   useEffect(() => {
-    console.log("ENTROOOOO")
     dispatch(getData());
   }, []);
   return (
@@ -212,18 +79,18 @@ function CourseManagementTable() {
           </tr>
         </thead>
         <tbody>
-          {data.map((row, index) =>
+          {courses.map((course, index) =>
             index % 2 === 0 ? (
               <EvenRow key={index}>
-                <td width={'5%'} >{row.numero}</td>
-                <td width={'15%'}>{row.nombre}</td>
-                <td width={'30%'}>{row.descripcion}</td>
-                <td>{row.categoria}</td>
-                <td>{row.intensidad}</td>
-                <td>{row.fechaInicio}</td>
-                <td>{row.fechaFinal}</td>
-                <td>{row.resolucion}</td>
-                <td>{row.costo}</td>
+                <td width={'5%'} >{index + 1}</td>
+                <td width={'15%'}>{course.name}</td>
+                <td width={'30%'}>{course.description}</td>
+                <td>{course.category}</td>
+                <td>{course.intensity}</td>
+                <td>{course.dates.date_init}</td>
+                <td>{course.dates.date_end}</td>
+                <td>{course.entity}</td>
+                <td>{course.cost}</td>
                 <TdAccion >
                     <EditButton>Editar</EditButton>
                 </TdAccion>
@@ -236,15 +103,15 @@ function CourseManagementTable() {
               </EvenRow>
             ) : (
               <OddRow key={index}>
-                <td>{row.numero}</td>
-                <td>{row.nombre}</td>
-                <td>{row.descripcion}</td>
-                <td>{row.categoria}</td>
-                <td>{row.intensidad}</td>
-                <td>{row.fechaInicio}</td>
-                <td>{row.fechaFinal}</td>
-                <td>{row.resolucion}</td>
-                <td>{row.costo}</td>
+                <td>{index + 1}</td>
+                <td>{course.name}</td>
+                <td>{course.description}</td>
+                <td>{course.category}</td>
+                <td>{course.intensity}</td>
+                <td>{course.dates.date_init}</td>
+                <td>{course.dates.date_end}</td>
+                <td>{course.entity}</td>
+                <td>{course.cost}</td>
                 <TdAccion >
                     <EditButton>Editar</EditButton>
                 </TdAccion>
