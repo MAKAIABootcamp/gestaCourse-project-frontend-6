@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { TableStyled, ArticleStyled, StateButtonStyled, PaginationStyled, ScrollStyled} from './StylesComponents'
 import arrowPageInicial from '../../assets/hacia-atras.png'
 import arrowPageBefore from '../../assets/arrow-izq.png'
