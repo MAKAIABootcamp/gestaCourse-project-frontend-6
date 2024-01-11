@@ -1,14 +1,18 @@
 import styled from "styled-components"
 
+export const FormContent = styled.form`
+    width: 100%;
+`
+
 export const ContendDiv = styled.div`
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     margin: 0;
     width: 100%;
-    flex-direction: row;
     color: #04153B;
     text-color: #04153B;
     font-family: 'DM Sans', sans-serif;
-
     @media screen and (max-width: 767px) {
         /* Estilos para dispositivos móviles */
         flex-direction: column;
@@ -27,11 +31,19 @@ export const Divsecundary = styled.div`
 
 `
 export const Div = styled.div`
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+`
+
+export const DivInput = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
     margin: 10px;
 `
+
 export const H3 = styled.h3`
 `
 
@@ -92,6 +104,16 @@ export const ButtonSave = styled.button`
     border: none;
     border-radius: 15px;
     margin: 2px;
+`
+export const ButtonAgg = styled.button`
+    width: 50%;
+    text-align: center;
+    background-color: #4263f4;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    padding: 5px;
+    margin-left: 25%;
 `
 export const ButtonCancel = styled.button`
     display: flex;

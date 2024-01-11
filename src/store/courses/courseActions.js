@@ -12,7 +12,6 @@ export const getData = () => {
       response.forEach((item) => {
           tempArr.push({ id: item.id, ...item.data() })
       });
-      console.log("courses get ", tempArr);
       dispatch(setCourses(tempArr));
     } catch (error) {
       dispatch(
@@ -30,6 +29,7 @@ export const createData = (course) => {
       console.log(response);
       tempObject.id = response.id;
       dispatch(addCourse(tempObject));
+      console.log("ENTROOOOOOOOOOOOOOO")
     } catch (error) {
       dispatch(
         setError({ error: true, code: error.code, message: error.message })
