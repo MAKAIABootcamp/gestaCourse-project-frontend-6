@@ -10,24 +10,32 @@ import CourseRegistrationForm from '../pages/CourseRegistrationForm/CourseRegist
 import DetailsCourse from '../pages/DeatailsCourse/DetailsCourse'
 import AcercaNosotros from '../pages/AcercaNosotros/AcercaNosotros'
 import CourseManagement from '../pages/courseManagement/CourseManagement'
+import PublicRoutes from './PublicRoutes'
+import PrivatedRoutes from './PrivatedRoutes'
+import { useSelector } from 'react-redux'
 
 
 const Router = () => {
+  const { isAunthenticated } = useSelector(store => store.user);
+
   return (
     <BrowserRouter>
         <Routes>
-            <Route path="login" element={<Login />}></Route>
-            <Route path="recuperacion" element={<Recuperacion />}></Route>
-            <Route element={<Layout/>} >
-                <Route index element={<OfertasInscripciones/>} />
-                <Route path="ofertasInscripciones" element={<OfertasInscripciones/>} />
-                <Route path="acercaNosotros" element={<AcercaNosotros/>} />
-                <Route path="formatoInscripcionACurso" element={<CourseRegistrationForm/>} />
-                <Route path="editarPerfil" element={<EditProfile/>} />
-                <Route path="misCursos" element={<MyCourses/>} />
-                <Route path="editarCurso" element={<EditRecord/>} />
-                <Route path="añadirCurso" element={<EditRecord/>} />
-                <Route path="gestionCursos" element={<CourseManagement/>} />
+            <Route element={<PublicRoutes isAuthenticate={isAunthenticated} />}>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/recuperacion" element={<Recuperacion />}></Route>
+            </Route>
+            <Route  element={<PrivatedRoutes isAuthenticate={isAunthenticated} />}>
+              <Route element={<Layout/>} >
+                  <Route index element={<OfertasInscripciones/>} />
+                  <Route path="ofertasInscripciones" element={<OfertasInscripciones/>} />
+                  <Route path="acercaNosotros" element={<AcercaNosotros/>} />
+                  <Route path="formatoInscripcionACurso" element={<CourseRegistrationForm/>} />
+                  <Route path="editarPerfil" element={<EditProfile/>} />
+                  <Route path="misCursos" element={<MyCourses/>} />
+                  <Route path="EditarCurso" element={<EditRecord/>} />
+                  <Route path="gestionCursos" element={<CourseManagement/>} />
+              </Route>
             </Route>
         </Routes>
     </BrowserRouter>

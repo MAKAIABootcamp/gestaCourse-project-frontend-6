@@ -4,34 +4,48 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import './stylelogin.css'
 import Funct from "./funct";
 import { useDispatch } from "react-redux"
-import { createAnAccountAsync, loginWithGoogle } from "../../store/users/userActions";
+import { createAnAccountAsync, loginWithEmailAndPassword, loginWithGoogle } from "../../store/users/userActions";
 import { useForm } from "react-hook-form";
 import store from "../../store/store";
 import { useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
-
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const Login = () => {
-  const navigateTo = useNavigate();
+  const {error} = store.getState().user;
   const { register,reset,handleSubmit} = useForm();
   const dispatch = useDispatch();
 
-  const handleLogin = () => {
-      dispatch(loginWithGoogle());
-      console.log(store.getState().user);
+  const handleLoginWithGoogle = () => {
+    dispatch(loginWithGoogle());
   }
   const handleRegister = async (data) => {
-    console.log(data);
     dispatch(createAnAccountAsync(data));
     reset();
   };
 
   const handleLoginWithEmailAndPassword = async(data) => {
     const {email,password} = data;
-    console.log(email,password);
+    dispatch(loginWithEmailAndPassword(email,password));
     reset();
   };
 
+  useEffect(() => {
+    if (error) {
+      Swal.fire({
+        title: 'Upss!!',
+        text: 'Ha ocurrido un error, por favor verifica tus credenciales!',
+        icon: 'error',
+      });
+    }
+    if (error === false) {
+      Swal.fire({
+        title: `Excelente, usuario ${user.name}`,
+        text: 'Ha inciado sesion de manera exitosa!',
+        icon: 'success',
+      }).then(() => navigate('/Home'));
+    }
+  }, [error]);
   return (
     <div className="container">
       <div className="signin-signup">
@@ -49,10 +63,10 @@ const Login = () => {
           <p className="social-text">Continuar con Google</p>
           <div className="social-media">
             <a  className="social-icon">
-                <FontAwesomeIcon icon={faGoogle} onClick={() => handleLogin()} id="red" cursor={'pointer'}/>
+                <FontAwesomeIcon icon={faGoogle} onClick={() => handleLoginWithGoogle()} id="red" cursor={'pointer'}/>
             </a>
           </div>
-          <a href="#" className="social-text" >¿Olvidaste tú contraseña? Click Aquí</a>
+          <p className="social-text" >¿Olvidaste tú contraseña? Click <Link to='/recuperacion'>Aquí</Link></p>
           <p className="account-text">
           ¿No tienes cuenta?<a href="#" id="sign-up-btn2">Registrate</a>
           </p>

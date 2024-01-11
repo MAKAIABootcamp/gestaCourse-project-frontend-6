@@ -1,6 +1,9 @@
+import { useDispatch } from 'react-redux';
+import { logoutAsync } from '../../store/users/userActions'
 import {StyleNavBar,StyleLogoText,StyleLogo,Stylelink,StyleLi,StyleUl,StyleUser} from './StyleNavBar'
 
 const NavBar = () => {
+    const dispatch = useDispatch();
     const items = [
         ['ofertasInscripciones','Ofertas e inscripciones'],
         ['acercaNosotros', 'Acerca de nosotros'],
@@ -17,6 +20,9 @@ const NavBar = () => {
                 })
                 } 
                  <StyleUser src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703699483/DemoDay/pngtree-cartoon-style-male-user-profile-icon-vector-illustraton-png-image_6489287_qmtlye.png" alt="user" />
+                <li>
+                    <button type='button' onClick={() => {dispatch(logoutAsync())}} >Salir</button>
+                </li>
             </StyleUl>
         </StyleLogoText>
     </StyleNavBar>

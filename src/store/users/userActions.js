@@ -1,6 +1,7 @@
-import { createUserWithEmailAndPassword, updateProfile ,GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword} from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile ,GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, signOut} from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
 import { setAuthenticated, setError, setUser } from "./userSlice";
+import { json } from "react-router-dom";
 export const createAccountAsync = (newUsers) => async (dispatch) => {
     try {
         const {user} = await createUserWithEmailAndPassword(auth, newUsers.email,newUsers.password);
@@ -31,7 +32,6 @@ export const createAnAccountAsync = (newUser) => async (dispatch) => {
       await updateProfile(auth.currentUser, {
         displayName: newUser.name,
       });
-      console.log(user);
       dispatch(
         setUser({
           id: user.uid,
@@ -42,6 +42,13 @@ export const createAnAccountAsync = (newUser) => async (dispatch) => {
       );
       dispatch(setAuthenticated(true));
       dispatch(setError(false));
+      sessionStorage.setItem('isAunthenticated', true);
+      sessionStorage.setItem('user', {
+        id: user.uid,
+        displayName: user.displayName,
+        email: user.email,
+        accessToken: user.accessToken,
+      });
     } catch (error) {
       console.warn(error);
       dispatch(
@@ -56,6 +63,9 @@ export  const loginWithGoogle = () =>{
         const userCredencial = await signInWithPopup(auth,provider);
         dispatch(setAuthenticated(true))
         dispatch(setUser(userCredencial.user));
+        sessionStorage.setItem('isAunthenticated', true);
+        console.log(userCredencial.user);
+        sessionStorage.setItem('user',JSON.stringify(userCredencial.user.auth));
     } catch (error) {
         console.log(error);
         dispatch(setError({error: true , code: error.code , message: error.message}));
@@ -68,8 +78,28 @@ export const loginWithEmailAndPassword = (email,password) => async (dispatch) =>
         const userCredencial = await signInWithEmailAndPassword(auth,email,password);
         dispatch(setAuthenticated(true));
         dispatch(setUser(userCredencial.user));
+        console.log(userCredencial.user);
+        sessionStorage.setItem('isAunthenticated', true);
+        sessionStorage.setItem('user',JSON.stringify(userCredencial.user.auth));
     } catch (error) {
         console.log(error);
         dispatch(setError({error: true , code: error.code , message: error.message}));
     }
 }
+
+export const logoutAsync = () => {
+  return async dispatch => {
+    try {
+      await signOut(auth);
+      dispatch(setAuthenticated(false));
+      dispatch(setUser(null));
+      dispatch(setError(null));
+      sessionStorage.clear();
+    } catch (error) {
+      console.error(error);
+      dispatch(
+        setError({ error: true, code: error.code, message: error.message })
+      );
+    }
+  };
+};
