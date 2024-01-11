@@ -1,9 +1,12 @@
-import React, {useRef} from 'react'
+import {useRef} from 'react'
 import { ContainerData, DivLabelAndInput, ContainerArticle, ButtonInscription } from '../CourseRegistrationForm/StylesComponents'
 import {PhotoContainer} from './StyleComponents'
 import imageUser from '../../assets/usuario.png'
+import { useSelector } from 'react-redux'
 
 function EditProfile() {
+  const {user} = useSelector(store => store.user);
+  const {name,id_number,telefono} = user;
   const fileInputRef = useRef(null);
   const activarInput = () => {
     // Activa el cuadro de diálogo de selección de archivos
@@ -11,7 +14,6 @@ function EditProfile() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Datos del formulario:', formData);
   };
   return (
     <ContainerArticle>
@@ -19,12 +21,8 @@ function EditProfile() {
         <form onSubmit={handleSubmit}>
           <ContainerData >
             <DivLabelAndInput>
-              <label htmlFor="name">NOMBRE <p>*</p></label>
-              <input id='name' type="text" autoComplete="off"/>
-            </DivLabelAndInput>
-            <DivLabelAndInput>
-              <label htmlFor="lastName">APELLIDO <p>*</p></label>
-              <input id='lastName' type="text" />
+              <label htmlFor="name">NOMBRES Y APELLIDOS <p>*</p></label>
+              <input id='name' type="text" autoComplete="off" defaultValue={name}/>
             </DivLabelAndInput>
             <DivLabelAndInput>
               <label htmlFor="typeIdentification">TIPO DE IDENTIFICACIÓN <p>*</p></label>
@@ -38,7 +36,7 @@ function EditProfile() {
             </DivLabelAndInput>
             <DivLabelAndInput>
               <label htmlFor="numIdentification">NUMERO DE IDENTIFICACIÓN <p>*</p></label>
-              <input id="numIdentification" type="text" />
+              <input id="numIdentification" type="text" defaultValue={id_number} />
             </DivLabelAndInput>
             <DivLabelAndInput>
               <label htmlFor="address">DIRECCIÓN DE RESIDENCIA <p>*</p></label>
@@ -46,7 +44,7 @@ function EditProfile() {
             </DivLabelAndInput>
             <DivLabelAndInput>
               <label htmlFor="phone">TÉLEFONO <p>*</p></label>
-              <input id="phone" type="text" autoComplete="off"/>
+              <input id="phone" type="text" autoComplete="off" defaultValue={telefono}/>
             </DivLabelAndInput>
           </ContainerData>
           <PhotoContainer>

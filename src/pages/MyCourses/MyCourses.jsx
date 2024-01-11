@@ -4,8 +4,18 @@ import arrowPageInicial from '../../assets/hacia-atras.png'
 import arrowPageBefore from '../../assets/arrow-izq.png'
 import arrowPageAfter from '../../assets/arrow-der.png'
 import arrowPageFinal from '../../assets/hacia-adelante.png'
-
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import {getData} from '../../store/courses/coursesActions';
+import { getDataEnrrollment } from '../../store/enrollment/enrollmentActions';
 function MyCourses() {
+  const {courses} = useSelector(store => store.course);
+  const {enrollments} = useSelector(store => store.enrrollment);
+  const dispatch = useDispatch();
+
+  console.log(courses);
+  console.log(enrollments);
+
   const data = [
     { name: 'Diplomado en Medicina tradicional china con énfasis en sus técnicas de acupuntura, masaje, moxibustión y Qi gong.', year: 2015, state: 'Certificado' },
     { name: 'Congreso Colombiano de Arqueología 2022. CCA2022', year: 2014, state: 'Inscrito' },
@@ -37,6 +47,11 @@ function MyCourses() {
 
   const goToPrevPage = () => paginate(currentPage - 1);
   const goToNextPage = () => paginate(currentPage + 1);
+
+  useEffect(() => {
+    dispatch(getData())
+    dispatch(getDataEnrrollment())
+  }, []);
 
   return (
     <ArticleStyled>

@@ -1,6 +1,7 @@
 import React from 'react'
 import {StyleContenedor,StyleDivParrafo,StyleImg,StyleTitle,StyleParrafo,StyleDivSecundario,StyleParrafoPuntos,StylePunto,StyleDivPuntos
     ,StyleHorario,StyleDivInversion,StyleInversion,StyleCupos} from './StyleDetails'
+import { useSelector } from 'react-redux';
 
 const DetailsCourse = () => {
   return (
