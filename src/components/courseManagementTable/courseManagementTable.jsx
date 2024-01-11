@@ -8,7 +8,9 @@ import {
   updateData,
 } from '../../store/courses/courseActions';
 import { DeleteButton, DivTable, DivTableTitle, EditButton, EvenRow, OddRow, StudentsButton, Table, TdAccion } from './courseManagementTableStyle';
-
+import { doc, updateDoc, deleteField } from 'firebase/firestore';
+import { db } from '../../firebase/firebaseConfig';
+import Swal from "sweetalert2";
 
 function CourseManagementTable() {
   const columns = [
@@ -68,6 +70,48 @@ function CourseManagementTable() {
   useEffect(() => {
     dispatch(getData());
   }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      const confirmDelete = await Swal.fire({
+        title: '¿Estás seguro?',
+        text: '¡No podrás revertir esto!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminarlo'
+      });
+  
+      if (!confirmDelete.isConfirmed) {
+        return;
+      }
+  
+      const courseRef = doc(db, 'courses', id);
+      await updateDoc(courseRef, {
+        nombreCampo: deleteField(),
+      });
+      dispatch(deleteData(id));
+      dispatch(getData());
+  
+      await Swal.fire({
+        title: 'Eliminado',
+        text: 'El curso ha sido eliminado correctamente.',
+        icon: 'success'
+      });
+  
+      console.log('Campo eliminado correctamente');
+    } catch (error) {
+      console.error('Error al eliminar el campo:', error);
+  
+      await Swal.fire({
+        title: 'Error',
+        text: 'Ha ocurrido un error al intentar eliminar el curso.',
+        icon: 'error'
+      });
+    }
+  };
+
   return (
     <DivTable >
       <Table >
@@ -95,7 +139,7 @@ function CourseManagementTable() {
                     <EditButton>Editar</EditButton>
                 </TdAccion>
                 <TdAccion>
-                    <DeleteButton>Eliminar</DeleteButton>
+                    <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
                 </TdAccion>
                 <TdAccion>
                     <StudentsButton>Estudiantes</StudentsButton>
@@ -116,7 +160,7 @@ function CourseManagementTable() {
                     <EditButton>Editar</EditButton>
                 </TdAccion>
                 <TdAccion>
-                    <DeleteButton>Eliminar</DeleteButton>
+                    <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
                 </TdAccion>
                 <TdAccion>
                     <StudentsButton>Estudiantes</StudentsButton>
