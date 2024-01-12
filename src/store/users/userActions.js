@@ -1,6 +1,8 @@
 import { createUserWithEmailAndPassword, updateProfile ,GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, signOut} from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
 import { setAuthenticated, setError, setUser } from "./userSlice";
+import { createUserInCollection, getUserFromCollection, loginFromFirestore, updateProfileInFirestore } from "../../services/useServices";
+
 
 export const createAccountAsync = (newUsers) => async (dispatch) => {
     try {
@@ -84,7 +86,7 @@ export const loginWithEmailAndPassword = (email,password) => async (dispatch) =>
 
         if (userLogged) {
           dispatch(setAuthenticated(true))
-          dispatch(setUser({ email: userLogged.email, id: userLogged.id, name: userLogged.name, accessToken: userLogged.accessToken, id_number: userLogged.id_number, telefono: userLogged.telefono, type_id: userLogged.type_id }))
+          dispatch(setUser({ email: userLogged.email, id: userLogged.id, name: userLogged.name, accessToken: userLogged.accessToken, id_number: userLogged.id_number, telefono: userLogged.telefono, type_id: userLogged.type_id,lastname: userLogged.lastname, address: userLogged.address, photoURL: userLogged.photoURL  }))
           dispatch(setError(false))
         } else {
           dispatch(setAuthenticated(false))
@@ -114,3 +116,31 @@ export const logoutAsync = () => {
     }
   };
 };
+
+export const updateUserAsync = (user) => {
+  return async dispatch => {
+    try {
+      dispatch(setUser(user));
+      dispatch(setError(null));
+    } catch (error) {
+      console.error(error);
+      dispatch(
+        setError({ error: true, code: error.code, message: error.message })
+      );
+    }
+  };
+}
+
+export const updateUserDataAsync = (user) => {
+  return async dispatch => {
+    try {
+      await updateProfileInFirestore(user.id, user);
+      dispatch(setUser(user));
+      dispatch(setError(null));
+    } catch (error) {
+      dispatch(
+        setError({ error: true, code: error.code, message: error.message })
+      );
+    }
+  };
+}
