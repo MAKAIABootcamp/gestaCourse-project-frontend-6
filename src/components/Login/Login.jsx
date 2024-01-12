@@ -6,7 +6,6 @@ import Funct from "./funct";
 import { useDispatch } from "react-redux"
 import { createAnAccountAsync, loginWithEmailAndPassword, loginWithGoogle } from "../../store/users/userActions";
 import { useForm } from "react-hook-form";
-import store from "../../store/store";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";

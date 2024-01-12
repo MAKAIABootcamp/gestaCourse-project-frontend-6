@@ -65,7 +65,6 @@ export const loginFromFirestore = async ( userData ) => {
 export const updateProfileInFirestore = async (uid, updatedUser) => {
   try {
     const userRef = doc(firestore, collectionName, uid)
-    console.log('userRef', userRef);
     delete updatedUser.id
     await setDoc(userRef, updatedUser)
   } catch (error) {

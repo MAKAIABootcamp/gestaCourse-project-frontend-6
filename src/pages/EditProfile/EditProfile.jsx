@@ -1,31 +1,44 @@
-import {useRef} from 'react'
+import {useRef, useState} from 'react'
 import { ContainerData, DivLabelAndInput, ContainerArticle, ButtonInscription } from '../CourseRegistrationForm/StylesComponents'
 import {PhotoContainer} from './StyleComponents'
 import imageUser from '../../assets/usuario.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import { updateUserDataAsync } from '../../store/users/userActions'
+import uploadFile from '../../services/fileUpload'
 
 function EditProfile() {
 
   const {user} = useSelector(store => store.user);
-  const {name,id_number,telefono,address} = user;
+  console.log(user);
+  const {name,id_number,telefono,address,photoURL} = user;
   const fileInputRef = useRef(null);
   const {register,handleSubmit} = useForm();
   const dispatch = useDispatch();
+  const [file, setFile] = useState(null);
 
   const activarInput = () => {
-    // Activa el cuadro de diálogo de selección de archivos
-    fileInputRef.current.click();
+      fileInputRef.current.click();
   };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setFile(file);
+    }
+  };
+
   const handleEdit = async (data) => {
+    const photoURL = await uploadFile(file);
     dispatch(updateUserDataAsync(
       {
         id:user.id,
         accessToken:user.accessToken,
+        photoURL: photoURL,
         ...data
     }));
   };
+
   return (
     <ContainerArticle>
         <h1>EDITAR PERFIL</h1>
@@ -61,9 +74,9 @@ function EditProfile() {
           <PhotoContainer>
             <label htmlFor="imagen">FOTO</label>
             <div>
-              <img src={imageUser} alt="Imagen de Perfil" />
-              <input type="file" id="imagen" name="imagen" accept="image/*" ref={fileInputRef}/>
-              <button onClick={activarInput}>Cambiar</button>
+              <img src={photoURL!= null ? photoURL:imageUser } alt="Imagen de Perfil" />
+              <input type="file" id="imagen" name="imagen" accept="image/*" ref={fileInputRef} onChange={handleFileChange}/>
+              <button type='button' onClick={activarInput}>Cambiar</button>
             </div>
           </PhotoContainer>
           <ButtonInscription type="submit" >Guardar</ButtonInscription>
