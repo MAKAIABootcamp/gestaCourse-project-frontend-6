@@ -114,6 +114,15 @@ export const ButtonAgg = styled.button`
     padding: 5px;
     margin-left: 25%;
 `
+export const ButtonDel = styled.button`
+    width: 25px;
+    text-align: center;
+    background-color: #f44242;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    padding: 5px;
+`
 export const ButtonCancel = styled.button`
     display: flex;
     align-items: center;
@@ -122,4 +131,12 @@ export const ButtonCancel = styled.button`
     border: none;
     border-radius: 15px;
     margin-right: 10px;
+`
+export const UlHorAgg = styled.ul`
+    padding: 0;
+    li{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 `

@@ -58,7 +58,7 @@ const Router = () => {
                   <Route path="formatoInscripcionACurso" element={<CourseRegistrationForm/>} />
                   <Route path="editarPerfil" element={<EditProfile/>} />
                   <Route path="misCursos" element={<MyCourses/>} />
-                  <Route path="EditarCurso" element={<EditRecord/>} />
+                  <Route path="EditarCurso/:id" element={<EditRecord/>} />
                   <Route path="AñadirCurso" element={<EditRecord/>} />
                   <Route path="gestionCursos" element={<CourseManagement/>} />
               </Route>

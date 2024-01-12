@@ -29,7 +29,6 @@ export const createData = (course) => {
       console.log(response);
       tempObject.id = response.id;
       dispatch(addCourse(tempObject));
-      console.log("ENTROOOOOOOOOOOOOOO")
     } catch (error) {
       dispatch(
         setError({ error: true, code: error.code, message: error.message })
@@ -39,13 +38,14 @@ export const createData = (course) => {
 }
 
 export const updateData = (course) => {
-  const documentRef = doc(courseCollection, course.id); /** Referencia del documento */
+  console.log();
+  const documentRef = doc(courseCollection, course.id);
   return async (dispatch) => {
     try {
       dispatch(updateCourse(course));
       delete course.id;
-      await setDoc( documentRef, course);
-      // console.log(response);
+      const response = await setDoc( documentRef, course);
+      console.log(response);
     } catch (error) {
       dispatch(
         setError({ error: true, code: error.code, message: error.message })

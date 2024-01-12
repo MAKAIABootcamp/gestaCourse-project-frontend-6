@@ -8,9 +8,8 @@ import {
   updateData,
 } from '../../store/courses/courseActions';
 import { DeleteButton, DivTable, DivTableTitle, EditButton, EvenRow, OddRow, StudentsButton, Table, TdAccion } from './courseManagementTableStyle';
-import { doc, updateDoc, deleteField } from 'firebase/firestore';
-import { firestore } from '../../firebase/firebaseConfig';
 import Swal from "sweetalert2";
+import { useNavigate } from 'react-router-dom';
 
 function CourseManagementTable() {
   const columns = [
@@ -82,28 +81,19 @@ function CourseManagementTable() {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Sí, eliminarlo'
       });
-  
       if (!confirmDelete.isConfirmed) {
         return;
       }
-  
-      const courseRef = doc(firestore, 'courses', id);
-      await updateDoc(courseRef, {
-        nombreCampo: deleteField(),
-      });
       dispatch(deleteData(id));
       dispatch(getData());
-  
       await Swal.fire({
         title: 'Eliminado',
         text: 'El curso ha sido eliminado correctamente.',
         icon: 'success'
       });
-  
       console.log('Campo eliminado correctamente');
     } catch (error) {
       console.error('Error al eliminar el campo:', error);
-  
       await Swal.fire({
         title: 'Error',
         text: 'Ha ocurrido un error al intentar eliminar el curso.',
@@ -111,7 +101,10 @@ function CourseManagementTable() {
       });
     }
   };
-
+  const navigate = useNavigate();
+  const handleGoToEditCurso = (id) => {
+    navigate(`/EditarCurso/${id}`);
+  };
   return (
     <DivTable >
       <Table >
@@ -136,7 +129,7 @@ function CourseManagementTable() {
                 <td>{course.entity}</td>
                 <td>{course.cost}</td>
                 <TdAccion >
-                    <EditButton>Editar</EditButton>
+                    <EditButton onClick={() => handleGoToEditCurso(course.id)}>Editar</EditButton>
                 </TdAccion>
                 <TdAccion>
                     <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
@@ -157,7 +150,7 @@ function CourseManagementTable() {
                 <td>{course.entity}</td>
                 <td>{course.cost}</td>
                 <TdAccion >
-                    <EditButton>Editar</EditButton>
+                    <EditButton onClick={() => handleGoToEditCurso(course.id)}>Editar</EditButton>
                 </TdAccion>
                 <TdAccion>
                     <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
