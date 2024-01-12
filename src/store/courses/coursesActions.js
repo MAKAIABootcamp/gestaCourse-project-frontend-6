@@ -27,7 +27,6 @@ export const  createData = (data) => {
         try {
             let tempObject = {...data}
             const response = await addDoc(productCollection, data);
-            console.log(response);
             tempObject.id = response.id;
             dispatch(addCourse(tempObject))
         } catch (error) {

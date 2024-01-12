@@ -13,6 +13,7 @@ function MyCourses() {
   const {enrollments} = useSelector(store => store.enrrollment);
   const {user} = useSelector(store => store.user);
   const dispatch = useDispatch();
+
   const dataCourses = enrollments.filter(item => item.Id_student === user.id).map(item => {
     const cursoEncontrado = courses.find(course => course.id === item.Id_course);
     return {
@@ -77,7 +78,7 @@ function MyCourses() {
             {currentItems.map((item, index) => (
               <tr key={index}>
                 <td>{item.name}</td>
-                <td>{item.date_enrollment}</td>
+                <td>{item.dates.date_end}</td>
                 <td>{item.state}</td>
                 {
                   item.state === "Inscrito"?
