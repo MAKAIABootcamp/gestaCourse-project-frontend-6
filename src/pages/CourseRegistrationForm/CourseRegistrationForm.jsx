@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 
 function CourseRegistrationForm() {
   const {user} = useSelector(store => store.user);
-  const {name,id_number,telefono} = user;
+  console.log(user);
+  const {name,lastname,id_number,telefono} = user;
   const handleSubmit = (event) => {
     event.preventDefault();
   };
@@ -19,7 +20,7 @@ function CourseRegistrationForm() {
             </DivLabelAndInput>
             <DivLabelAndInput>
               <label htmlFor="lastName">APELLIDO <p>*</p></label>
-              <input id='lastName' type="text" />
+              <input id='lastName' type="text" defaultValue={lastname} />
             </DivLabelAndInput>
             <DivLabelAndInput>
               <label htmlFor="typeIdentification">TIPO DE IDENTIFICACIÓN <p>*</p></label>
