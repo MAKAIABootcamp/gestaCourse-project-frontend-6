@@ -2,21 +2,43 @@ import styled from 'styled-components';
 
 export const StyleContenedor = styled.div`
     width:100%;
-    
+  
 `;
-
+export const StyleDivImg = styled.div`
+    @media screen and (max-width: 768px) {
+        width:90%;
+        display:flex;
+        justify-content:center;
+    }
+`;
 export const StyleImg = styled.img`
     width:30rem;
     height:20rem;
     float:left;
+    @media screen and (max-width: 768px) {
+        float:none;
+        width:15rem;
+        height:15rem;
+  
+    }
 `;
 export const StyleDivParrafo = styled.div`
     height:20rem;
+    
+    @media screen and (max-width: 768px) {
+        height:30rem;
+        padding: 1rem;
+        overflow-y:auto;
+        width:90%;
+    }
 `;
 
 export const StyleTitle = styled.h1`
     width:100%; 
     text-align: center; 
+    @media screen and (max-width: 768px) {
+        width:90%; 
+    }
 `;
 
 export const StyleParrafo = styled.p`
@@ -25,30 +47,42 @@ export const StyleParrafo = styled.p`
     text-align:justify;
     padding-right:30px;
     word-break: break-all;
+    @media screen and (max-width: 768px) {
+        font-size:16px;
+        padding-right:0px;
+
+    }
  
 `;
 
 export const StyleDivSecundario = styled.div`
     padding-right:30px;
     padding-left:30px;
-   
+    @media screen and (max-width: 768px) {
+        width:90%;
+    }
 `;
 export const StyleDivPuntos = styled.div`
     display: flex;
     text-align:justify;
     align-items:center;
     gap:10px;
-    line-height: 0;
-
+  
 `;
 export const StylePunto = styled.img`
     width:15px;
     height:15px;
+    
 `;
 export const StyleParrafoPuntos = styled.p`
     text-align:justify; 
     color: #8F8E8E;
     font-size:18px;
+    @media screen and (max-width: 768px) {
+        width:90%;
+        font-size:16px;
+       
+    }
 `;
 export const StyleHorario = styled.div` 
      color: #8F8E8E;
@@ -59,7 +93,9 @@ export const StyleDivInversion = styled.div`
     gap: 10px;
     align-items:center;
     font-size:18px;
-    line-height:0;
+    @media screen and (max-width: 768px) {
+        display:block;
+    }
     
 `;
 export const StyleInversion = styled.div` 

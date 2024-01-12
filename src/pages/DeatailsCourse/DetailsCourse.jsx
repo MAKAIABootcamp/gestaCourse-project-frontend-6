@@ -1,12 +1,14 @@
 import React from 'react'
 import {StyleContenedor,StyleDivParrafo,StyleImg,StyleTitle,StyleParrafo,StyleDivSecundario,StyleParrafoPuntos,StylePunto,StyleDivPuntos
-    ,StyleHorario,StyleDivInversion,StyleInversion,StyleCupos} from './StyleDetails'
+    ,StyleHorario,StyleDivInversion,StyleInversion,StyleCupos,StyleDivImg} from './StyleDetails'
 
 const DetailsCourse = () => {
   return (
     <>
         <StyleContenedor>
-            <StyleImg src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703291749/DemoDay/desarrollo-web_bl9tsg.jpg" alt="logoDetails" />
+            <StyleDivImg>
+                <StyleImg src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703291749/DemoDay/desarrollo-web_bl9tsg.jpg" alt="logoDetails" />
+            </StyleDivImg>
             <StyleDivParrafo>
                 <StyleTitle>Curso Desarrollo web full stack</StyleTitle>
                 <h2>Presentación</h2>
