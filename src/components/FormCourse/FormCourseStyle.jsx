@@ -11,7 +11,6 @@ export const ContendDiv = styled.div`
     margin: 0;
     width: 100%;
     color: #04153B;
-    text-color: #04153B;
     font-family: 'DM Sans', sans-serif;
     @media screen and (max-width: 767px) {
         /* Estilos para dispositivos móviles */
