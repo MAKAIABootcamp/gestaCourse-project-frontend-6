@@ -1,7 +1,7 @@
 import { addDoc, collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { addEnrollment, setEnrollments, setError } from "./enrollmentSlice";
 import { firestore } from "../../firebase/firebaseConfig";
-import { deleteCourse, updateCourse } from "../courses/coursesSlice";
+import { deleteCourse, updateCourse } from "../courses/courseSlice";
 
 const enrollmentCollection = collection(firestore, 'enrollment')
 
