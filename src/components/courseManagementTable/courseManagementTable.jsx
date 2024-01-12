@@ -9,7 +9,7 @@ import {
 } from '../../store/courses/courseActions';
 import { DeleteButton, DivTable, DivTableTitle, EditButton, EvenRow, OddRow, StudentsButton, Table, TdAccion } from './courseManagementTableStyle';
 import { doc, updateDoc, deleteField } from 'firebase/firestore';
-import { db } from '../../firebase/firebaseConfig';
+import { firestore } from '../../firebase/firebaseConfig';
 import Swal from "sweetalert2";
 
 function CourseManagementTable() {
@@ -87,7 +87,7 @@ function CourseManagementTable() {
         return;
       }
   
-      const courseRef = doc(db, 'courses', id);
+      const courseRef = doc(firestore, 'courses', id);
       await updateDoc(courseRef, {
         nombreCampo: deleteField(),
       });
