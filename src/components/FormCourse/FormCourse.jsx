@@ -83,11 +83,9 @@ function FormCourse() {
         if (rutaActual.includes('/EditarCurso')) {
           data = { ...data, id: id };
           dispatch(updateData(data));
-          dispatch(getData());
           navigate("/gestionCursos");
         } else {
           dispatch(createData(data));
-          dispatch(getData());
           navigate("/gestionCursos");
         }
   

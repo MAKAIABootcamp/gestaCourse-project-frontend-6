@@ -29,6 +29,7 @@ export const createData = (course) => {
       console.log(response);
       tempObject.id = response.id;
       dispatch(addCourse(tempObject));
+      dispatch(getData());
     } catch (error) {
       dispatch(
         setError({ error: true, code: error.code, message: error.message })
@@ -46,6 +47,7 @@ export const updateData = (course) => {
       delete course.id;
       const response = await setDoc( documentRef, course);
       console.log(response);
+      dispatch(getData());
     } catch (error) {
       dispatch(
         setError({ error: true, code: error.code, message: error.message })
