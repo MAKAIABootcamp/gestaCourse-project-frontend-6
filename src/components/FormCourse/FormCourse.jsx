@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ButtonCancel, ButtonDel, UlHorAgg, ButtonSave, ContendDiv,ButtonAgg, Div,DivInput, DivButtons, FormContent, H3, Input, InputFile, Select } from "./FormCourseStyle"
 import { useForm } from 'react-hook-form';
-import { createData, updateData } from '../../store/courses/courseActions';
+import { createData, updateData, getData } from '../../store/courses/courseActions';
 import { useNavigate, useLocation, useParams} from 'react-router-dom';
 import { searchCourseById } from '../../store/courses/courseSlice';
+import Swal from 'sweetalert2';
+
 
 function FormCourse() {
     const navigate = useNavigate();
@@ -14,77 +16,131 @@ function FormCourse() {
     const [horarios, setHorarios] = useState([]);
     const [nuevoHorario, setNuevoHorario] = useState({ day: '', init: '', end: '' });
     const dispatch = useDispatch();
+  
     const handleCancel = (e) => {
-        e.preventDefault();
-        navigate("/gestionCursos");
+      e.preventDefault();
+      navigate("/gestionCursos");
     }
+  
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setNuevoHorario({ ...nuevoHorario, [name]: value });
+      const { name, value } = e.target;
+      setNuevoHorario({ ...nuevoHorario, [name]: value });
     };
+  
     const agregarHorario = (e) => {
-        e.preventDefault();
-        if (nuevoHorario.day && nuevoHorario.init && nuevoHorario.end) {
-            setHorarios([...horarios, nuevoHorario]);
-            setNuevoHorario({ day: '', init: '', end: '' });
-        }
+      e.preventDefault();
+      if (nuevoHorario.day && nuevoHorario.init && nuevoHorario.end) {
+        setHorarios([...horarios, nuevoHorario]);
+        setNuevoHorario({ day: '', init: '', end: '' });
+      }
     };
+  
     const deleteHorario = (e, index) => {
-        e.preventDefault();
-        const nuevaMatriz = horarios.filter((_, i) => i !== index);
-        setHorarios(nuevaMatriz)
-    }
-    const { register, handleSubmit, setValue} = useForm();
-    const handleRegister = async data => {
-        data = {...data, 
-        dates: {
+      e.preventDefault();
+      const nuevaMatriz = horarios.filter((_, i) => i !== index);
+      setHorarios(nuevaMatriz)
+    };
+  
+    const { register, handleSubmit, setValue } = useForm();
+  
+    const [confirmingSave, setConfirmingSave] = useState(false);
+  
+    const handleConfirmSave = () => {
+      setConfirmingSave(true);
+    };
+  
+    const handleSave = async (data) => {
+      try {
+        const confirmSave = await Swal.fire({
+          title: '¿Guardar curso?',
+          text: '¿Estás seguro de que deseas guardar este curso?',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sí, guardar',
+          onClose: () => setConfirmingSave(false),
+        });
+  
+        if (!confirmSave.isConfirmed) {
+          return;
+        }
+  
+        data = {
+          ...data,
+          dates: {
             date_init: data.date_init,
             date_end: data.date_end,
             date_enrollment: data.date_enrollment
-        },
-        timetables: horarios}
-        delete data.date_init; 
-        delete data.date_end; 
+          },
+          timetables: horarios
+        };
+  
+        delete data.date_init;
+        delete data.date_end;
         delete data.date_enrollment;
-        if(rutaActual.includes('/EditarCurso')){
-            data = {... data, id: id}
-            dispatch(updateData(data));
-            navigate("/gestionCursos");
-        }else{
-            dispatch(createData(data));
-            navigate("/gestionCursos");
+  
+        if (rutaActual.includes('/EditarCurso')) {
+          data = { ...data, id: id };
+          dispatch(updateData(data));
+          dispatch(getData());
+          navigate("/gestionCursos");
+        } else {
+          dispatch(createData(data));
+          dispatch(getData());
+          navigate("/gestionCursos");
         }
+  
+        await Swal.fire({
+          title: 'Guardado',
+          text: 'El curso ha sido guardado correctamente.',
+          icon: 'success'
+        });
+  
+        console.log('Curso guardado correctamente');
+      } catch (error) {
+        console.error('Error al guardar el curso:', error);
+  
+        await Swal.fire({
+          title: 'Error',
+          text: 'Ha ocurrido un error al intentar guardar el curso.',
+          icon: 'error'
+        });
+      }
     };
+  
     const searchedCourse = useSelector((state) => state.course.searchedCourse);
+  
     useEffect(() => {
-        if(rutaActual.includes('/EditarCurso')){
-            dispatch(searchCourseById(id));
-            console.log("searchedCourse",searchedCourse);
-        }
-    }, []);
+      if (rutaActual.includes('/EditarCurso')) {
+        dispatch(searchCourseById(id));
+      }
+    }, [rutaActual, dispatch, id]);
+  
     useEffect(() => {
-        if(rutaActual.includes('/EditarCurso')){
-            if (searchedCourse && searchedCourse.timetables) {
-                setHorarios(searchedCourse.timetables);
-                setValue("name",searchedCourse.name);
-                setValue("description",searchedCourse.description);
-                setValue("type_pay",searchedCourse.type_pay);
-                setValue("entity",searchedCourse.entity);
-                setValue("date_init",searchedCourse.dates.date_init);
-                setValue("intensity",searchedCourse.intensity);
-                setValue("target_population",searchedCourse.target_population);
-                setValue("category",searchedCourse.category);
-                setValue("quotas",searchedCourse.quotas);
-                setValue("cost",searchedCourse.cost);
-                setValue("date_end",searchedCourse.dates.date_end);
-                setValue("modality",searchedCourse.modality);
-                setValue("date_enrollment",searchedCourse.dates.date_enrollment);
-                setValue("teacher",searchedCourse.teacher);
-            }
+      if (rutaActual.includes('/EditarCurso')) {
+        if (searchedCourse && searchedCourse.timetables) {
+          setHorarios(searchedCourse.timetables);
+          setValue("name", searchedCourse.name);
+          setValue("description", searchedCourse.description);
+          setValue("type_pay", searchedCourse.type_pay);
+          setValue("entity", searchedCourse.entity);
+          setValue("date_init", searchedCourse.dates.date_init);
+          setValue("intensity", searchedCourse.intensity);
+          setValue("target_population", searchedCourse.target_population);
+          setValue("category", searchedCourse.category);
+          setValue("quotas", searchedCourse.quotas);
+          setValue("cost", searchedCourse.cost);
+          setValue("date_end", searchedCourse.dates.date_end);
+          setValue("modality", searchedCourse.modality);
+          setValue("date_enrollment", searchedCourse.dates.date_enrollment);
+          setValue("teacher", searchedCourse.teacher);
         }
-    }, [searchedCourse]);
+      }
+    }, [searchedCourse, setValue]);    
+
     return (
-            <FormContent onSubmit={handleSubmit(handleRegister)}>
+            <FormContent onSubmit={handleSubmit(handleSave)}>
                 <ContendDiv>
                         <Div>
                             <H3>Nombre del Curso</H3>
@@ -216,7 +272,7 @@ function FormCourse() {
                 <hr size="2px" color="#B8B9BB" />
                 <DivButtons>
                     <ButtonCancel onClick={(e) => {handleCancel(e)}}>Cancelar</ButtonCancel>
-                    <ButtonSave type='submit'>
+                    <ButtonSave type='submit' >
                         <svg width="20px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="##FFFFFF"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 5H9C7.11438 5 6.17157 5 5.58579 5.58579C5 6.17157 5 7.11438 5 9V15C5 16.8856 5 17.8284 5.58579 18.4142C6.17157 19 7.11438 19 9 19H15C16.8856 19 17.8284 19 18.4142 18.4142C19 17.8284 19 16.8856 19 15V12M9.31899 12.6911L15.2486 6.82803C15.7216 6.36041 16.4744 6.33462 16.9782 6.76876C17.5331 7.24688 17.5723 8.09299 17.064 8.62034L11.2329 14.6702L9 15L9.31899 12.6911Z" stroke="#FFFFFF" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg> 
                         Guardar
                     </ButtonSave>
