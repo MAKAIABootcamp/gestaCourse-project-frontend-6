@@ -6,7 +6,7 @@ import arrowPageAfter from '../../assets/arrow-der.png'
 import arrowPageFinal from '../../assets/hacia-adelante.png'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import {getData} from '../../store/courses/coursesActions';
+import {getData} from '../../store/courses/courseActions';
 import { getDataEnrrollment } from '../../store/enrollment/enrollmentActions';
 function MyCourses() {
   const {courses} = useSelector(store => store.course);

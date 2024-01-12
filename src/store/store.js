@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './users/userSlice';
-import courseReducer from './courses/coursesSlice';
+import courseReducer from './courses/courseSlice'
 import enrrollmentReducer from './enrollment/enrollmentSlice';
 import { thunk } from 'redux-thunk';
 
