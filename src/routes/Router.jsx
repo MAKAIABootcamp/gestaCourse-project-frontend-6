@@ -11,11 +11,38 @@ import AcercaNosotros from '../pages/AcercaNosotros/AcercaNosotros'
 import CourseManagement from '../pages/courseManagement/CourseManagement'
 import PublicRoutes from './PublicRoutes'
 import PrivatedRoutes from './PrivatedRoutes'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { onAuthStateChanged } from 'firebase/auth'
+import { auth } from '../firebase/firebaseConfig'
+import { setAuthenticated, setUser } from '../store/users/userSlice'
 
 
 const Router = () => {
-  const { isAunthenticated } = useSelector(store => store.user);
+  const { isAunthenticated, user } = useSelector( store => store.user )
+  const [checking, setChecking] = useState(true)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (userLogged) => {
+      if (userLogged?.uid && !user) {
+        dispatch(setAuthenticated(true))
+        dispatch(setUser({
+          id: userLogged.uid,
+          email: userLogged.email,
+          name: userLogged.displayName,
+          photoURL: userLogged.photoURL,
+          accessToken: userLogged.accessToken
+        }))
+      }
+    })
+    setChecking(false)
+  }, [dispatch, user])
+
+  if (checking) {
+    return <div>Cargando...</div>
+  }
+
   return (
     <BrowserRouter>
         <Routes>

@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword, updateProfile ,GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, signOut} from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
 import { setAuthenticated, setError, setUser } from "./userSlice";
-import { json } from "react-router-dom";
+
 export const createAccountAsync = (newUsers) => async (dispatch) => {
     try {
         const {user} = await createUserWithEmailAndPassword(auth, newUsers.email,newUsers.password);
@@ -38,17 +38,23 @@ export const createAnAccountAsync = (newUser) => async (dispatch) => {
           displayName: user.displayName,
           email: user.email,
           accessToken: user.accessToken,
+          telefono: newUser.telefono,
+          type_id: newUser.cc,
+          id_number: newUser.id,
         })
       );
       dispatch(setAuthenticated(true));
       dispatch(setError(false));
-      sessionStorage.setItem('isAunthenticated', true);
-      sessionStorage.setItem('user', {
-        id: user.uid,
-        displayName: user.displayName,
+      await createUserInCollection(user.uid, {
+        name: newUser.nombre,
+        lastname: newUser.apellidos,
         email: user.email,
         accessToken: user.accessToken,
+        telefono: newUser.telefono,
+        type_id: newUser.cc,
+        id_number: newUser.id,
       });
+
     } catch (error) {
       console.warn(error);
       dispatch(
@@ -60,12 +66,10 @@ export  const loginWithGoogle = () =>{
     const provider = new GoogleAuthProvider();
     return  async (dispatch) => {
     try {
-        const userCredencial = await signInWithPopup(auth,provider);
-        dispatch(setAuthenticated(true))
-        dispatch(setUser(userCredencial.user));
-        sessionStorage.setItem('isAunthenticated', true);
-        console.log(userCredencial.user);
-        sessionStorage.setItem('user',JSON.stringify(userCredencial.user.auth));
+      const userCredencial = await signInWithPopup(auth, provider)
+      const userLogged = await loginFromFirestore(userCredencial.user)
+      dispatch(setAuthenticated(true))
+      dispatch(setUser(userLogged))
     } catch (error) {
         console.log(error);
         dispatch(setError({error: true , code: error.code , message: error.message}));
@@ -75,12 +79,19 @@ export  const loginWithGoogle = () =>{
 
 export const loginWithEmailAndPassword = (email,password) => async (dispatch) => {
     try {
-        const userCredencial = await signInWithEmailAndPassword(auth,email,password);
-        dispatch(setAuthenticated(true));
-        dispatch(setUser(userCredencial.user));
-        console.log(userCredencial.user);
-        sessionStorage.setItem('isAunthenticated', true);
-        sessionStorage.setItem('user',JSON.stringify(userCredencial.user.auth));
+        const {user} = await signInWithEmailAndPassword(auth,email,password);
+        const userLogged = await getUserFromCollection(user.uid)
+
+        if (userLogged) {
+          dispatch(setAuthenticated(true))
+          dispatch(setUser({ email: userLogged.email, id: userLogged.id, name: userLogged.name, accessToken: userLogged.accessToken, id_number: userLogged.id_number, telefono: userLogged.telefono, type_id: userLogged.type_id }))
+          dispatch(setError(false))
+        } else {
+          dispatch(setAuthenticated(false))
+          dispatch(
+            setError({ error: true })
+          )
+        }
     } catch (error) {
         console.log(error);
         dispatch(setError({error: true , code: error.code , message: error.message}));
