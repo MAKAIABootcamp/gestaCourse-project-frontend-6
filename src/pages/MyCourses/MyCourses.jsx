@@ -11,10 +11,17 @@ import { getDataEnrrollment } from '../../store/enrollment/enrollmentActions';
 function MyCourses() {
   const {courses} = useSelector(store => store.course);
   const {enrollments} = useSelector(store => store.enrrollment);
+  const {user} = useSelector(store => store.user);
   const dispatch = useDispatch();
-
-  console.log(courses);
-  console.log(enrollments);
+  const dataCourses = enrollments.filter(item => item.Id_student === user.id).map(item => {
+    const cursoEncontrado = courses.find(course => course.id === item.Id_course);
+    return {
+        Id_student: item.Id_student,
+        date_enrollment: item.date_enrollment,
+        state: item.state,
+        ...cursoEncontrado
+    }
+  })
 
   const data = [
     { name: 'Diplomado en Medicina tradicional china con énfasis en sus técnicas de acupuntura, masaje, moxibustión y Qi gong.', year: 2015, state: 'Certificado' },
@@ -32,7 +39,7 @@ function MyCourses() {
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = dataCourses.slice(indexOfFirstItem, indexOfLastItem);
 
   const totalPages = Math.ceil(data.length / itemsPerPage);
 
@@ -70,7 +77,7 @@ function MyCourses() {
             {currentItems.map((item, index) => (
               <tr key={index}>
                 <td>{item.name}</td>
-                <td>{item.year}</td>
+                <td>{item.date_enrollment}</td>
                 <td>{item.state}</td>
                 {
                   item.state === "Inscrito"?
