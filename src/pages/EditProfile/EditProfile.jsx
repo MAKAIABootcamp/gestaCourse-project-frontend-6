@@ -2,31 +2,42 @@ import {useRef} from 'react'
 import { ContainerData, DivLabelAndInput, ContainerArticle, ButtonInscription } from '../CourseRegistrationForm/StylesComponents'
 import {PhotoContainer} from './StyleComponents'
 import imageUser from '../../assets/usuario.png'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useForm } from 'react-hook-form'
+import { updateUserDataAsync } from '../../store/users/userActions'
 
 function EditProfile() {
+
   const {user} = useSelector(store => store.user);
-  const {name,id_number,telefono} = user;
+  const {name,id_number,telefono,address} = user;
   const fileInputRef = useRef(null);
+  const {register,handleSubmit} = useForm();
+  const dispatch = useDispatch();
+
   const activarInput = () => {
     // Activa el cuadro de diálogo de selección de archivos
     fileInputRef.current.click();
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleEdit = async (data) => {
+    dispatch(updateUserDataAsync(
+      {
+        id:user.id,
+        accessToken:user.accessToken,
+        ...data
+    }));
   };
   return (
     <ContainerArticle>
         <h1>EDITAR PERFIL</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(handleEdit)}>
           <ContainerData >
             <DivLabelAndInput>
               <label htmlFor="name">NOMBRES Y APELLIDOS <p>*</p></label>
-              <input id='name' type="text" autoComplete="off" defaultValue={name}/>
+              <input id='name' type="text" autoComplete="off" defaultValue={name} {...register('name')}/>
             </DivLabelAndInput>
             <DivLabelAndInput>
               <label htmlFor="typeIdentification">TIPO DE IDENTIFICACIÓN <p>*</p></label>
-              <select id="typeIdentification">
+              <select id="typeIdentification" {...register('type_id')}>
                 <option value="">Tu respuesta</option>
                 <option value="RC">Registro Civil</option>
                 <option value="CC">Cedula de Ciudadania</option>
@@ -36,15 +47,15 @@ function EditProfile() {
             </DivLabelAndInput>
             <DivLabelAndInput>
               <label htmlFor="numIdentification">NUMERO DE IDENTIFICACIÓN <p>*</p></label>
-              <input id="numIdentification" type="text" defaultValue={id_number} />
+              <input id="numIdentification" type="text" defaultValue={id_number} {...register('id_number')} />
             </DivLabelAndInput>
             <DivLabelAndInput>
               <label htmlFor="address">DIRECCIÓN DE RESIDENCIA <p>*</p></label>
-              <input id="address" type="text" autoComplete="off"/>
+              <input id="address" type="text" autoComplete="off" defaultValue={address} {...register('address')}/>
             </DivLabelAndInput>
             <DivLabelAndInput>
               <label htmlFor="phone">TÉLEFONO <p>*</p></label>
-              <input id="phone" type="text" autoComplete="off" defaultValue={telefono}/>
+              <input id="phone" type="text" autoComplete="off" defaultValue={telefono} {...register('telefono')}/>
             </DivLabelAndInput>
           </ContainerData>
           <PhotoContainer>
@@ -55,7 +66,7 @@ function EditProfile() {
               <button onClick={activarInput}>Cambiar</button>
             </div>
           </PhotoContainer>
-          <ButtonInscription type="submit">Guardar</ButtonInscription>
+          <ButtonInscription type="submit" >Guardar</ButtonInscription>
         </form>
     </ContainerArticle>
   )

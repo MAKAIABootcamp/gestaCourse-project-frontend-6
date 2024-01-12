@@ -16,6 +16,9 @@ const userSlice = createSlice({
         },
         setAuthenticated : (state, action) => {
             state.isAunthenticated = action.payload;
+        },
+        updateUser : (state, action) => {
+            state.user = action.payload;
         }
     }
 })

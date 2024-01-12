@@ -1,6 +1,7 @@
 import React from 'react'
 import { ContainerData, DivLabelAndInput, ContainerArticle, ButtonInscription } from './StylesComponents'
 import { useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
 
 function CourseRegistrationForm() {
   const {user} = useSelector(store => store.user);

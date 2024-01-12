@@ -14,7 +14,6 @@ import { Link } from "react-router-dom";
 const Login = () => {
   const { register,reset,handleSubmit} = useForm();
   const dispatch = useDispatch();
-  const { error } = store.getState().user;
 
   const handleLoginWithGoogle = () => {
     dispatch(loginWithGoogle());
@@ -26,7 +25,6 @@ const Login = () => {
 
   const handleLoginWithEmailAndPassword = async(data) => {
     const {emailLogin,passwordLogin} = data;
-    console.log(data)
     dispatch(loginWithEmailAndPassword(emailLogin,passwordLogin));
     reset();
   };
