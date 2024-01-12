@@ -7,7 +7,7 @@ const NavBar = () => {
     const items = [
         ['ofertasInscripciones','Ofertas e inscripciones'],
         ['acercaNosotros', 'Acerca de nosotros'],
-        ['gestionCursos','Gestion de cursos'],
+        ['miscursos','Gestion de cursos'],
         ['ingresar', 'Ingresar']
     ]
   return (

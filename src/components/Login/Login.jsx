@@ -12,9 +12,9 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const {error} = store.getState().user;
   const { register,reset,handleSubmit} = useForm();
   const dispatch = useDispatch();
+  const { error } = store.getState().user;
 
   const handleLoginWithGoogle = () => {
     dispatch(loginWithGoogle());
@@ -25,27 +25,12 @@ const Login = () => {
   };
 
   const handleLoginWithEmailAndPassword = async(data) => {
-    const {email,password} = data;
-    dispatch(loginWithEmailAndPassword(email,password));
+    const {emailLogin,passwordLogin} = data;
+    console.log(data)
+    dispatch(loginWithEmailAndPassword(emailLogin,passwordLogin));
     reset();
   };
 
-  useEffect(() => {
-    if (error) {
-      Swal.fire({
-        title: 'Upss!!',
-        text: 'Ha ocurrido un error, por favor verifica tus credenciales!',
-        icon: 'error',
-      });
-    }
-    if (error === false) {
-      Swal.fire({
-        title: `Excelente, usuario ${user.name}`,
-        text: 'Ha inciado sesion de manera exitosa!',
-        icon: 'success',
-      }).then(() => navigate('/Home'));
-    }
-  }, [error]);
   return (
     <div className="container">
       <div className="signin-signup">
@@ -53,11 +38,11 @@ const Login = () => {
           <h2 className="title">INICIO DE SESIÓN</h2>
           <div className="input-field">
             <i className="fas fa-user"></i>
-            <input type="email" placeholder="Correo Electronico" {...register('email')}  />
+            <input type="email" placeholder="Correo Electronico" {...register('emailLogin')}  />
           </div>
           <div className="input-field">
             <i className="fas fa-lock"></i>
-            <input type="password" placeholder="Contraseña" {...register('password')}/>
+            <input type="password" placeholder="Contraseña" {...register('passwordLogin')}/>
           </div>
           <button type="submit" className="btn"> Entrar</button>
           <p className="social-text">Continuar con Google</p>
@@ -84,10 +69,10 @@ const Login = () => {
           <div className="input-field">
             <i className="fas fa-lock"></i>
                 <select {...register('cc')}>
-                    <option value="opcion1">Cedula de Ciudadania</option>
-                    <option value="opcion2">Opción 2</option>
-                    <option value="opcion3">Opción 3</option>
-                    <option value="opcion4">Opción 4</option>
+                    <option value="CC">Cedula de Ciudadania</option>
+                    <option value="TI">Tarjeta de identidad</option>
+                    <option value="PP">Pasaporte</option>
+                    <option value="CE">Cedula de extranjeria</option>
                 </select>
           </div>
           <div className="input-field">

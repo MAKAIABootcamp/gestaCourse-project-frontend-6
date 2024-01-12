@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-const item = sessionStorage.getItem('isAunthenticated');
 
 const userSlice = createSlice({
     name: 'user',
     initialState: {
-        isAunthenticated:  item != null ? true : false ,
+        isAunthenticated: false,
         user: null,
         error: null
     },
