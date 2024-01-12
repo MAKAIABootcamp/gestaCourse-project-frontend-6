@@ -1,8 +1,27 @@
 import { createUserWithEmailAndPassword, updateProfile ,GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, signOut} from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
 import { setAuthenticated, setError, setUser } from "./userSlice";
-import { createUserInCollection, getUserFromCollection, loginFromFirestore } from "../../services/useServices";
 
+export const createAccountAsync = (newUsers) => async (dispatch) => {
+    try {
+        const {user} = await createUserWithEmailAndPassword(auth, newUsers.email,newUsers.password);
+        await updateProfile(auth.currentUser, {
+            displayName: newUsers.displayName,
+            photoURL: newUsers.photoURL
+        });
+        dispatch(setUser({
+            id: user.id,
+            email: user.email,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+            accessToken : user.accessToken
+        }));
+        dispatch(setAuthenticated(true));
+    } catch (error) {
+        console.warn(error);
+        dispatch(setError({error: true , code: error.code , message: error.message}));
+    }
+}
 export const createAnAccountAsync = (newUser) => async (dispatch) => {
     try {
       const { user } = await createUserWithEmailAndPassword(
