@@ -61,8 +61,9 @@ export const DivCards = styled.div`
     width:100%;
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    justify-items: center;  
-
+    justify-items:center;
+    justify-content:center;  
+    
     @media screen and (max-width: 768px) {
         grid-template-columns: repeat(1,1fr);
         width: 90%;
@@ -97,12 +98,12 @@ export const TitleCard = styled.h2`
     }
 `;
 export const TextCard = styled.p`
-    height:180px;
+    height:160px;
     color:#8F8E8E;  
     font-size:18px;
     padding-left:10px;
     padding-right:10px;
-    
+
 `;
 export const Botones = styled.div`
     display: flex;

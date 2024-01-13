@@ -16,6 +16,7 @@ import { useEffect, useState } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../firebase/firebaseConfig'
 import { setAuthenticated, setUser } from '../store/users/userSlice'
+import DetailsCourse from '../pages/DeatailsCourse/DetailsCourse'
 
 
 const Router = () => {
@@ -47,6 +48,7 @@ const Router = () => {
     <BrowserRouter>
         <Routes>
             <Route element={<PublicRoutes isAuthenticate={isAunthenticated} />}>
+              
               <Route path="/login" element={<Login />}></Route>
               <Route path="/recuperacion" element={<Recuperacion />}></Route>
             </Route>
@@ -54,6 +56,7 @@ const Router = () => {
               <Route element={<Layout/>} >
                   <Route index element={<OfertasInscripciones/>} />
                   <Route path="ofertasInscripciones" element={<OfertasInscripciones/>} />
+                  <Route path="detailsCourse/:id" element={<DetailsCourse/>} />
                   <Route path="acercaNosotros" element={<AcercaNosotros/>} />
                   <Route path="formatoInscripcionACurso" element={<CourseRegistrationForm/>} />
                   <Route path="editarPerfil" element={<EditProfile/>} />
