@@ -25,8 +25,9 @@ export const createData = (course) => {
   return async (dispatch) => {
     try {
       let tempObject = { ...course }
+      console.log("Va a hacer la peticion", tempObject);
       const response = await addDoc(courseCollection, course);
-      console.log(response);
+      console.log("create course",response);
       tempObject.id = response.id;
       dispatch(addCourse(tempObject));
       dispatch(getData());
@@ -39,14 +40,13 @@ export const createData = (course) => {
 }
 
 export const updateData = (course) => {
-  console.log();
   const documentRef = doc(courseCollection, course.id);
   return async (dispatch) => {
     try {
       dispatch(updateCourse(course));
       delete course.id;
       const response = await setDoc( documentRef, course);
-      console.log(response);
+      console.log("update course",response);
       dispatch(getData());
     } catch (error) {
       dispatch(

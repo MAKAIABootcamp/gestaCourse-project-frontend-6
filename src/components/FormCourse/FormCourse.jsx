@@ -6,6 +6,7 @@ import { createData, updateData, getData } from '../../store/courses/courseActio
 import { useNavigate, useLocation, useParams} from 'react-router-dom';
 import { searchCourseById } from '../../store/courses/courseSlice';
 import Swal from 'sweetalert2';
+import uploadFile from '../../services/fileUpload';
 
 
 function FormCourse() {
@@ -44,10 +45,11 @@ function FormCourse() {
     const { register, handleSubmit, setValue } = useForm();
   
     const [confirmingSave, setConfirmingSave] = useState(false);
-  
+    
     const handleConfirmSave = () => {
       setConfirmingSave(true);
     };
+    const searchedCourse = useSelector((state) => state.course.searchedCourse);
   
     const handleSave = async (data) => {
       try {
@@ -65,26 +67,43 @@ function FormCourse() {
         if (!confirmSave.isConfirmed) {
           return;
         }
-  
-        data = {
-          ...data,
-          dates: {
-            date_init: data.date_init,
-            date_end: data.date_end,
-            date_enrollment: data.date_enrollment
-          },
-          timetables: horarios
-        };
+        console.log(data);
+        if(data.image.length > 0){
+          const photo = await uploadFile(data.image[0]);
+          data = {
+            ...data,
+            dates: {
+              date_init: data.date_init,
+              date_end: data.date_end,
+              date_enrollment: data.date_enrollment
+            },
+            timetables: horarios,
+            photo
+          };
+        }else{
+          data = {
+            ...data,
+            dates: {
+              date_init: data.date_init,
+              date_end: data.date_end,
+              date_enrollment: data.date_enrollment
+            },
+            timetables: horarios,
+            photo: searchedCourse && searchedCourse.photo? searchedCourse.photo : "" 
+          };
+        }
   
         delete data.date_init;
         delete data.date_end;
         delete data.date_enrollment;
-  
+        delete data.image;
         if (rutaActual.includes('/EditarCurso')) {
           data = { ...data, id: id };
+          console.log("Editar Curso", data)
           dispatch(updateData(data));
           navigate("/gestionCursos");
         } else {
+          console.log("Añadir Curso",data)
           dispatch(createData(data));
           navigate("/gestionCursos");
         }
@@ -107,7 +126,6 @@ function FormCourse() {
       }
     };
   
-    const searchedCourse = useSelector((state) => state.course.searchedCourse);
   
     useEffect(() => {
       if (rutaActual.includes('/EditarCurso')) {
@@ -225,7 +243,7 @@ function FormCourse() {
                         </Div>
                         <Div>
                             <h3>Seleciona una Imagen</h3>
-                            <InputFile type="file"   />
+                            <InputFile type="file" {...register('image')}  />
                         </Div>
                         <Div>
                             <h3>Poblacion Objetivo</h3>
