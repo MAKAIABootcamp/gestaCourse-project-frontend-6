@@ -18,7 +18,6 @@ import { auth } from '../firebase/firebaseConfig'
 import { setAuthenticated, setUser } from '../store/users/userSlice'
 import DetailsCourse from '../pages/DeatailsCourse/DetailsCourse'
 
-
 const Router = () => {
   const { isAunthenticated, user } = useSelector( store => store.user )
   const [checking, setChecking] = useState(true)
@@ -64,6 +63,7 @@ const Router = () => {
                   <Route path="EditarCurso" element={<EditRecord/>} />
                   <Route path="AñadirCurso" element={<EditRecord/>} />
                   <Route path="gestionCursos" element={<CourseManagement/>} />
+                  <Route path='inscripcion/:id' element ={<CourseRegistrationForm/>} />
               </Route>
             </Route>
         </Routes>

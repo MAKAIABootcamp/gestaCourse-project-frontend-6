@@ -45,7 +45,9 @@ const OfertasInscripciones = () => {
                                 <Link to={`/detailsCourse/${curso.id}`}>
                                     <BotonDetalles type='submit'>Más detalles</BotonDetalles>
                                 </Link>
-                                <BotonInscripcion type='submit'>Inscribirse</BotonInscripcion>
+                                <Link to={`/inscripcion/${curso.id}`}>
+                                    <BotonInscripcion type='submit'>Inscribirse</BotonInscripcion>
+                                </Link>
                             </Botones>
                         </Cards>
                 )

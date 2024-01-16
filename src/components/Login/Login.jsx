@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import uploadFile from "../../services/fileUpload";
 
 const Login = () => {
   const { register,reset,handleSubmit} = useForm();
@@ -18,7 +19,8 @@ const Login = () => {
     dispatch(loginWithGoogle());
   }
   const handleRegister = async (data) => {
-    dispatch(createAnAccountAsync(data));
+    const photoURL = await uploadFile(data.imagen[0]);
+    dispatch(createAnAccountAsync({photoURL,...data}));
     reset();
   };
 
@@ -60,10 +62,6 @@ const Login = () => {
             <input type="text" placeholder="Nombre(s)"  {...register('nombre')}/>
           </div>
           <div className="input-field">
-            <i className="fas fa-envelope"></i>
-            <input type="text" placeholder="Apellido(s)" {...register('apellidos')}/>
-          </div>
-          <div className="input-field">
             <i className="fas fa-lock"></i>
                 <select {...register('cc')}>
                     <option value="CC">Cedula de Ciudadania</option>
@@ -83,6 +81,10 @@ const Login = () => {
           <div className="input-field">
             <i className="fas fa-user"></i>
             <input type="number" placeholder="Numero de Telefono" {...register('telefono')} />
+          </div>
+          <div className="input-field">
+            <i className="fas fa-user"></i>
+            <input type="file" {...register('imagen')}/>
           </div>
           <div className="input-field">
             <i className="fas fa-user"></i>

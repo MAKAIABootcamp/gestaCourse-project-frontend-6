@@ -43,18 +43,19 @@ export const createAnAccountAsync = (newUser) => async (dispatch) => {
           telefono: newUser.telefono,
           type_id: newUser.cc,
           id_number: newUser.id,
+          photoURL: newUser.photoURL,
         })
       );
       dispatch(setAuthenticated(true));
       dispatch(setError(false));
       await createUserInCollection(user.uid, {
-        name: newUser.nombre,
-        lastname: newUser.apellidos,
+        fullName: newUser.nombre,
         email: user.email,
         accessToken: user.accessToken,
         telefono: newUser.telefono,
         type_id: newUser.cc,
         id_number: newUser.id,
+        photoURL: newUser.photoURL,
       });
 
     } catch (error) {
@@ -86,7 +87,7 @@ export const loginWithEmailAndPassword = (email,password) => async (dispatch) =>
 
         if (userLogged) {
           dispatch(setAuthenticated(true))
-          dispatch(setUser({ email: userLogged.email, id: userLogged.id, name: userLogged.name, accessToken: userLogged.accessToken, id_number: userLogged.id_number, telefono: userLogged.telefono, type_id: userLogged.type_id,lastname: userLogged.lastname, address: userLogged.address, photoURL: userLogged.photoURL  }))
+          dispatch(setUser({ email: userLogged.email, id: userLogged.id, fullName: userLogged.fullName, accessToken: userLogged.accessToken, id_number: userLogged.id_number, telefono: userLogged.telefono, type_id: userLogged.type_id, address: userLogged.address, photoURL: userLogged.photoURL  }))
           dispatch(setError(false))
         } else {
           dispatch(setAuthenticated(false))
