@@ -1,5 +1,5 @@
 import CourseManagementTable from "../../components/courseManagementTable/courseManagementTable";
-import { AddButton, ButtonsDiv, ContendDiv, NextButton, NumPage, SearchDiv, TitleDiv } from "./CourseManagementStyle";
+import { AddButton, ContendDiv, SearchDiv, TitleDiv } from "./CourseManagementStyle";
 import { useNavigate } from 'react-router-dom';
 
 function CourseManagement() {
@@ -21,12 +21,6 @@ function CourseManagement() {
         </SearchDiv>
         <CourseManagementTable />
       </div>
-      <hr size="2px" color="#B8B9BB" />
-      <ButtonsDiv>
-        <NextButton>Atrás</NextButton>
-        <NumPage>1</NumPage>
-        <NextButton>Siguiente</NextButton>
-      </ButtonsDiv>
     </ContendDiv>
   );
 }

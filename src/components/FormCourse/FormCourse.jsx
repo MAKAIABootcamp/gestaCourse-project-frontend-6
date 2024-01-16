@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ButtonCancel, ButtonDel, UlHorAgg, ButtonSave, ContendDiv,ButtonAgg, Div,DivInput, DivButtons, FormContent, H3, Input, InputFile, Select } from "./FormCourseStyle"
+import { ButtonCancel, ButtonDel, UlHorAgg, UlPopuAgg, ButtonSave, ContendDiv,ButtonAgg, Div,DivInput, DivButtons, FormContent, H3, Input, InputFile, Select } from "./FormCourseStyle"
 import { useForm } from 'react-hook-form';
-import { createData, updateData, getData } from '../../store/courses/courseActions';
+import { createData, updateData } from '../../store/courses/courseActions';
 import { useNavigate, useLocation, useParams} from 'react-router-dom';
 import { searchCourseById } from '../../store/courses/courseSlice';
 import Swal from 'sweetalert2';
@@ -15,6 +15,8 @@ function FormCourse() {
     const rutaActual = location.pathname;
     const { id } = useParams();
     const [horarios, setHorarios] = useState([]);
+    const [poblacion, setPoblacion] = useState([]);
+    const [nuevaPoblacion, setNuevaPoblacion] = useState('');
     const [nuevoHorario, setNuevoHorario] = useState({ day: '', init: '', end: '' });
     const dispatch = useDispatch();
   
@@ -27,7 +29,25 @@ function FormCourse() {
       const { name, value } = e.target;
       setNuevoHorario({ ...nuevoHorario, [name]: value });
     };
-  
+
+    const handleInputPoblacion = (e) => {
+      const { value } = e.target;
+      setNuevaPoblacion( value );
+    };
+
+    const agregarPoblacion = (e) => {
+      e.preventDefault();
+      if (nuevaPoblacion) {
+        setPoblacion([...poblacion, nuevaPoblacion]);
+        setNuevaPoblacion('');
+      }
+    };
+    const deletePoblacion = (e, index) => {
+      e.preventDefault();
+      const nuevaMatriz = poblacion.filter((_, i) => i !== index);
+      setPoblacion(nuevaMatriz)
+    };
+
     const agregarHorario = (e) => {
       e.preventDefault();
       if (nuevoHorario.day && nuevoHorario.init && nuevoHorario.end) {
@@ -78,6 +98,7 @@ function FormCourse() {
               date_enrollment: data.date_enrollment
             },
             timetables: horarios,
+            target_population: poblacion,
             photo
           };
         }else{
@@ -89,6 +110,7 @@ function FormCourse() {
               date_enrollment: data.date_enrollment
             },
             timetables: horarios,
+            target_population: poblacion,
             photo: searchedCourse && searchedCourse.photo? searchedCourse.photo : "" 
           };
         }
@@ -135,7 +157,7 @@ function FormCourse() {
   
     useEffect(() => {
       if (rutaActual.includes('/EditarCurso')) {
-        if (searchedCourse && searchedCourse.timetables) {
+        if (searchedCourse && searchedCourse.timetables && searchedCourse.target_population) {
           setHorarios(searchedCourse.timetables);
           setValue("name", searchedCourse.name);
           setValue("description", searchedCourse.description);
@@ -143,7 +165,8 @@ function FormCourse() {
           setValue("entity", searchedCourse.entity);
           setValue("date_init", searchedCourse.dates.date_init);
           setValue("intensity", searchedCourse.intensity);
-          setValue("target_population", searchedCourse.target_population);
+          //setValue("target_population", searchedCourse.target_population);
+          setPoblacion(searchedCourse.target_population);
           setValue("category", searchedCourse.category);
           setValue("quotas", searchedCourse.quotas);
           setValue("cost", searchedCourse.cost);
@@ -190,7 +213,11 @@ function FormCourse() {
                             <Input type="number" {...register('quotas')} />
                         </Div>
                         <Div>
-                            <h2>Horarios</h2>
+                            <h3>Seleciona una Imagen</h3>
+                            <InputFile type="file" {...register('image')}  />
+                        </Div>
+                        <Div>
+                            <h3>Horarios</h3>
                             <DivInput>
                                 <label htmlFor="day">Día de la Semana:</label>
                                 <Select
@@ -242,22 +269,31 @@ function FormCourse() {
                             </UlHorAgg>
                         </Div>
                         <Div>
-                            <h3>Seleciona una Imagen</h3>
-                            <InputFile type="file" {...register('image')}  />
-                        </Div>
-                        <Div>
                             <h3>Poblacion Objetivo</h3>
-                            <Input type="text" {...register('target_population')} />
+                            <DivInput>
+                                <label htmlFor="day">Tipo de Población</label>
+                                <Input
+                                    type="text"
+                                    value={nuevaPoblacion}
+                                    onChange={handleInputPoblacion}
+                                />
+                            </DivInput>
+                            <ButtonAgg onClick={agregarPoblacion}>Agregar</ButtonAgg>
+                            {
+                                poblacion.length > 0 ? <h3>Poblacion Objetivo Agregada:</h3> : <></>
+                            }
+                            <UlPopuAgg>
+                                {poblacion.map((element, index) => (
+                                        <li key={index}>
+                                            <p>{element}</p>
+                                            <ButtonDel onClick={(e) => {deletePoblacion(e, index)}}>X</ButtonDel>
+                                        </li>
+                                ))}
+                            </UlPopuAgg>
                         </Div>
                         <Div>
                             <h3>Categoria</h3>
-                            <Select {...register('category')}>
-                                <option value="">Seleccione la categoria</option>
-                                <option value="categoria">Categoria</option>
-                                <option value="categoria2">Categoria2</option>
-                                <option value="categoria3">Categoria3</option>
-                                <option value="Programacion">Programación</option>
-                            </Select>
+                            <Input type="text" {...register('category')}/>
                         </Div>
                         <Div>
                             <h3>Costo de inversion</h3>

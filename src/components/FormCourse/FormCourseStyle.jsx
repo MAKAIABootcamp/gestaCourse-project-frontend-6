@@ -134,6 +134,17 @@ export const ButtonCancel = styled.button`
 `
 export const UlHorAgg = styled.ul`
     padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    li{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+`
+
+export const UlPopuAgg= styled.ul`
+    padding: 0;
     li{
         display: flex;
         align-items: center;
