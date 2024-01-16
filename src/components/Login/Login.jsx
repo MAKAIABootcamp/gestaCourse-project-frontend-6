@@ -34,7 +34,7 @@ const Login = () => {
   return (
     <div className="container">
       <div className="signin-signup">
-        <form action="" className="sign-in-form" onSubmit={handleSubmit(handleLoginWithEmailAndPassword)}>
+        <form action="" className="form sign-in-form" onSubmit={handleSubmit(handleLoginWithEmailAndPassword)}>
           <h2 className="title">INICIO DE SESIÓN</h2>
           <div className="input-field">
             <i className="fas fa-user"></i>
@@ -56,7 +56,7 @@ const Login = () => {
           ¿No tienes cuenta?<a href="#" id="sign-up-btn2">Registrate</a>
           </p>
         </form>
-        <form action="" className="sign-up-form" onSubmit={handleSubmit(handleRegister)} >
+        <form action="" className="form sign-up-form" onSubmit={handleSubmit(handleRegister)} >
           <h2 className="title">Crear Cuenta</h2>
           <div className="input-field">
             <i className="fas fa-user"></i>
