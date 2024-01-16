@@ -9,7 +9,7 @@ import { DeleteButton, DivTable, DivTableTitle, EditButton, EvenRow, OddRow, Stu
 import Swal from "sweetalert2";
 import { useNavigate } from 'react-router-dom';
 
-function CourseManagementTable() {
+function CourseManagementTable( { searchTerm }) {
   const itemsPerPage = 5;
   const [currentPage, setCurrentPage] = useState(1);
   const columns = [
@@ -67,11 +67,20 @@ function CourseManagementTable() {
   const dispatch = useDispatch();
   const { courses } = useSelector(store => store.course);
   useEffect(() => {
+    console.log(searchTerm)
     dispatch(getData());
   }, []);
   const lastItemIndex = currentPage * itemsPerPage;
   const firstItemIndex = lastItemIndex - itemsPerPage;
   const currentCourses = courses.slice(firstItemIndex, lastItemIndex);
+
+  const filteredCourses = courses.filter((course) => {
+    const nameMatch = course.name && course.name.toLowerCase().includes(searchTerm.toLowerCase());
+    return nameMatch;
+  });
+
+  const paginatedCourses = filteredCourses.slice(firstItemIndex, lastItemIndex);
+
   const handleDelete = async (id) => {
     try {
       const confirmDelete = await Swal.fire({
@@ -119,7 +128,7 @@ function CourseManagementTable() {
             </tr>
           </thead>
           <tbody>
-            {currentCourses.map((course, index) =>
+            {paginatedCourses.map((course, index) =>
               index % 2 === 0 ? (
                 <EvenRow key={index}>
                   <td width={'5%'} >{firstItemIndex + index + 1}</td>

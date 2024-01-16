@@ -1,8 +1,16 @@
 import CourseManagementTable from "../../components/courseManagementTable/courseManagementTable";
 import { AddButton, ContendDiv, SearchDiv, TitleDiv } from "./CourseManagementStyle";
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 function CourseManagement() {
+
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
   const navigate = useNavigate();
   const handleGoToAddCourse = () => {
     navigate('/AñadirCurso');
@@ -17,9 +25,15 @@ function CourseManagement() {
         <hr size="2px" color="#B8B9BB" />
         <SearchDiv>
           <p>Buscar</p>
-          <input type="text" name="" id="" />
+          <input
+          type="text"
+          name="search"
+          id="search"
+          value={searchTerm}
+          onChange={handleSearchChange}
+          />
         </SearchDiv>
-        <CourseManagementTable />
+        <CourseManagementTable searchTerm={searchTerm} />
       </div>
     </ContendDiv>
   );
