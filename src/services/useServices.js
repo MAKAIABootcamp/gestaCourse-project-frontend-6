@@ -44,7 +44,7 @@ export const loginFromFirestore = async ( userData ) => {
       return userLogged
     } else {
       const newUser = {
-        name: userData.displayName,
+        fullName: userData.displayName,
         photoUrl: userData.photoURL,
         accessToken: userData.accessToken
         /* Otra información de usuario */

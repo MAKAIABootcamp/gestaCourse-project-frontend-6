@@ -1,7 +1,18 @@
 import React from 'react'
 import {Title, StylesPrincipal, Search,Lupa,Input,BotonBuscar,DivCards,Cards,CardImg,ImgCard,TitleCard,TextCard,BotonDetalles,Botones,BotonInscripcion} from './StyleOfertasInscripciones'
+import { useDispatch, useSelector } from 'react-redux'
+import { getData } from '../../store/courses/courseActions';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom'
 
 const OfertasInscripciones = () => {
+
+  const dispatch = useDispatch();
+  const {courses} = useSelector(store => store.course);
+  
+  useEffect(() => {
+    dispatch(getData())
+  }, []);
   return (
     <StylesPrincipal>
         <Title>
@@ -15,60 +26,34 @@ const OfertasInscripciones = () => {
             </form>
         </Search>
         <DivCards>
-            <Cards>
-                <CardImg>
-                    <ImgCard src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703291763/DemoDay/CDPPW_ed17-medium_apjiha.jpg" alt="course" />
-                </CardImg>
-                <div>
-                    <TitleCard>Diseño de página web - FrontEnd</TitleCard>
-                    <TextCard>
-                        Costo: Gratuito <br/><br/>
-                        Fecha de inicio: 5 de enero de 2024.<br/><br/>
-                        Fecha de finalización: 10 de Agosto de 2024
-                    </TextCard>
-                </div>
-                <Botones>
-                    <BotonDetalles type='submit'>Más detalles</BotonDetalles>
-                    <BotonInscripcion type='submit'>Inscribirse</BotonInscripcion>
-                </Botones>
-            </Cards>
-            <Cards>
-                <CardImg>
-                    <ImgCard src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703291749/DemoDay/desarrollo-web_bl9tsg.jpg" alt="course" />
-                </CardImg>
-                <div>
-                    <TitleCard>Curso Desarrollo web full stack</TitleCard>
-                    <TextCard>
-                        Costo: $500.000 (Estudiante universitario), $2'000.000 (Publico general) <br/><br/>
-                        Inscripciones: Hasta el 25 de mayo de 2024 o hasta llenar cupos <br/><br/>
-                        Pagos: Del 18 de abril de 2024 o hasta el 25 de mayo de 2024 o hasta llenar cupos.
-                    </TextCard>
-                </div>
-                <Botones>
-                    <BotonDetalles type='submit'>Más detalles</BotonDetalles>
-                    <BotonInscripcion type='submit'>Inscribirse</BotonInscripcion>
-                </Botones>
-            </Cards>
-            <Cards>
-                <CardImg>
-                    <ImgCard src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703291747/DemoDay/curso-app-sin-programar_xg2j2e.webp" alt="course" />
-                    
-                </CardImg>
-                <div>
-                    <TitleCard> Introducción al desarrollo móvil</TitleCard>
-                    <TextCard> 
-                        Costo:  Gratuito <br/><br/>
-                        Tercer fin de semana de cada mes.<br/><br/>
-                        Sábado: de 9:00 a.m. a 12:00m y de 2:00 p.m. – 7:00 p.m.
-                        Domingo: de 9:00 a.m. a 1:00 p.m.
-                    </TextCard>
-                </div>
-                <Botones>
-                    <BotonDetalles type='submit'>Más detalles</BotonDetalles>
-                    <BotonInscripcion type='submit'>Inscribirse</BotonInscripcion>
-                </Botones>
-            </Cards>
-           
+            {courses.map((curso,index)=>{
+                return (
+                        <Cards key={index}>
+                            <CardImg>
+                                <ImgCard src={curso.photo} alt="course" />
+                            </CardImg>
+                            <div>
+                                <TitleCard>{curso.name}</TitleCard>
+                                <TextCard>
+                                    Costo: {curso.cost} <br/><br/>
+                                    Fecha de inicio: {curso.dates.date_init}<br/><br/>
+                                    Fecha de finalización: {curso.dates.date_end}
+                                </TextCard>
+                            </div>
+                            
+                            <Botones>
+                                <Link to={`/detailsCourse/${curso.id}`}>
+                                    <BotonDetalles type='submit'>Más detalles</BotonDetalles>
+                                </Link>
+                                <Link to={`/inscripcion/${curso.id}`}>
+                                    <BotonInscripcion type='submit'>Inscribirse</BotonInscripcion>
+                                </Link>
+                            </Botones>
+                        </Cards>
+                )
+            })
+
+            } 
         </DivCards>
     </StylesPrincipal>
   )
