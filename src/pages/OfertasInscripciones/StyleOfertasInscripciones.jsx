@@ -120,6 +120,9 @@ export const BotonDetalles = styled.button`
     color:white;
     background-color:#04153B;
     font-size:16px;
+    &:hover{
+        cursor: pointer;
+    }
 `;
 
 export const BotonInscripcion = styled.button`
@@ -130,5 +133,7 @@ export const BotonInscripcion = styled.button`
     color:white;
     font-size:16px;
     background-color:#004AAD;
-
+    &:hover{
+        cursor: pointer;
+    }
 `;

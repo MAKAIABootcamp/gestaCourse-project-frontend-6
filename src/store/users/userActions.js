@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword, updateProfile ,GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, signOut} from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
-import { setAuthenticated, setError, setUser } from "./userSlice";
+import { setAuthenticated, setError, setRol, setUser } from "./userSlice";
 import { createUserInCollection, getUserFromCollection, loginFromFirestore, updateProfileInFirestore } from "../../services/useServices";
 
 
@@ -87,10 +87,11 @@ export const loginWithEmailAndPassword = (email,password) => async (dispatch) =>
 
         if (userLogged) {
           dispatch(setAuthenticated(true))
-          dispatch(setUser({ email: userLogged.email, id: userLogged.id, fullName: userLogged.fullName, accessToken: userLogged.accessToken, id_number: userLogged.id_number, telefono: userLogged.telefono, type_id: userLogged.type_id, address: userLogged.address, photoURL: userLogged.photoURL  }))
+          dispatch(setUser({ email: userLogged.email, id: userLogged.id, fullName: userLogged.fullName, accessToken: userLogged.accessToken, id_number: userLogged.id_number, telefono: userLogged.telefono, type_id: userLogged.type_id, address: userLogged.address, photoURL: userLogged.photoURL , rol: userLogged.rol }))
           dispatch(setError(false))
         } else {
           dispatch(setAuthenticated(false))
+          dispatch(setRol(userLogged.rol))
           dispatch(
             setError({ error: true })
           )
@@ -108,6 +109,7 @@ export const logoutAsync = () => {
       dispatch(setAuthenticated(false));
       dispatch(setUser(null));
       dispatch(setError(null));
+      dispatch(setRol(null));
       sessionStorage.clear();
     } catch (error) {
       console.error(error);

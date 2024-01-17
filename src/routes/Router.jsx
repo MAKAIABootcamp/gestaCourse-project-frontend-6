@@ -46,24 +46,28 @@ const Router = () => {
   return (
     <BrowserRouter>
         <Routes>
-            <Route element={<PublicRoutes isAuthenticate={isAunthenticated} />}>
-              
-              <Route path="/login" element={<Login />}></Route>
-              <Route path="/recuperacion" element={<Recuperacion />}></Route>
-            </Route>
-            <Route  element={<PrivatedRoutes isAuthenticate={isAunthenticated} />}>
-              <Route element={<Layout/>} >
-                  <Route index element={<OfertasInscripciones/>} />
-                  <Route path="ofertasInscripciones" element={<OfertasInscripciones/>} />
-                  <Route path="detailsCourse/:id" element={<DetailsCourse/>} />
-                  <Route path="acercaNosotros" element={<AcercaNosotros/>} />
-                  <Route path="formatoInscripcionACurso" element={<CourseRegistrationForm/>} />
-                  <Route path="editarPerfil" element={<EditProfile/>} />
-                  <Route path="misCursos" element={<MyCourses/>} />
-                  <Route path="EditarCurso" element={<EditRecord/>} />
-                  <Route path="AñadirCurso" element={<EditRecord/>} />
-                  <Route path="gestionCursos" element={<CourseManagement/>} />
-                  <Route path='inscripcion/:id' element ={<CourseRegistrationForm/>} />
+            <Route path='/' >
+              <Route element={<PublicRoutes isAuthenticate={isAunthenticated} />}>
+                <Route path="/login" element={<Login />}></Route>
+                <Route path="/recuperacion" element={<Recuperacion />}></Route>
+                <Route element={<Layout/>}>
+                  <Route index element={<OfertasInscripciones />}></Route>
+                </Route>
+              </Route>
+              <Route  element={<PrivatedRoutes isAuthenticate={isAunthenticated} />}>
+                <Route element={<Layout/>} >
+                    <Route index element={<OfertasInscripciones />}></Route>
+                    <Route path="ofertasInscripciones" element={<OfertasInscripciones />}></Route>
+                    <Route path="detailsCourse/:id" element={<DetailsCourse/>} />
+                    <Route path="acercaNosotros" element={<AcercaNosotros/>} />
+                    <Route path="formatoInscripcionACurso" element={<CourseRegistrationForm/>} />
+                    <Route path="editarPerfil" element={<EditProfile/>} />
+                    <Route path="misCursos" element={<MyCourses/>} />
+                    <Route path="EditarCurso" element={<EditRecord/>} />
+                    <Route path="AñadirCurso" element={<EditRecord/>} />
+                    <Route path="gestionCursos" element={<CourseManagement/>} />
+                    <Route path='inscripcion/:id' element ={<CourseRegistrationForm/>} />
+                </Route>
               </Route>
             </Route>
         </Routes>
