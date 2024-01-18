@@ -2,17 +2,16 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import {
-  createData,
   deleteData,
-  getData,
-  updateData,
+  getData
 } from '../../store/courses/courseActions';
-import { DeleteButton, DivTable, DivTableTitle, EditButton, EvenRow, OddRow, StudentsButton, Table, TdAccion } from './courseManagementTableStyle';
-import { doc, updateDoc, deleteField } from 'firebase/firestore';
-import { firestore } from '../../firebase/firebaseConfig';
+import { DeleteButton, DivTable, DivTableTitle, EditButton, EvenRow, OddRow, StudentsButton, Table, TdAccion, ButtonsDiv, NextButton, NumPage } from './courseManagementTableStyle';
 import Swal from "sweetalert2";
+import { useNavigate } from 'react-router-dom';
 
-function CourseManagementTable() {
+function CourseManagementTable( { searchTerm }) {
+  const itemsPerPage = 5;
+  const [currentPage, setCurrentPage] = useState(1);
   const columns = [
     {
       Header: "No.",
@@ -70,6 +69,15 @@ function CourseManagementTable() {
   useEffect(() => {
     dispatch(getData());
   }, []);
+  const lastItemIndex = currentPage * itemsPerPage;
+  const firstItemIndex = lastItemIndex - itemsPerPage;
+
+  const filteredCourses = courses.filter((course) => {
+    const nameMatch = course.name && course.name.toLowerCase().includes(searchTerm.toLowerCase());
+    return nameMatch;
+  });
+
+  const paginatedCourses = filteredCourses.slice(firstItemIndex, lastItemIndex);
 
   const handleDelete = async (id) => {
     try {
@@ -82,28 +90,19 @@ function CourseManagementTable() {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Sí, eliminarlo'
       });
-  
       if (!confirmDelete.isConfirmed) {
         return;
       }
-  
-      const courseRef = doc(firestore, 'courses', id);
-      await updateDoc(courseRef, {
-        nombreCampo: deleteField(),
-      });
       dispatch(deleteData(id));
       dispatch(getData());
-  
       await Swal.fire({
         title: 'Eliminado',
         text: 'El curso ha sido eliminado correctamente.',
         icon: 'success'
       });
-  
       console.log('Campo eliminado correctamente');
     } catch (error) {
       console.error('Error al eliminar el campo:', error);
-  
       await Swal.fire({
         title: 'Error',
         text: 'Ha ocurrido un error al intentar eliminar el curso.',
@@ -111,66 +110,85 @@ function CourseManagementTable() {
       });
     }
   };
-
+  const navigate = useNavigate();
+  const handleGoToNextPage = (name, id) => {
+    navigate(`${name}${id}`);
+  };
   return (
-    <DivTable >
-      <Table >
-        <thead>
-          <tr>
-            {columns.map((column) => (
-              <th key={column.accessor}><DivTableTitle>{ column.arrows ? <svg fill="#B8B9BB" width="24px" height="24px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg" stroke="#B8B9BB"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" stroke="#CCCCCC" strokeWidth="0.512"></g><g id="SVGRepo_iconCarrier"> <path d="M119.39062,172.93848a8.00028,8.00028,0,0,1-1.73339,8.71875l-32,32a8.00181,8.00181,0,0,1-11.31446,0l-32-32A8.00065,8.00065,0,0,1,48,168H72V48a8,8,0,0,1,16,0V168h24A8,8,0,0,1,119.39062,172.93848Zm94.26661-98.59571-32-32a8.00122,8.00122,0,0,0-11.31446,0l-32,32A8.00065,8.00065,0,0,0,144,88h24V208a8,8,0,0,0,16,0V88h24a8.00066,8.00066,0,0,0,5.65723-13.65723Z"></path> </g></svg> : '' } <p>{column.Header}</p></DivTableTitle></th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {courses.map((course, index) =>
-            index % 2 === 0 ? (
-              <EvenRow key={index}>
-                <td width={'5%'} >{index + 1}</td>
-                <td width={'15%'}>{course.name}</td>
-                <td width={'30%'}>{course.description}</td>
-                <td>{course.category}</td>
-                <td>{course.intensity}</td>
-                <td>{course.dates.date_init}</td>
-                <td>{course.dates.date_end}</td>
-                <td>{course.entity}</td>
-                <td>{course.cost}</td>
-                <TdAccion >
-                    <EditButton>Editar</EditButton>
-                </TdAccion>
-                <TdAccion>
-                    <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
-                </TdAccion>
-                <TdAccion>
-                    <StudentsButton>Estudiantes</StudentsButton>
-                </TdAccion>
-              </EvenRow>
-            ) : (
-              <OddRow key={index}>
-                <td>{index + 1}</td>
-                <td>{course.name}</td>
-                <td>{course.description}</td>
-                <td>{course.category}</td>
-                <td>{course.intensity}</td>
-                <td>{course.dates.date_init}</td>
-                <td>{course.dates.date_end}</td>
-                <td>{course.entity}</td>
-                <td>{course.cost}</td>
-                <TdAccion >
-                    <EditButton>Editar</EditButton>
-                </TdAccion>
-                <TdAccion>
-                    <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
-                </TdAccion>
-                <TdAccion>
-                    <StudentsButton>Estudiantes</StudentsButton>
-                </TdAccion>
-              </OddRow>
-            )
-          )}
-        </tbody>
-      </Table>
-    </DivTable>
+    <>
+      <DivTable >
+        <Table >
+          <thead>
+            <tr>
+              {columns.map((column) => (
+                <th key={column.accessor}><DivTableTitle>{ column.arrows ? <svg fill="#B8B9BB" width="24px" height="24px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg" stroke="#B8B9BB"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" stroke="#CCCCCC" strokeWidth="0.512"></g><g id="SVGRepo_iconCarrier"> <path d="M119.39062,172.93848a8.00028,8.00028,0,0,1-1.73339,8.71875l-32,32a8.00181,8.00181,0,0,1-11.31446,0l-32-32A8.00065,8.00065,0,0,1,48,168H72V48a8,8,0,0,1,16,0V168h24A8,8,0,0,1,119.39062,172.93848Zm94.26661-98.59571-32-32a8.00122,8.00122,0,0,0-11.31446,0l-32,32A8.00065,8.00065,0,0,0,144,88h24V208a8,8,0,0,0,16,0V88h24a8.00066,8.00066,0,0,0,5.65723-13.65723Z"></path> </g></svg> : '' } <p>{column.Header}</p></DivTableTitle></th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {paginatedCourses.map((course, index) =>
+              index % 2 === 0 ? (
+                <EvenRow key={index}>
+                  <td width={'5%'} >{firstItemIndex + index + 1}</td>
+                  <td width={'15%'}>{course.name}</td>
+                  <td width={'30%'}>{course.description}</td>
+                  <td>{course.category}</td>
+                  <td>{course.intensity}</td>
+                  <td>{course.dates.date_init}</td>
+                  <td>{course.dates.date_end}</td>
+                  <td>{course.entity}</td>
+                  <td>{course.cost}</td>
+                  <TdAccion >
+                      <EditButton onClick={() => handleGoToNextPage("/EditarCurso/",course.id)}>Editar</EditButton>
+                  </TdAccion>
+                  <TdAccion>
+                      <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
+                  </TdAccion>
+                  <TdAccion>
+                      <StudentsButton onClick={() => handleGoToNextPage("/EstudiantesPorCurso/",course.id)}>Estudiantes</StudentsButton>
+                  </TdAccion>
+                </EvenRow>
+              ) : (
+                <OddRow key={index}>
+                  <td>{index + 1}</td>
+                  <td>{course.name}</td>
+                  <td>{course.description}</td>
+                  <td>{course.category}</td>
+                  <td>{course.intensity}</td>
+                  <td>{course.dates.date_init}</td>
+                  <td>{course.dates.date_end}</td>
+                  <td>{course.entity}</td>
+                  <td>{course.cost}</td>
+                  <TdAccion >
+                      <EditButton onClick={() => handleGoToNextPage("/EditarCurso/",course.id)}>Editar</EditButton>
+                  </TdAccion>
+                  <TdAccion>
+                      <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
+                  </TdAccion>
+                  <TdAccion>
+                      <StudentsButton onClick={() => handleGoToNextPage("/EstudiantesPorCurso/",course.id)}>Estudiantes</StudentsButton>
+                  </TdAccion>
+                </OddRow>
+              )
+            )}
+          </tbody>
+        </Table>
+      </DivTable>
+      <hr size="2px" color="#B8B9BB" />
+      <ButtonsDiv>
+        <NextButton
+        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+        >Atrás</NextButton>
+        <NumPage>{currentPage}</NumPage>
+        <NextButton
+        onClick={() =>
+          setCurrentPage((prev) =>
+            Math.min(prev + 1, Math.ceil(courses.length / itemsPerPage))
+          )
+        }
+        >Siguiente</NextButton>
+      </ButtonsDiv>
+    </>
   );
 }
 

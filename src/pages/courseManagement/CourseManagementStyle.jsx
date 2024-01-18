@@ -32,28 +32,3 @@ export const SearchDiv = styled.div`
         margin: 10px;
     }
 `
-export const ButtonsDiv = styled.div`
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    button{
-        margin: 10px;
-    }
-`
-export const NextButton = styled.button`
-    color: #04153B;
-    background-color: #ECECEC;
-    border: none;
-    border-radius: 5px;
-    padding: 15px;
-    cursor: pointer;
-    font-weight: bold;
-`
-export const NumPage = styled.button`
-    padding: 15px;
-    border-radius: 5px;
-    background-color: #04153B;
-    color: #fff;
-    border: none;
-`
