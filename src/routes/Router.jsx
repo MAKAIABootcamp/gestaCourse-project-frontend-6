@@ -16,6 +16,7 @@ import { useEffect, useState } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../firebase/firebaseConfig'
 import { setAuthenticated, setUser } from '../store/users/userSlice'
+import StudentsForCourse from '../pages/StudentsForCourse/StudentsForCourse'
 
 
 const Router = () => {
@@ -59,6 +60,7 @@ const Router = () => {
                   <Route path="editarPerfil" element={<EditProfile/>} />
                   <Route path="misCursos" element={<MyCourses/>} />
                   <Route path="EditarCurso/:id" element={<EditRecord/>} />
+                  <Route path="EstudiantesPorCurso/:id" element={<StudentsForCourse/>} />
                   <Route path="AñadirCurso" element={<EditRecord/>} />
                   <Route path="gestionCursos" element={<CourseManagement/>} />
               </Route>

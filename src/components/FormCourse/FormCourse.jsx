@@ -165,7 +165,6 @@ function FormCourse() {
           setValue("entity", searchedCourse.entity);
           setValue("date_init", searchedCourse.dates.date_init);
           setValue("intensity", searchedCourse.intensity);
-          //setValue("target_population", searchedCourse.target_population);
           setPoblacion(searchedCourse.target_population);
           setValue("category", searchedCourse.category);
           setValue("quotas", searchedCourse.quotas);

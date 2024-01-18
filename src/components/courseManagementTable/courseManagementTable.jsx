@@ -67,12 +67,10 @@ function CourseManagementTable( { searchTerm }) {
   const dispatch = useDispatch();
   const { courses } = useSelector(store => store.course);
   useEffect(() => {
-    console.log(searchTerm)
     dispatch(getData());
   }, []);
   const lastItemIndex = currentPage * itemsPerPage;
   const firstItemIndex = lastItemIndex - itemsPerPage;
-  const currentCourses = courses.slice(firstItemIndex, lastItemIndex);
 
   const filteredCourses = courses.filter((course) => {
     const nameMatch = course.name && course.name.toLowerCase().includes(searchTerm.toLowerCase());
@@ -113,8 +111,8 @@ function CourseManagementTable( { searchTerm }) {
     }
   };
   const navigate = useNavigate();
-  const handleGoToEditCurso = (id) => {
-    navigate(`/EditarCurso/${id}`);
+  const handleGoToNextPage = (name, id) => {
+    navigate(`${name}${id}`);
   };
   return (
     <>
@@ -141,13 +139,13 @@ function CourseManagementTable( { searchTerm }) {
                   <td>{course.entity}</td>
                   <td>{course.cost}</td>
                   <TdAccion >
-                      <EditButton onClick={() => handleGoToEditCurso(course.id)}>Editar</EditButton>
+                      <EditButton onClick={() => handleGoToNextPage("/EditarCurso/",course.id)}>Editar</EditButton>
                   </TdAccion>
                   <TdAccion>
                       <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
                   </TdAccion>
                   <TdAccion>
-                      <StudentsButton>Estudiantes</StudentsButton>
+                      <StudentsButton onClick={() => handleGoToNextPage("/EstudiantesPorCurso/",course.id)}>Estudiantes</StudentsButton>
                   </TdAccion>
                 </EvenRow>
               ) : (
@@ -162,13 +160,13 @@ function CourseManagementTable( { searchTerm }) {
                   <td>{course.entity}</td>
                   <td>{course.cost}</td>
                   <TdAccion >
-                      <EditButton onClick={() => handleGoToEditCurso(course.id)}>Editar</EditButton>
+                      <EditButton onClick={() => handleGoToNextPage("/EditarCurso/",course.id)}>Editar</EditButton>
                   </TdAccion>
                   <TdAccion>
                       <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
                   </TdAccion>
                   <TdAccion>
-                      <StudentsButton>Estudiantes</StudentsButton>
+                      <StudentsButton onClick={() => handleGoToNextPage("/EstudiantesPorCurso/",course.id)}>Estudiantes</StudentsButton>
                   </TdAccion>
                 </OddRow>
               )
