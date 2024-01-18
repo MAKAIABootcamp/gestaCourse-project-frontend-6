@@ -27,7 +27,6 @@ export const createDataEnrrollment = (data) => {
         try {
             let tempObject = {...data}
             const response = await addDoc(enrollmentCollection, data);
-            console.log(response);
             tempObject.id = response.id;
             dispatch(addEnrollment(tempObject))
         } catch (error) {

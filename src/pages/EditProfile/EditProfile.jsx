@@ -1,32 +1,55 @@
-import {useRef} from 'react'
+import {useRef, useState} from 'react'
 import { ContainerData, DivLabelAndInput, ContainerArticle, ButtonInscription } from '../CourseRegistrationForm/StylesComponents'
 import {PhotoContainer} from './StyleComponents'
 import imageUser from '../../assets/usuario.png'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useForm } from 'react-hook-form'
+import { updateUserDataAsync } from '../../store/users/userActions'
+import uploadFile from '../../services/fileUpload'
 
 function EditProfile() {
+
   const {user} = useSelector(store => store.user);
-  const {name,id_number,telefono} = user;
+  const {fullName,id_number,telefono,address,photoURL} = user;
   const fileInputRef = useRef(null);
+  const {register,handleSubmit} = useForm();
+  const dispatch = useDispatch();
+  const [file, setFile] = useState(null);
+
   const activarInput = () => {
-    // Activa el cuadro de diálogo de selección de archivos
-    fileInputRef.current.click();
+      fileInputRef.current.click();
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setFile(file);
+    }
   };
+
+  const handleEdit = async (data) => {
+    const photoURL = await uploadFile(file);
+    dispatch(updateUserDataAsync(
+      {
+        id:user.id,
+        accessToken:user.accessToken,
+        photoURL: photoURL,
+        ...data
+    }));
+  };
+
   return (
     <ContainerArticle>
         <h1>EDITAR PERFIL</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(handleEdit)}>
           <ContainerData >
             <DivLabelAndInput>
               <label htmlFor="name">NOMBRES Y APELLIDOS <p>*</p></label>
-              <input id='name' type="text" autoComplete="off" defaultValue={name}/>
+              <input id='name' type="text" autoComplete="off" defaultValue={fullName} {...register('name')}/>
             </DivLabelAndInput>
             <DivLabelAndInput>
               <label htmlFor="typeIdentification">TIPO DE IDENTIFICACIÓN <p>*</p></label>
-              <select id="typeIdentification">
+              <select id="typeIdentification" {...register('type_id')}>
                 <option value="">Tu respuesta</option>
                 <option value="RC">Registro Civil</option>
                 <option value="CC">Cedula de Ciudadania</option>
@@ -36,26 +59,26 @@ function EditProfile() {
             </DivLabelAndInput>
             <DivLabelAndInput>
               <label htmlFor="numIdentification">NUMERO DE IDENTIFICACIÓN <p>*</p></label>
-              <input id="numIdentification" type="text" defaultValue={id_number} />
+              <input id="numIdentification" type="text" defaultValue={id_number} {...register('id_number')} />
             </DivLabelAndInput>
             <DivLabelAndInput>
               <label htmlFor="address">DIRECCIÓN DE RESIDENCIA <p>*</p></label>
-              <input id="address" type="text" autoComplete="off"/>
+              <input id="address" type="text" autoComplete="off" defaultValue={address} {...register('address')}/>
             </DivLabelAndInput>
             <DivLabelAndInput>
               <label htmlFor="phone">TÉLEFONO <p>*</p></label>
-              <input id="phone" type="text" autoComplete="off" defaultValue={telefono}/>
+              <input id="phone" type="text" autoComplete="off" defaultValue={telefono} {...register('telefono')}/>
             </DivLabelAndInput>
           </ContainerData>
           <PhotoContainer>
             <label htmlFor="imagen">FOTO</label>
             <div>
-              <img src={imageUser} alt="Imagen de Perfil" />
-              <input type="file" id="imagen" name="imagen" accept="image/*" ref={fileInputRef}/>
-              <button onClick={activarInput}>Cambiar</button>
+              <img src={photoURL!= null ? photoURL:imageUser } alt="Imagen de Perfil" />
+              <input type="file" id="imagen" name="imagen" accept="image/*" ref={fileInputRef} onChange={handleFileChange}/>
+              <button type='button' onClick={activarInput}>Cambiar</button>
             </div>
           </PhotoContainer>
-          <ButtonInscription type="submit">Guardar</ButtonInscription>
+          <ButtonInscription type="submit" >Guardar</ButtonInscription>
         </form>
     </ContainerArticle>
   )

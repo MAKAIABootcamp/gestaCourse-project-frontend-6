@@ -5,8 +5,6 @@ const collectionName = 'users';
 
 export const createUserInCollection = async (uid, newUser) => {
   try {
-    console.log('uid', uid);
-    console.log('newUser', newUser);
     const newUserRef = doc(firestore, collectionName, uid);
     await setDoc(newUserRef, newUser);
     return {
@@ -44,7 +42,7 @@ export const loginFromFirestore = async ( userData ) => {
       return userLogged
     } else {
       const newUser = {
-        name: userData.displayName,
+        fullName: userData.displayName,
         photoUrl: userData.photoURL,
         accessToken: userData.accessToken
         /* Otra información de usuario */
@@ -55,6 +53,18 @@ export const loginFromFirestore = async ( userData ) => {
         ...newUser
       }
     }
+  } catch (error) {
+    console.warn(error)
+    return false
+  }
+}
+
+
+export const updateProfileInFirestore = async (uid, updatedUser) => {
+  try {
+    const userRef = doc(firestore, collectionName, uid)
+    delete updatedUser.id
+    await setDoc(userRef, updatedUser)
   } catch (error) {
     console.warn(error)
     return false

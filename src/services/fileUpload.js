@@ -1,24 +1,18 @@
 const uploadFile = async (file) => {
-    const cloudName = "dau7vehfw";
-    const uploadPreset = "mil3uwof";
-
+    const cloudName = "dhfinatem";
+    const uploadPreset = "gestaCourse-firebase";
     const urlCloudinary = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
-
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", uploadPreset);
     formData.append("cloud_name", cloudName);
-
     try {
         const resp = await fetch(urlCloudinary, {
-          method: "post",
-          body: formData,
+            method: "post",
+            body: formData,
         });
-
         if (!resp.ok) return null;
-
         const data = await resp.json();
-        console.log("Data URL", data)
         return data.secure_url;
     } catch (error) {
         console.log(error);
