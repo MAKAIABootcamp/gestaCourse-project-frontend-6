@@ -1,4 +1,4 @@
-import { BrowserRouter,Route, Routes  } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Layout from '../components/Layout/Layout'
 import EditRecord from '../pages/EditRecord/EditRecord'
 import OfertasInscripciones from '../pages/OfertasInscripciones/OfertasInscripciones'
@@ -20,7 +20,7 @@ import { setAuthenticated, setUser } from '../store/users/userSlice'
 import DetailsCourse from '../pages/DeatailsCourse/DetailsCourse'
 
 const Router = () => {
-  const { isAunthenticated, user } = useSelector( store => store.user )
+  const { isAunthenticated, user } = useSelector(store => store.user)
   const [checking, setChecking] = useState(true)
   const dispatch = useDispatch()
 
@@ -46,42 +46,43 @@ const Router = () => {
 
   return (
     <BrowserRouter>
-        <Routes>
-              <Route element={<PublicRoutes isAuthenticate={isAunthenticated} />}>
-                <Route path="/login" element={<Login />}></Route>
-                <Route path="/recuperacion" element={<Recuperacion />}></Route>
-                <Route element={<Layout/>}>
-                  <Route index element={<OfertasInscripciones />}></Route>
-                </Route>
-              </Route>
-              <Route  element={<PrivatedRoutes isAuthenticate={isAunthenticated} />}>
-                <Route path="*" element={<Page404 />} />
-                <Route element={<Layout/>} >
-                  {
-                    user?.rol === 'student' ?
-                    <Route>
-                      <Route index element={<OfertasInscripciones />}></Route>
-                      <Route path="ofertasInscripciones" element={<OfertasInscripciones />}></Route>
-                      <Route path="detailsCourse/:id" element={<DetailsCourse/>} />
-                      <Route path="acercaNosotros" element={<AcercaNosotros/>} />
-                      <Route path="formatoInscripcionACurso" element={<CourseRegistrationForm/>} />
-                      <Route path="editarPerfil" element={<EditProfile/>} />
-                      <Route path="misCursos" element={<MyCourses/>} />
-                      <Route path='inscripcion/:id' element ={<CourseRegistrationForm/>} />
-                    </Route>
-                    :
-                    <Route>
-                      <Route index element={<OfertasInscripciones />}></Route>
-                      <Route path="ofertasInscripciones" element={<OfertasInscripciones />}></Route>
-                      <Route path="acercaNosotros" element={<AcercaNosotros/>} />
-                      <Route path="EditarCurso" element={<EditRecord/>} />
-                      <Route path="AñadirCurso" element={<EditRecord/>} />
-                      <Route path="gestionCursos" element={<CourseManagement/>} />
-                    </Route>
-                  }
-                </Route>
-              </Route>
-        </Routes>
+      <Routes>
+        <Route>
+          <Route element={<Layout />}>
+            <Route index element={<OfertasInscripciones />}></Route>
+            <Route path="acercaNosotros" element={<AcercaNosotros />} />
+            <Route path="ofertasInscripciones" element={<OfertasInscripciones />}></Route>
+          </Route>
+
+          <Route element={<PublicRoutes isAuthenticate={isAunthenticated} />}>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/recuperacion" element={<Recuperacion />}></Route>
+          </Route>
+          <Route element={<PrivatedRoutes isAuthenticate={isAunthenticated} />}>
+            <Route path="*" element={<Page404 />} />
+            <Route element={<Layout />} >
+              {
+                user?.rol === 'admin' ?
+                  <Route>
+                    <Route index element={<OfertasInscripciones />}></Route>
+                    <Route path="EditarCurso" element={<EditRecord />} />
+                    <Route path="AñadirCurso" element={<EditRecord />} />
+                    <Route path="gestionCursos" element={<CourseManagement />} />
+                  </Route>
+                  :
+                  <Route>
+                    <Route index element={<OfertasInscripciones />}></Route>
+                    <Route path="detailsCourse/:id" element={<DetailsCourse />} />
+                    <Route path="formatoInscripcionACurso" element={<CourseRegistrationForm />} />
+                    <Route path="editarPerfil" element={<EditProfile />} />
+                    <Route path="misCursos" element={<MyCourses />} />
+                    <Route path='inscripcion/:id' element={<CourseRegistrationForm />} />
+                  </Route>
+              }
+            </Route>
+          </Route>
+        </Route>
+      </Routes>
     </BrowserRouter>
   )
 }

@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ContainerData, DivLabelAndInput, ContainerArticle, ButtonInscription } from './StylesComponents'
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { createDataEnrrollment } from '../../store/enrollment/enrollmentActions';
 import { useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function CourseRegistrationForm() {
   const {register, handleSubmit} = useForm();
@@ -14,7 +15,7 @@ function CourseRegistrationForm() {
 
   const handleEnviar = (data) => {
     const {direccion,profesion,entidad,tipoIns} = data;
-    dispatch(createDataEnrrollment({Id_course:id, Id_student: user.id,tipoIns:tipoIns, addres: direccion, entity : entidad , profesion: profesion}));
+    dispatch(createDataEnrrollment({Id_course:id, Id_student: user.id,tipoIns:tipoIns, addres: direccion, entity : entidad , profesion: profesion, state: 'Pendiente'}));
   }
 
   return (
