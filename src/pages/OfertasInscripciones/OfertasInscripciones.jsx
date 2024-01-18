@@ -5,7 +5,6 @@ import {
   Search,
   Lupa,
   Input,
-  BotonBuscar,
   DivCards,
   Cards,
   CardImg,
@@ -38,11 +37,10 @@ const OfertasInscripciones = () => {
         course.name.toLowerCase().includes(search.toLowerCase())
       )
     );
-  }, [search]);
+  }, [courses, search]);
 
   useEffect(() => {
     dispatch(getData());
-    setFilteredCourses(courses)
   }, []);
   return (
     <StylesPrincipal>

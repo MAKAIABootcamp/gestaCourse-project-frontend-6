@@ -17,7 +17,6 @@ export const Search = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-    border: 1px solid red;
     @media screen and (max-width: 768px) {
         width: 90%;
     }
