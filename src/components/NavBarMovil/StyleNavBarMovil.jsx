@@ -7,7 +7,7 @@ export const StyleNavBarMovil = styled.div`
     left: 0;
     width: 100%;
     height: 100vh;
-    background: #06153B; /* Degradado de azul a rojo en diagonal */
+    background: linear-gradient(110deg, #06153B, #860F1B); 
     z-index: 1000;
     
      
