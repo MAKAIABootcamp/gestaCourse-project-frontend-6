@@ -16,7 +16,7 @@ const DetailsCourse = () => {
   const { id } = useParams()
 
   const detailCourse = courses.filter(curso=>curso.id === id)
-  console.log('id', detailCourse);
+
   return (
     <>
         
@@ -35,22 +35,17 @@ const DetailsCourse = () => {
         </StyleContenedor>
         <StyleDivSecundario>
             <h2>Población objetivo</h2>
-            <StyleDivPuntos>
-                <StylePunto src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703705138/DemoDay/PUNTO-GRIS_elobfc.png" alt="punto" />
-                <StyleParrafoPuntos>Aprender Desarrollo web es un proceso de mucha práctica, así que practicaremos bastante pero lo haremos de forma divertida y con proyectos reales</StyleParrafoPuntos>
-            </StyleDivPuntos>
-            <StyleDivPuntos>
-                <StylePunto src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703705138/DemoDay/PUNTO-GRIS_elobfc.png" alt="punto" />
-                <StyleParrafoPuntos>Si eres una persona que aprende más elaborando proyectos del mundo real este curso es para ti</StyleParrafoPuntos>
-            </StyleDivPuntos>
-            <StyleDivPuntos>
-                <StylePunto src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703705138/DemoDay/PUNTO-GRIS_elobfc.png" alt="punto" />
-                <StyleParrafoPuntos>Si deseas obtener un trabajo en la industria de desarrollo web, con este curso aprenderás 9 tecnologías en un solo curso</StyleParrafoPuntos>
-            </StyleDivPuntos>
-            <StyleDivPuntos>
-                <StylePunto src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703705138/DemoDay/PUNTO-GRIS_elobfc.png" alt="punto" />
-                <StyleParrafoPuntos>Desarrollo Web es un área bien pagada, pero puedes ver que requiere muchos conocimientos, este curso te ayudará a comenzar a aplicar a diferentes vacantes!</StyleParrafoPuntos>
-            </StyleDivPuntos>
+            {detailCourse[0].target_population.map((item, index)=>{
+                    return( 
+                        <StyleDivPuntos key={index}>
+                            <StylePunto src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703705138/DemoDay/PUNTO-GRIS_elobfc.png" alt="punto" />
+                            <StyleParrafoPuntos>{item}</StyleParrafoPuntos>
+                        </StyleDivPuntos>
+                    )
+                    
+                })}
+            
+           
             <div>
                 <h2>Horario</h2>
                 {detailCourse[0].timetables.map((time, index)=>{

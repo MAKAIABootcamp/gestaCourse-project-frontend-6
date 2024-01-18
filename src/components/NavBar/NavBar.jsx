@@ -1,10 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutAsync } from '../../store/users/userActions'
-import {StyleNavBar,StyleLogoText,StyleLogo,Stylelink,StyleLi,StyleUl,StyleUser} from './StyleNavBar'
+import BurgerButton from '../BtnHamburguesa/BurgerButton';
+import {StyleNavBar,StyleLogoText,StyleLogo,Stylelink,StyleLi,StyleUl,StyleUser,Burguer} from './StyleNavBar'
 import { useEffect, useState } from 'react';
+import NavBarMovil from '../NavBarMovil/NavBarMovil';
 import { Link } from 'react-router-dom';
 
+ 
 const NavBar = () => {
+    const [clicked, setClicked] = useState(false)
+    const handleClick = () => {
+      //cuando esta true lo pasa a false y vice versa
+      setClicked(!clicked)
+      
+    }
     const {user} = useSelector(store => store.user)
     const dispatch = useDispatch();
 
@@ -40,6 +49,8 @@ const NavBar = () => {
     }, [user])
 
     return (
+        <>
+        {clicked && <NavBarMovil clicked={clicked} setClicked={setClicked} handleClick={handleClick}/>}
         <StyleNavBar>
             <StyleLogoText >
                 <Link to={'/'}>
@@ -56,9 +67,13 @@ const NavBar = () => {
                             user==null ? <div></div> :<button type='button' onClick={() => {dispatch(logoutAsync())}} >Salir</button>
                         }
                     </li>
+                    <Burguer>
+                        <BurgerButton clicked={clicked} handleClick={handleClick} />
+                    </Burguer>
                 </StyleUl>
             </StyleLogoText>
         </StyleNavBar>
+        </>
     )
 }
 
