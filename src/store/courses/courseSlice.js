@@ -4,7 +4,8 @@ const courseSlice = createSlice({
   name: 'course', 
   initialState: {
     courses: [],
-    error: null
+    error: null,
+    searchedCourse: null,
   },
   reducers: {
     setCourses: (state, action) => {
@@ -22,9 +23,17 @@ const courseSlice = createSlice({
     setError: (state, action) => {
       state.error = action.payload;
     },
+    searchCourseById: (state, action) => {
+      const searchId = action.payload;
+      console.log(state.courses);
+      const foundCourse = state.courses.find((course) => course.id === searchId);
+      console.log(foundCourse)
+      state.searchedCourse = foundCourse;
+      state.error = foundCourse ? null : 'Curso no encontrado';
+    },
   }
 })
 
-export const { setCourses, addCourse, updateCourse, deleteCourse, setError } = courseSlice.actions
+export const { setCourses, addCourse, updateCourse, deleteCourse, setError, searchCourseById } = courseSlice.actions
 
 export default courseSlice.reducer

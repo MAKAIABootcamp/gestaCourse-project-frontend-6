@@ -16,7 +16,7 @@ const enrrollmentSlice = createSlice({
         addEnrollment: (state, action) => {
             state.enrollments.push(action.payload);
         },
-        updateEnrrllment: (state, action) => {
+        updateEnrollment: (state, action) => {
             state.enrollments = state.enrollments.map((enrollment) => enrollment.id === action.payload.id ? { ...action.payload } : enrollment)
         },
         deleteEnrollment: (state, action) => {
