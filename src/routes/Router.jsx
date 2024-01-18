@@ -10,6 +10,7 @@ import CourseRegistrationForm from '../pages/CourseRegistrationForm/CourseRegist
 import AcercaNosotros from '../pages/AcercaNosotros/AcercaNosotros'
 import CourseManagement from '../pages/courseManagement/CourseManagement'
 import PublicRoutes from './PublicRoutes'
+import Page404 from '../pages/Page404/Page404'
 import PrivatedRoutes from './PrivatedRoutes'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
@@ -46,7 +47,6 @@ const Router = () => {
   return (
     <BrowserRouter>
         <Routes>
-            <Route path='/' >
               <Route element={<PublicRoutes isAuthenticate={isAunthenticated} />}>
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/recuperacion" element={<Recuperacion />}></Route>
@@ -55,21 +55,32 @@ const Router = () => {
                 </Route>
               </Route>
               <Route  element={<PrivatedRoutes isAuthenticate={isAunthenticated} />}>
+                <Route path="*" element={<Page404 />} />
                 <Route element={<Layout/>} >
-                    <Route index element={<OfertasInscripciones />}></Route>
-                    <Route path="ofertasInscripciones" element={<OfertasInscripciones />}></Route>
-                    <Route path="detailsCourse/:id" element={<DetailsCourse/>} />
-                    <Route path="acercaNosotros" element={<AcercaNosotros/>} />
-                    <Route path="formatoInscripcionACurso" element={<CourseRegistrationForm/>} />
-                    <Route path="editarPerfil" element={<EditProfile/>} />
-                    <Route path="misCursos" element={<MyCourses/>} />
-                    <Route path="EditarCurso" element={<EditRecord/>} />
-                    <Route path="AñadirCurso" element={<EditRecord/>} />
-                    <Route path="gestionCursos" element={<CourseManagement/>} />
-                    <Route path='inscripcion/:id' element ={<CourseRegistrationForm/>} />
+                  {
+                    user?.rol === 'student' ?
+                    <Route>
+                      <Route index element={<OfertasInscripciones />}></Route>
+                      <Route path="ofertasInscripciones" element={<OfertasInscripciones />}></Route>
+                      <Route path="detailsCourse/:id" element={<DetailsCourse/>} />
+                      <Route path="acercaNosotros" element={<AcercaNosotros/>} />
+                      <Route path="formatoInscripcionACurso" element={<CourseRegistrationForm/>} />
+                      <Route path="editarPerfil" element={<EditProfile/>} />
+                      <Route path="misCursos" element={<MyCourses/>} />
+                      <Route path='inscripcion/:id' element ={<CourseRegistrationForm/>} />
+                    </Route>
+                    :
+                    <Route>
+                      <Route index element={<OfertasInscripciones />}></Route>
+                      <Route path="ofertasInscripciones" element={<OfertasInscripciones />}></Route>
+                      <Route path="acercaNosotros" element={<AcercaNosotros/>} />
+                      <Route path="EditarCurso" element={<EditRecord/>} />
+                      <Route path="AñadirCurso" element={<EditRecord/>} />
+                      <Route path="gestionCursos" element={<CourseManagement/>} />
+                    </Route>
+                  }
                 </Route>
               </Route>
-            </Route>
         </Routes>
     </BrowserRouter>
   )

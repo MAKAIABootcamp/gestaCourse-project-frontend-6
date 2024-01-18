@@ -9,7 +9,6 @@ const OfertasInscripciones = () => {
 
   const dispatch = useDispatch();
   const {courses} = useSelector(store => store.course);
-  
   useEffect(() => {
     dispatch(getData())
   }, []);

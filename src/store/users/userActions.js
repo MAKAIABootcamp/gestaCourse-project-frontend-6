@@ -37,17 +37,19 @@ export const createAnAccountAsync = (newUser) => async (dispatch) => {
       dispatch(
         setUser({
           id: user.uid,
-          displayName: user.displayName,
+          fullName: user.nombre,
           email: user.email,
           accessToken: user.accessToken,
           telefono: newUser.telefono,
           type_id: newUser.cc,
           id_number: newUser.id,
           photoURL: newUser.photoURL,
+          rol: 'student',
         })
       );
       dispatch(setAuthenticated(true));
       dispatch(setError(false));
+      dispatch(setRol('student'));
       await createUserInCollection(user.uid, {
         fullName: newUser.nombre,
         email: user.email,
@@ -56,6 +58,7 @@ export const createAnAccountAsync = (newUser) => async (dispatch) => {
         type_id: newUser.cc,
         id_number: newUser.id,
         photoURL: newUser.photoURL,
+        rol: 'student',
       });
 
     } catch (error) {
@@ -73,6 +76,8 @@ export  const loginWithGoogle = () =>{
       const userLogged = await loginFromFirestore(userCredencial.user)
       dispatch(setAuthenticated(true))
       dispatch(setUser(userLogged))
+      dispatch(setError(false))
+      dispatch(setRol(userLogged.rol))
     } catch (error) {
         console.log(error);
         dispatch(setError({error: true , code: error.code , message: error.message}));

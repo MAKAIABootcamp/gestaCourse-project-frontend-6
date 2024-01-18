@@ -10,7 +10,6 @@ function CourseRegistrationForm() {
   const dispatch = useDispatch();
   const { id } = useParams()
   const {user} = useSelector(store => store.user);
-  console.log(user);
   const {fullName,id_number,telefono } = user;
 
   const handleEnviar = (data) => {

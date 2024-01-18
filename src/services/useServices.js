@@ -5,8 +5,6 @@ const collectionName = 'users';
 
 export const createUserInCollection = async (uid, newUser) => {
   try {
-    console.log('uid', uid);
-    console.log('newUser', newUser);
     const newUserRef = doc(firestore, collectionName, uid);
     await setDoc(newUserRef, newUser);
     return {
