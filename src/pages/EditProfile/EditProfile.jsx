@@ -45,7 +45,7 @@ function EditProfile() {
           <ContainerData >
             <DivLabelAndInput>
               <label htmlFor="name">NOMBRES Y APELLIDOS <p>*</p></label>
-              <input id='name' type="text" autoComplete="off" defaultValue={fullName} {...register('name')}/>
+              <input id='name' type="text" autoComplete="off" defaultValue={fullName} {...register('fullName')}/>
             </DivLabelAndInput>
             <DivLabelAndInput>
               <label htmlFor="typeIdentification">TIPO DE IDENTIFICACIÓN <p>*</p></label>
