@@ -6,16 +6,22 @@ export const StyleContenedor = styled.div`
 `;
 export const StyleDivImg = styled.div`
     @media screen and (max-width: 768px) {
-        width:90%;
+        width:100%;
         display:flex;
         justify-content:center;
     }
 `;
 export const StyleImg = styled.img`
-    width:30rem;
+    width:20rem;
     height:20rem;
     float:left;
+    margin-left:15px;
+    margin-right:15px;
+
     @media screen and (max-width: 768px) {
+        margin-top: 15px;
+        margin-left:none;
+        margin-right:none;
         float:none;
         width:15rem;
         height:15rem;

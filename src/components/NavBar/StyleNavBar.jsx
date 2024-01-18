@@ -16,7 +16,14 @@ export const StyleLogo = styled.img`
 `;
 export const StyleLi = styled.li`
      list-style: none; 
+     display: none;
+
+     @media(min-width: 768px){
+      display: block;
+    }
 `;
+
+
 export const Stylelink= styled(Link)`
      text-decoration:none;
      color:white;
@@ -34,4 +41,9 @@ export const StyleUser = styled.img`
      width:4rem;
      border-radius:30px;
      
+`;
+export const Burguer = styled.div`
+     @media(min-width: 768px){
+       display: none;
+     }
 `;
