@@ -52,6 +52,7 @@ const Router = () => {
             <Route index element={<OfertasInscripciones />}></Route>
             <Route path="acercaNosotros" element={<AcercaNosotros />} />
             <Route path="ofertasInscripciones" element={<OfertasInscripciones />}></Route>
+            <Route path="detailsCourse/:id" element={<DetailsCourse />} />
           </Route>
 
           <Route element={<PublicRoutes isAuthenticate={isAunthenticated} />}>
@@ -72,7 +73,6 @@ const Router = () => {
                   :
                   <Route>
                     <Route index element={<OfertasInscripciones />}></Route>
-                    <Route path="detailsCourse/:id" element={<DetailsCourse />} />
                     <Route path="formatoInscripcionACurso" element={<CourseRegistrationForm />} />
                     <Route path="editarPerfil" element={<EditProfile />} />
                     <Route path="misCursos" element={<MyCourses />} />

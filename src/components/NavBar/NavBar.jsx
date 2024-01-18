@@ -1,12 +1,31 @@
-import { useDispatch, useSelector } from 'react-redux';
+
 import { logoutAsync } from '../../store/users/userActions'
 import BurgerButton from '../BtnHamburguesa/BurgerButton';
 import {StyleNavBar,StyleLogoText,StyleLogo,Stylelink,StyleLi,StyleUl,StyleUser,Burguer} from './StyleNavBar'
 import { useEffect, useState } from 'react';
 import NavBarMovil from '../NavBarMovil/NavBarMovil';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
- 
+const itemsNoLogin = [
+    ['/','Ofertas e inscripciones'],
+    ['acercaNosotros', 'Acerca de nosotros'],
+    ['login', 'Ingresar']
+]
+
+const itemsEstudent = [
+    ['ofertasInscripciones','Ofertas e inscripciones'],
+    ['acercaNosotros', 'Acerca de nosotros'],
+    ['editarPerfil','Editar Perfil'],
+    ['misCursos','Mis Cursos'],
+]
+
+const itemsAdmin = [
+    ['ofertasInscripciones','Ofertas e inscripciones'],
+    ['acercaNosotros', 'Acerca de nosotros'],
+    ['gestionCursos','Gestion de cursos'],
+]
+
 const NavBar = () => {
     const [clicked, setClicked] = useState(false)
     const handleClick = () => {
@@ -17,25 +36,7 @@ const NavBar = () => {
     const {user} = useSelector(store => store.user)
     const dispatch = useDispatch();
 
-    const itemsNoLogin = [
-        ['/','Ofertas e inscripciones'],
-        ['acercaNosotros', 'Acerca de nosotros'],
-        ['login', 'Ingresar']
-    ]
-
-    const itemsEstudent = [
-        ['ofertasInscripciones','Ofertas e inscripciones'],
-        ['acercaNosotros', 'Acerca de nosotros'],
-        ['editarPerfil','Editar Perfil'],
-        ['misCursos','Mis Cursos'],
-    ]
-
-    const itemsAdmin = [
-        ['ofertasInscripciones','Ofertas e inscripciones'],
-        ['acercaNosotros', 'Acerca de nosotros'],
-        ['gestionCursos','Gestion de cursos'],
-    ]
-
+    
     const [items, setItems] = useState(itemsNoLogin)
 
     useEffect(() => {
