@@ -5,8 +5,6 @@ const collectionName = 'users';
 
 export const createUserInCollection = async (uid, newUser) => {
   try {
-    console.log('uid', uid);
-    console.log('newUser', newUser);
     const newUserRef = doc(firestore, collectionName, uid);
     await setDoc(newUserRef, newUser);
     return {
@@ -44,7 +42,7 @@ export const loginFromFirestore = async ( userData ) => {
       return userLogged
     } else {
       const newUser = {
-        name: userData.displayName,
+        fullName: userData.displayName,
         photoUrl: userData.photoURL,
         accessToken: userData.accessToken
         /* Otra información de usuario */
