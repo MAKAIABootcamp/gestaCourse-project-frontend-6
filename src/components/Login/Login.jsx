@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import './stylelogin.css'
 import Funct from "./funct";
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { createAnAccountAsync, loginWithEmailAndPassword, loginWithGoogle } from "../../store/users/userActions";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import uploadFile from "../../services/fileUpload";
 
 const Login = () => {
+  const { error } = useSelector((store) => store.user);
   const { register,reset,handleSubmit} = useForm();
   const dispatch = useDispatch();
 
@@ -29,6 +30,17 @@ const Login = () => {
     dispatch(loginWithEmailAndPassword(emailLogin,passwordLogin));
     reset();
   };
+
+  
+  useEffect(() => {
+    if (error) {
+      Swal.fire({
+        title: 'Upss!!',
+        text: 'Ha ocurrido un error, por favor verifica tus credenciales!',
+        icon: 'error',
+      });
+    }
+  }, [error]);
 
   return (
     <div className="container">

@@ -10,8 +10,7 @@ import uploadFile from '../../services/fileUpload'
 function EditProfile() {
 
   const {user} = useSelector(store => store.user);
-  console.log(user);
-  const {name,id_number,telefono,address,photoURL} = user;
+  const {fullName,id_number,telefono,address,photoURL} = user;
   const fileInputRef = useRef(null);
   const {register,handleSubmit} = useForm();
   const dispatch = useDispatch();
@@ -46,7 +45,7 @@ function EditProfile() {
           <ContainerData >
             <DivLabelAndInput>
               <label htmlFor="name">NOMBRES Y APELLIDOS <p>*</p></label>
-              <input id='name' type="text" autoComplete="off" defaultValue={name} {...register('name')}/>
+              <input id='name' type="text" autoComplete="off" defaultValue={fullName} {...register('name')}/>
             </DivLabelAndInput>
             <DivLabelAndInput>
               <label htmlFor="typeIdentification">TIPO DE IDENTIFICACIÓN <p>*</p></label>

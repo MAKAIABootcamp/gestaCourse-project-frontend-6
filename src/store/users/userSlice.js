@@ -5,7 +5,8 @@ const userSlice = createSlice({
     initialState: {
         isAunthenticated: false,
         user: null,
-        error: null
+        error: null,
+        rol: null,
     },
     reducers:{
         setUser :  (state ,action) => {
@@ -19,9 +20,12 @@ const userSlice = createSlice({
         },
         updateUser : (state, action) => {
             state.user = action.payload;
+        },
+        setRol : (state, action) => {
+            state.rol = action.payload;
         }
     }
 })
 
-export const {setUser, setError, setAuthenticated} = userSlice.actions;
+export const {setUser, setError, setAuthenticated,setRol} = userSlice.actions;
 export default userSlice.reducer;
