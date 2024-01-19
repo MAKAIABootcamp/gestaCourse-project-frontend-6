@@ -7,6 +7,7 @@ import { useNavigate, useLocation, useParams} from 'react-router-dom';
 import { searchCourseById } from '../../store/courses/courseSlice';
 import Swal from 'sweetalert2';
 import uploadFile from '../../services/fileUpload';
+import SaveImage from '../../assets/save.png';
 
 
 function FormCourse() {
@@ -191,6 +192,7 @@ function FormCourse() {
                         <Div>
                             <h3>Tipo de pago</h3>
                             <Select {...register('type_pay')}>
+                                <option value="">Seleccione un tipo de pago</option>
                                 <option value="Efectivo">Efectivo</option>
                                 <option value="Transferencia PSE">Transferencia PSE</option>
                             </Select>
@@ -277,7 +279,7 @@ function FormCourse() {
                                     onChange={handleInputPoblacion}
                                 />
                             </DivInput>
-                            <ButtonAgg onClick={agregarPoblacion}>Agregar</ButtonAgg>
+                            <ButtonAgg onClick={agregarPoblacion}>Agregar Población</ButtonAgg>
                             {
                                 poblacion.length > 0 ? <h3>Poblacion Objetivo Agregada:</h3> : <></>
                             }
@@ -324,8 +326,8 @@ function FormCourse() {
                 <DivButtons>
                     <ButtonCancel onClick={(e) => {handleCancel(e)}}>Cancelar</ButtonCancel>
                     <ButtonSave type='submit' >
-                        <svg width="20px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="##FFFFFF"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 5H9C7.11438 5 6.17157 5 5.58579 5.58579C5 6.17157 5 7.11438 5 9V15C5 16.8856 5 17.8284 5.58579 18.4142C6.17157 19 7.11438 19 9 19H15C16.8856 19 17.8284 19 18.4142 18.4142C19 17.8284 19 16.8856 19 15V12M9.31899 12.6911L15.2486 6.82803C15.7216 6.36041 16.4744 6.33462 16.9782 6.76876C17.5331 7.24688 17.5723 8.09299 17.064 8.62034L11.2329 14.6702L9 15L9.31899 12.6911Z" stroke="#FFFFFF" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg> 
-                        Guardar
+                        <img src={SaveImage} alt="" />
+                        <p>Guardar</p>
                     </ButtonSave>
                 </DivButtons>
             </FormContent>

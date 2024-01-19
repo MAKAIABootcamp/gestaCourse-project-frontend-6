@@ -3,6 +3,7 @@ import styled from "styled-components"
 export const ContendDiv = styled.div`
     width: 90%;
     margin: 3%;
+    font-family: 'DM Sans', sans-serif;
 `
 
 export const TitleDiv = styled.div`

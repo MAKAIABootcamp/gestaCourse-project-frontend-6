@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StylePrincipal= styled.div`
     padding-bottom:20px;
+    font-family: 'DM Sans', sans-serif;
 `;
 export const StyleContenedor = styled.div`
     width:90%;

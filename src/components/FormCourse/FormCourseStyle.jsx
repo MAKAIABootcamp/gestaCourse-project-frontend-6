@@ -97,27 +97,52 @@ export const DivButtons = styled.div`
 `
 export const ButtonSave = styled.button`
     display: flex;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 100%;
     align-items: center;
-    background-color: #4285F4;
+    justify-content: space-around;
+    background-color: #2a559b;
     color: #fff;
-    border: none;
+    border: 2px solid #2a559b;
     border-radius: 15px;
-    margin: 2px;
+    padding: 1% 1% 1% 1%;
+    transition: transform 0.3s ease; 
+    &:hover{
+        cursor: pointer;
+        transform: scale(1.1);
+        background-color: #fff;
+        color: #2a559b;
+    }
+    img{
+        width: 15%;
+    }
+    p{
+        margin: 0;
+    }
 `
 export const ButtonAgg = styled.button`
     width: 50%;
+    font-family: 'DM Sans', sans-serif;
     text-align: center;
-    background-color: #4263f4;
+    background-color: #2a559b;
+    border: 2px solid #2a559b;
     color: #fff;
-    border: none;
     border-radius: 15px;
-    padding: 5px;
+    padding: 10px 5px 10px 5px;
     margin-left: 25%;
+    transition: transform 0.3s ease; 
+    &:hover{
+        cursor: pointer;
+        background-color: #fff;
+        color: #2a559b;
+        transform: scale(1.1);
+    }
 `
 export const ButtonDel = styled.button`
+    font-family: 'DM Sans', sans-serif;
     width: 25px;
     text-align: center;
-    background-color: #f44242;
+    background-color: #860F1B;
     color: #fff;
     border: none;
     border-radius: 15px;
@@ -126,14 +151,24 @@ export const ButtonDel = styled.button`
 export const ButtonCancel = styled.button`
     display: flex;
     align-items: center;
-    background-color: #8F8E8E;
+    font-family: 'DM Sans', sans-serif;
+    background-color: #860F1B;
+    border: 2px solid #860F1B;
+    font-size: 100%;
     color: #fff;
-    border: none;
     border-radius: 15px;
-    margin-right: 10px;
+    margin-right: 20px;
+    padding: 0 2% 0 2%;
+    transition: transform 0.3s ease; 
+    &:hover{
+        cursor: pointer;
+        background-color: #fff;
+        color: #860F1B;
+        transform: scale(1.1);
+    }
 `
 export const UlHorAgg = styled.ul`
-    padding: 0;
+    padding: 0 10px 0 10px;
     max-height: 200px;
     overflow-y: auto;
     li{
@@ -144,7 +179,7 @@ export const UlHorAgg = styled.ul`
 `
 
 export const UlPopuAgg= styled.ul`
-    padding: 0;
+    padding: 0 10px 0 10px;
     li{
         display: flex;
         align-items: center;
