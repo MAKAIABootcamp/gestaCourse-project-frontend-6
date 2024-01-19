@@ -24,17 +24,6 @@ function MyCourses() {
     }
   })
 
-  const data = [
-    { name: 'Diplomado en Medicina tradicional china con énfasis en sus técnicas de acupuntura, masaje, moxibustión y Qi gong.', year: 2015, state: 'Certificado' },
-    { name: 'Congreso Colombiano de Arqueología 2022. CCA2022', year: 2014, state: 'Inscrito' },
-    { name: 'Diplomado en Rehabilitación Vestibular, Una Mirada desde la Interdisciplinariedad', year: 2022, state: 'En Curso' },
-    { name: 'Curso Introducción a la Programación con Python', year: 2019, state: 'Inscrito' },
-    { name: 'Curso Desarrollo Web Full Stack', year: 2018, state: 'Certificado' },
-    { name: 'Curso Desarrollo de Aplicaciones Móviles', year: 2020, state: 'En Curso' },
-    { name: 'Curso Diseño y Desarrollo de Bases de Datos', year: 2017, state: 'Certificado' },
-    { name: 'Curso Programación Orientada a Objetos con Java', year: 2016, state: 'Inscrito' },
-  ];
-
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
 
@@ -42,7 +31,7 @@ function MyCourses() {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = dataCourses.slice(indexOfFirstItem, indexOfLastItem);
 
-  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const totalPages = Math.ceil(dataCourses.length / itemsPerPage);
 
   const paginate = (pageNumber) => {
     if (pageNumber > 0 && pageNumber <= totalPages) {
@@ -96,7 +85,7 @@ function MyCourses() {
       <PaginationStyled>
         <button onClick={goToFirstPage}><img src={arrowPageInicial}/></button>
         <button onClick={goToPrevPage}><img src={arrowPageBefore}/></button>
-        <span>{`${currentPage} de ${totalPages}`}</span>
+        <span>{`${currentPage} de ${totalPages === 0 ? 1 : totalPages}`}</span>
         <button onClick={goToNextPage}><img src={arrowPageAfter}/></button>
         <button onClick={goToLastPage}><img src={arrowPageFinal}/></button>
       </PaginationStyled>

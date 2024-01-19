@@ -14,6 +14,11 @@ function CourseManagementTable( { searchTerm }) {
   const [currentPage, setCurrentPage] = useState(1);
   const columns = [
     {
+      Header: "Acción",
+      accessor: "action",
+      arrows: false,
+    },
+    {
       Header: "No.",
       accessor: "No.",
       arrows: false,
@@ -56,11 +61,6 @@ function CourseManagementTable( { searchTerm }) {
     {
       Header: "Costo",
       accessor: "cost",
-      arrows: false,
-    },
-    {
-      Header: "Acción",
-      accessor: "action",
       arrows: false,
     },
   ];
@@ -129,6 +129,11 @@ function CourseManagementTable( { searchTerm }) {
             {paginatedCourses.map((course, index) =>
               index % 2 === 0 ? (
                 <EvenRow key={index}>
+                  <TdAccion width={'10%'} >
+                      <EditButton onClick={() => handleGoToNextPage("/EditarCurso/",course.id)}>Editar</EditButton>
+                      <StudentsButton onClick={() => handleGoToNextPage("/EstudiantesPorCurso/",course.id)}>Estudiantes</StudentsButton>
+                      <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
+                  </TdAccion>
                   <td width={'5%'} >{firstItemIndex + index + 1}</td>
                   <td width={'15%'}>{course.name}</td>
                   <td width={'30%'}>{course.description}</td>
@@ -138,18 +143,15 @@ function CourseManagementTable( { searchTerm }) {
                   <td>{course.dates.date_end}</td>
                   <td>{course.entity}</td>
                   <td>{course.cost}</td>
-                  <TdAccion >
-                      <EditButton onClick={() => handleGoToNextPage("/EditarCurso/",course.id)}>Editar</EditButton>
-                  </TdAccion>
-                  <TdAccion>
-                      <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
-                  </TdAccion>
-                  <TdAccion>
-                      <StudentsButton onClick={() => handleGoToNextPage("/EstudiantesPorCurso/",course.id)}>Estudiantes</StudentsButton>
-                  </TdAccion>
+                  
                 </EvenRow>
               ) : (
                 <OddRow key={index}>
+                  <TdAccion >
+                      <EditButton onClick={() => handleGoToNextPage("/EditarCurso/",course.id)}>Editar</EditButton>
+                      <StudentsButton onClick={() => handleGoToNextPage("/EstudiantesPorCurso/",course.id)}>Estudiantes</StudentsButton>
+                      <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
+                  </TdAccion>
                   <td>{index + 1}</td>
                   <td>{course.name}</td>
                   <td>{course.description}</td>
@@ -159,15 +161,7 @@ function CourseManagementTable( { searchTerm }) {
                   <td>{course.dates.date_end}</td>
                   <td>{course.entity}</td>
                   <td>{course.cost}</td>
-                  <TdAccion >
-                      <EditButton onClick={() => handleGoToNextPage("/EditarCurso/",course.id)}>Editar</EditButton>
-                  </TdAccion>
-                  <TdAccion>
-                      <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
-                  </TdAccion>
-                  <TdAccion>
-                      <StudentsButton onClick={() => handleGoToNextPage("/EstudiantesPorCurso/",course.id)}>Estudiantes</StudentsButton>
-                  </TdAccion>
+                  
                 </OddRow>
               )
             )}

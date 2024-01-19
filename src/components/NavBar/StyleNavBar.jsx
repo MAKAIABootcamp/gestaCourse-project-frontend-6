@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from 'react-router-dom'
 export const StyleNavBar = styled.div`
      background: linear-gradient(to right, #06153B, #860F1B);
-     
+     font-family: 'DM Sans', sans-serif;
 `;
 export const StyleLogoText = styled.nav`
      display: flex;   
@@ -17,10 +17,25 @@ export const StyleLogo = styled.img`
 export const StyleLi = styled.li`
      list-style: none; 
      display: none;
-
+     button {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 100%;
+          color: #fff;
+          background-color: #06153B;
+          border: 2px solid #06153B;
+          border-radius: 25px;
+          padding: 10px;
+          transition: transform 0.3s ease;
+          &:hover{
+               cursor: pointer;
+               background: linear-gradient(to right, #06153B, #860F1B);
+               color: #fff;
+               transform: scale(1.2);
+          }
+     }
      @media(min-width: 768px){
-      display: block;
-    }
+          display: block;
+     }
 `;
 
 
@@ -44,6 +59,6 @@ export const StyleUser = styled.img`
 `;
 export const Burguer = styled.div`
      @media(min-width: 768px){
-       display: none;
+          display: none;
      }
 `;
