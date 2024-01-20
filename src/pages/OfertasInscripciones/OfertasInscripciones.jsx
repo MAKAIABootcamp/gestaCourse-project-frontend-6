@@ -20,6 +20,7 @@ import { getData } from "../../store/courses/courseActions";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { set } from "react-hook-form";
+import ModalDetails from "../../components/ModalDetails/ModalDetails";
 
 const OfertasInscripciones = () => {
   const dispatch = useDispatch();
@@ -82,12 +83,11 @@ const OfertasInscripciones = () => {
                 </TextCard>
               </div>
               <Botones>
-                <Link to={`/detailsCourse/${curso.id}`}>
-                  <BotonDetalles type="submit">Más detalles</BotonDetalles>
-                </Link>
+                  <ModalDetails id={curso.id}/>
                 <Link to={`/inscripcion/${curso.id}`}>
                   <BotonInscripcion type="submit">Inscribirse</BotonInscripcion>
                 </Link>
+                    
               </Botones>
             </Cards>
           );

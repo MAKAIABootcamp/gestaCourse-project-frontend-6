@@ -19,6 +19,7 @@ import { auth } from '../firebase/firebaseConfig'
 import { setAuthenticated, setUser } from '../store/users/userSlice'
 import StudentsForCourse from '../pages/StudentsForCourse/StudentsForCourse'
 import DetailsCourse from '../pages/DeatailsCourse/DetailsCourse'
+import ModalDetails from '../components/ModalDetails/ModalDetails'
 
 const Router = () => {
   const { isAunthenticated, user } = useSelector(store => store.user)
@@ -53,7 +54,7 @@ const Router = () => {
             <Route index element={<OfertasInscripciones />}></Route>
             <Route path="acercaNosotros" element={<AcercaNosotros />} />
             <Route path="ofertasInscripciones" element={<OfertasInscripciones />}></Route>
-            <Route path="detailsCourse/:id" element={<DetailsCourse />} />
+            <Route path="detailsCourse/:id" element={<ModalDetails />} />
           </Route>
           <Route element={<PublicRoutes isAuthenticate={isAunthenticated} />}>
             <Route path="/login" element={<Login />}></Route>
