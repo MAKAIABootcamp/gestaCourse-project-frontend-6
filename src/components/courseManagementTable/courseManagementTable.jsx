@@ -5,65 +5,81 @@ import {
   deleteData,
   getData
 } from '../../store/courses/courseActions';
-import { DeleteButton, DivTable, DivTableTitle, EditButton, EvenRow, OddRow, StudentsButton, Table, TdAccion, ButtonsDiv, NextButton, NumPage } from './courseManagementTableStyle';
+import { DeleteButton, DivTable, DivTableTitle, EditButton, EvenRow, OddRow, StudentsButton, Table, TdAccion, ButtonsDiv, NextButton, NumPage, StyledTableCell, ShowMoreButton } from './courseManagementTableStyle';
 import Swal from "sweetalert2";
 import { useNavigate } from 'react-router-dom';
+
+const columns = [
+  {
+    Header: "Acción",
+    accessor: "action",
+    arrows: false,
+  },
+  {
+    Header: "No.",
+    accessor: "No.",
+    arrows: false,
+  },
+  {
+    Header: "Nombre",
+    accessor: "name",
+    arrows: true,
+  },
+  {
+    Header: "Descripción",
+    accessor: "description",
+    arrows: true,
+  },
+  {
+    Header: "",
+    accessor: "",
+    arrows: false,
+  },
+  {
+    Header: "Categoría",
+    accessor: "category",
+    arrows: true,
+  },
+  {
+    Header: "Intensidad",
+    accessor: "intensity",
+    arrows: true,
+  },
+  {
+    Header: "Fecha Inicio",
+    accessor: "startDate",
+    arrows: true,
+  },
+  {
+    Header: "Fecha Final",
+    accessor: "endDate",
+    arrows: true,
+  },
+  {
+    Header: "Entidad",
+    accessor: "entity",
+    arrows: true,
+  },
+  {
+    Header: "Costo",
+    accessor: "cost",
+    arrows: false,
+  },
+];
 
 function CourseManagementTable( { searchTerm }) {
   const itemsPerPage = 5;
   const [currentPage, setCurrentPage] = useState(1);
-  const columns = [
-    {
-      Header: "Acción",
-      accessor: "action",
-      arrows: false,
-    },
-    {
-      Header: "No.",
-      accessor: "No.",
-      arrows: false,
-    },
-    {
-      Header: "Nombre",
-      accessor: "name",
-      arrows: true,
-    },
-    {
-      Header: "Descripción",
-      accessor: "description",
-      arrows: true,
-    },
-    {
-      Header: "Categoría",
-      accessor: "category",
-      arrows: true,
-    },
-    {
-      Header: "Intensidad",
-      accessor: "intensity",
-      arrows: true,
-    },
-    {
-      Header: "Fecha Inicio",
-      accessor: "startDate",
-      arrows: true,
-    },
-    {
-      Header: "Fecha Final",
-      accessor: "endDate",
-      arrows: true,
-    },
-    {
-      Header: "Entidad",
-      accessor: "entity",
-      arrows: true,
-    },
-    {
-      Header: "Costo",
-      accessor: "cost",
-      arrows: false,
-    },
-  ];
+  const [columnExpansion, setColumnExpansion] = useState({});
+
+
+  const toggleExpand = (column) => {
+    setColumnExpansion((prevExpansion) => ({
+      ...prevExpansion,
+      [column]: !prevExpansion[column] || false,
+    }));
+  };
+
   const dispatch = useDispatch();
   const { courses } = useSelector(store => store.course);
   useEffect(() => {
@@ -134,16 +150,22 @@ function CourseManagementTable( { searchTerm }) {
                       <StudentsButton onClick={() => handleGoToNextPage("/EstudiantesPorCurso/",course.id)}>Estudiantes</StudentsButton>
                       <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
                   </TdAccion>
-                  <td width={'5%'} >{firstItemIndex + index + 1}</td>
-                  <td width={'15%'}>{course.name}</td>
-                  <td width={'30%'}>{course.description}</td>
+                  <td width={"5%"}>{index + 1}</td>
+                <td width={"15%"}>{course.name}</td>
+                <StyledTableCell expanded={columnExpansion[index]}>
+                  {course.description}{" "}
+                </StyledTableCell>
+                <td>
+                  <ShowMoreButton onClick={() => toggleExpand(index)}>
+                    {columnExpansion[index] ? "Mostrar menos" : "Mostrar más"}
+                  </ShowMoreButton>
+                </td>
                   <td>{course.category}</td>
                   <td>{course.intensity}</td>
                   <td>{course.dates.date_init}</td>
                   <td>{course.dates.date_end}</td>
                   <td>{course.entity}</td>
                   <td>{course.cost}</td>
-                  
                 </EvenRow>
               ) : (
                 <OddRow key={index}>
@@ -154,14 +176,20 @@ function CourseManagementTable( { searchTerm }) {
                   </TdAccion>
                   <td>{index + 1}</td>
                   <td>{course.name}</td>
-                  <td>{course.description}</td>
+                  <StyledTableCell expanded={columnExpansion[index]}>
+                  {course.description}{" "}
+                </StyledTableCell>
+                <td>
+                  <ShowMoreButton onClick={() => toggleExpand(index)}>
+                    {columnExpansion[index] ? "Mostrar menos" : "Mostrar más"}
+                  </ShowMoreButton>
+                </td>
                   <td>{course.category}</td>
                   <td>{course.intensity}</td>
                   <td>{course.dates.date_init}</td>
                   <td>{course.dates.date_end}</td>
                   <td>{course.entity}</td>
                   <td>{course.cost}</td>
-                  
                 </OddRow>
               )
             )}

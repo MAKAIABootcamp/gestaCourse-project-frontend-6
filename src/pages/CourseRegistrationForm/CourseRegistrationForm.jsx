@@ -3,10 +3,12 @@ import { ContainerData, DivLabelAndInput, ContainerArticle, ButtonInscription } 
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { createDataEnrrollment } from '../../store/enrollment/enrollmentActions';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 function CourseRegistrationForm() {
+
+  const navigate = useNavigate()
   const {register, handleSubmit} = useForm();
   const dispatch = useDispatch();
   const { id } = useParams()
@@ -16,6 +18,15 @@ function CourseRegistrationForm() {
   const handleEnviar = (data) => {
     const {direccion,profesion,entidad,tipoIns} = data;
     dispatch(createDataEnrrollment({Id_course:id, Id_student: user.id,tipoIns:tipoIns, addres: direccion, entity : entidad , profesion: profesion, state: 'Pendiente'}));
+    Swal.fire({
+      position: "top-end",
+      title: 'Enviado',
+      text: 'Su solicitud ha sido enviada con exito, pronto nos comunicaremos con usted!',
+      icon: 'success',
+      timer: 2000,
+      showConfirmButton: false,
+    });
+    navigate('/');
   }
 
   return (
