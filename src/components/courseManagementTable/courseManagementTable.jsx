@@ -31,6 +31,11 @@ const columns = [
     arrows: true,
   },
   {
+    Header: "",
+    accessor: "",
+    arrows: false,
+  },
+  {
     Header: "Categoría",
     accessor: "category",
     arrows: true,
