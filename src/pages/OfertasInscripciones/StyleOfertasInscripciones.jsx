@@ -36,6 +36,7 @@ export const Input = styled.input`
     height:30px;
     background-color: #ECECEC;
     border: none;
+    border-radius:0 10px 10px 0;
     @media screen and (max-width: 768px) {
         width: 90%;
     }
@@ -49,6 +50,7 @@ export const BotonBuscar = styled.button`
     border: none;
     border-radius:10px 10px 10px 10px;
     color: white;
+    
     
 `;
 // export const FormBuscar= styled.form`
@@ -75,15 +77,19 @@ export const Cards = styled.div`
     width:95%;
     margin-bottom:10px;
     transition: transform 0.3s ease;
+
+    
     &:hover{
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
         border-radius:10px;
         transform: scale(1.03);
+        border: 1px solid #06153B;
     } 
 `;
 export const CardImg = styled.div`
     display: flex;
     justify-content:center;
+    margin-top: 10px;
 `;
 export const ImgCard = styled.img`
     width:15rem;
@@ -110,6 +116,7 @@ export const Botones = styled.div`
     display: flex;
     width:100%;
     justify-content:space-around;
+    align-items:center;
     margin-bottom:10px;
     
 `;
