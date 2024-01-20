@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StylesPrincipal = styled.div`
     width:100%;
     font-family: 'DM Sans', sans-serif;
+    margin-top: 2%;
 `;
 
 export const Title = styled.div`

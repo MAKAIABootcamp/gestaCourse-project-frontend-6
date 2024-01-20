@@ -1,8 +1,16 @@
 import styled from "styled-components";
 import { Link } from 'react-router-dom'
+import { NavDropdown } from "react-bootstrap";
 export const StyleNavBar = styled.div`
      background: linear-gradient(to right, #06153B, #860F1B);
      font-family: 'DM Sans', sans-serif;
+     transition: transform 0.3s ease-in-out;
+     transform: translateY(${(props) => (props.visible ? '0' : '-100%')});
+     position: sticky;
+     top: 0;
+     width: 100%;
+     color: white;
+     z-index: 1000;
 `;
 export const StyleLogoText = styled.nav`
      display: flex;   
@@ -53,8 +61,9 @@ export const StyleUl = styled.ul`
      align-items:center;
 `;
 export const StyleUser = styled.img`
-     width:4rem;
-     border-radius:30px;
+     width: 60px;
+     height: 60px;
+     border-radius:50%;
      
 `;
 export const Burguer = styled.div`
@@ -62,3 +71,10 @@ export const Burguer = styled.div`
           display: none;
      }
 `;
+
+export const StyledNavDropdown = styled(NavDropdown)`
+     &&& > a::after {
+          display: none !important;
+     }
+`;
+
