@@ -71,21 +71,13 @@ function CourseManagementTable( { searchTerm }) {
   const itemsPerPage = 5;
   const [currentPage, setCurrentPage] = useState(1);
   const [columnExpansion, setColumnExpansion] = useState({});
-  const [visibleColumns, setVisibleColumns] = useState(3);
-  const totalColumns = 6;
+
 
   const toggleExpand = (column) => {
     setColumnExpansion((prevExpansion) => ({
       ...prevExpansion,
       [column]: !prevExpansion[column] || false,
     }));
-  };
-
-  // Función para mostrar las siguientes 3 columnas.
-  const showNextColumns = () => {
-    if (visibleColumns < totalColumns - 3) {
-      setVisibleColumns(visibleColumns + 3);
-    }
   };
 
   const dispatch = useDispatch();
@@ -174,7 +166,6 @@ function CourseManagementTable( { searchTerm }) {
                   <td>{course.dates.date_end}</td>
                   <td>{course.entity}</td>
                   <td>{course.cost}</td>
-                  
                 </EvenRow>
               ) : (
                 <OddRow key={index}>
@@ -193,14 +184,12 @@ function CourseManagementTable( { searchTerm }) {
                     {columnExpansion[index] ? "Mostrar menos" : "Mostrar más"}
                   </ShowMoreButton>
                 </td>
-
                   <td>{course.category}</td>
                   <td>{course.intensity}</td>
                   <td>{course.dates.date_init}</td>
                   <td>{course.dates.date_end}</td>
                   <td>{course.entity}</td>
                   <td>{course.cost}</td>
-                  
                 </OddRow>
               )
             )}
