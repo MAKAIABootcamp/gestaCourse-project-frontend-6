@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const ContainerArticle =  styled.article`
     display: flex;
+    width: 100%;
+    height: 100vh;
     flex-direction: column;
     align-items: center;
     font-family: 'DM Sans', sans-serif;
