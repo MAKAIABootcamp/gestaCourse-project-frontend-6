@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
-export const ArticleStyled =  styled.article`
+export const ArticleStyled =  styled.div`
     width: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
