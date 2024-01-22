@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const enrrollmentSlice = createSlice({
+const enrollmentSlice = createSlice({
     name: 'enrollment',
     initialState: {
         enrollments: [],
         error: null,
+        students: [{Id_student:"",id:"",state:""}],
     },
     reducers: {
         setEnrollments: (state, action) => {
@@ -21,9 +22,18 @@ const enrrollmentSlice = createSlice({
         },
         deleteEnrollment: (state, action) => {
             state.enrollments = state.enrollments.filter((enrollment) => enrollment.id !== action.payload)
-        }
+        },
+        getStudents: (state, action) => {
+            const searchId = action.payload;
+            console.log(searchId);
+            const studentsFound = state.enrollments.filter((item) => item.Id_course === searchId);
+            console.log(studentsFound);
+            state.students = studentsFound;
+            console.log(state.students);
+            state.error = studentsFound ? null : 'No tiene estudiantes';
+        },
     }
 })
 
-export const { setEnrollments, setError, addEnrollment, updateEnrrllment, deleteEnrollment} = enrrollmentSlice.actions;
-export default enrrollmentSlice.reducer;
+export const { setEnrollments, setError, addEnrollment, updateEnrollment, deleteEnrollment, getStudents } = enrollmentSlice.actions;
+export default enrollmentSlice.reducer;

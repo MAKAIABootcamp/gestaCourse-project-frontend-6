@@ -5,7 +5,7 @@ import { deleteCourse, updateCourse } from "../courses/courseSlice";
 
 const enrollmentCollection = collection(firestore, 'enrollment')
 
-export const getDataEnrrollment = () => {
+export const getDataEnrollment = () => {
     return async (dispatch) => {
         try {
             const tempArr = []
@@ -22,7 +22,7 @@ export const getDataEnrrollment = () => {
     };
 }
 
-export const createDataEnrrollment = (data) => {
+export const createDataEnrollment = (data) => {
     return async (dispatch) => {
         try {
             let tempObject = {...data}
@@ -37,7 +37,7 @@ export const createDataEnrrollment = (data) => {
     }
 }
 
-export const updateDataEnrrollment = (data) => {
+export const updateDataEnrollment = (data) => {
     const documentRef = doc(enrollmentCollection, data.id); /** Referencia del documento */
     return async (dispatch) => {
         try {
@@ -52,7 +52,7 @@ export const updateDataEnrrollment = (data) => {
     }
 }
 
-export const deleteDataEnrrollment = (id) => {
+export const deleteDataEnrollment = (id) => {
     const documentRef = doc(enrollmentCollection, id); /** Referencia del documento */
     return async (dispatch) => {
         try {
