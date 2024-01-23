@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import { Students } from './StudentsForCourseStyle';
-import { getDataEnrollment, updateDataEnrollment } from '../../store/enrollment/enrollmentActions';
+import { getDataEnrollment, updateDataEnrollment, getNameStudent } from '../../store/enrollment/enrollmentActions';
 import { getStudents, setStudents } from '../../store/enrollment/enrollmentSlice';
 
 export default function StudentsForCourse() {
@@ -14,20 +14,23 @@ export default function StudentsForCourse() {
   const [stateStudent, setStateStudent] = useState([]);
 
   useEffect(() => {
-    dispatch(getDataEnrollment());
+    dispatch(getDataEnrollment());  
   }, []);
 
   useEffect(()=> {
     dispatch(getStudents(id));
-    setStateStudent(students.map(student => student.state));
   },[dispatch,id])
+
+  useEffect(()=>{
+    setStateStudent(students.map(student => student.state));
+  }, [students]);
 
   const handleChangeEstado = (index, newState) => {
     let stateStudentNew = [...stateStudent];
     stateStudentNew[index] = newState;
     setStateStudent(stateStudentNew);
   };
-  
+
   const handleGuardarAccion = async (id, index) => {
     const result = await Swal.fire({
       title: 'Confirmar',
@@ -76,7 +79,7 @@ export default function StudentsForCourse() {
         </thead>
         <tbody>
           {students.map((estudiante, index) => (
-            <tr key={estudiante.Id_student}>
+            <tr key={index}>
               <td>{estudiante.Id_student}</td>
               <td>{estudiante.id}</td>
               <td>{estudiante.state}</td>

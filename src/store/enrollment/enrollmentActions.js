@@ -1,8 +1,22 @@
-import { addDoc, collection, doc, getDocs, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc,getDoc, getDocs, setDoc } from "firebase/firestore";
 import { addEnrollment, deleteEnrollment, setEnrollments, setError, updateEnrollment } from "./enrollmentSlice";
 import { firestore } from "../../firebase/firebaseConfig";
 
 const enrollmentCollection = collection(firestore, 'enrollment')
+const usersCollection = collection(firestore, 'users')
+
+export const getNameStudent= (id) => {
+    return async (dispatch) => {
+        try {
+            const response = await getDoc(usersCollection, id);
+            console.log(response);
+        } catch (error) {
+            dispatch(
+                setError({ error: true, code: error.code, message: error.message })
+            );
+        }
+    };
+}
 
 export const getDataEnrollment = () => {
     return async (dispatch) => {
