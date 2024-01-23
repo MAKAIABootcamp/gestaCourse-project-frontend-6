@@ -19,7 +19,6 @@ function EditProfile() {
   const dispatch = useDispatch();
   const [file, setFile] = useState(null);
   const [photo, setPhoto] = useState(photoURL);
-  console.log(user);
 
   const activarInput = () => {
       fileInputRef.current.click();
@@ -34,7 +33,6 @@ function EditProfile() {
 
   const handleEdit = async (data) => {
     const photo2 = await uploadFile(file);
-    console.log(photo);
     dispatch(updateUserDataAsync(
       {
         id:user.id,

@@ -10,7 +10,7 @@ import {getData} from '../../store/courses/courseActions';
 import { getDataEnrollment } from '../../store/enrollment/enrollmentActions';
 function MyCourses() {
   const {courses} = useSelector(store => store.course);
-  const {enrollments} = useSelector(store => store.enrrollment);
+  const {enrollments} = useSelector(store => store.enrollment);
   const {user} = useSelector(store => store.user);
   const dispatch = useDispatch();
 
