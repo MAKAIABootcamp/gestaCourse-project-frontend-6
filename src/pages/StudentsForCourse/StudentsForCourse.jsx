@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
-import { Students, ButtonChange } from './StudentsForCourseStyle';
+import { Students, ButtonChange, CardStudent, CardsContainer } from './StudentsForCourseStyle';
 import { getDataEnrollment, updateDataEnrollment, getDataStudentsInfo } from '../../store/enrollment/enrollmentActions';
 import { getStudents, setStudents } from '../../store/enrollment/enrollmentSlice';
 
@@ -99,25 +99,19 @@ export default function StudentsForCourse() {
 
   return (
     <Students>
-      <h2>Tabla de Estudiantes</h2>
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Id de Estudiantes</th>
-              <th>Nombre Completo</th>
-              <th>Estado de la Solicitud</th>
-              <th colSpan="2">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {students.map((estudiante, index) => (
-              <tr key={index}>
-                <td>{estudiante.Id_student}</td>
-                <td>{nameStudent[index]}</td>
-                <td>{estudiante.state}</td>
-                <td>
-                  <select
+      <h2>Solicitudes de studiantes</h2>
+      <CardsContainer>
+          {students.map((estudiante, index) => (
+            <CardStudent key={index}>
+              <label>Id de Estudiantes</label>
+              <p>{estudiante.Id_student}</p>
+              <label>Nombre Completo</label>
+              <p>{nameStudent[index]}</p>
+              <label >Estado de la Solicitud</label>
+              <p>{estudiante.state}</p>
+              <label>Cambiar Estado</label>
+              <div>
+                <select
                     value={stateStudent[index]}
                     onChange={(e) => handleChangeEstado(index, e.target.value)}
                   >
@@ -127,15 +121,11 @@ export default function StudentsForCourse() {
                       ))
                     }
                   </select>
-                </td>
-                <td>
                   <ButtonChange onClick={() => handleGuardarAccion(estudiante.id, index, estudiante.state)}>Cambiar</ButtonChange>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+              </div>
+            </CardStudent>
+          ))}
+      </CardsContainer>
     </Students>
   );
 }

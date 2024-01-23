@@ -1,42 +1,53 @@
 import styled from "styled-components";
 
 export const Students = styled.div`
-    padding: 5%;
+    padding: 2%;
     font-family: 'DM Sans', sans-serif;
-    width: 100%;
     h2{
         font-weight: 900;
     }
+`
+
+export const CardsContainer = styled.div`
+    margin-top: 2%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap !important;
+`
+
+export const CardStudent = styled.div`
+    display: flex;
+    flex-direction: column;
+    border: 2px solid;
+    border-color: linear-gradient(to right, #06153B, #860F1B);;
+    border-radius: 25px;
+    width: 40% !important;
+    padding: 2%;
+    margin-bottom: 2%;
+    @media only screen and (max-width: 767px) {
+        width: 100% !important;
+    }
+    label{
+        font-weight: 900;
+    }
+    p{
+        word-wrap: break-word;
+    }
     div{
-        width: auto;
-        overflow-x: auto;
-        table{
-            width: 100%;
-            font-size: 100%;
-            th{
-                padding: 2%;
-            }
-            td {
-                padding: 2%;
-                width: 100%;
-                text-align: justify;
-                white-space: nowrap;
-                select{
-                    font-size: 100%;
-                    font-weight: 500;
-                }
-            }
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        select{
+            width: 40% !important;
+            flex: none !important;
         }
     }
-    @media (max-width: 768px) {
-      /* Estilos específicos para pantallas más pequeñas */
-      /* Puedes ajustar según tus necesidades */
-      padding: 2%;
-      font-size: 80%;
-   }
 `
 
 export const ButtonChange = styled.button`
+    width: 40%;
     font-family: 'DM Sans', sans-serif;
     font-size: 100%;
     color: #fff;
