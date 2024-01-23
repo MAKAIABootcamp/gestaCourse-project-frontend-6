@@ -25,15 +25,15 @@ const enrollmentSlice = createSlice({
         },
         getStudents: (state, action) => {
             const searchId = action.payload;
-            console.log(searchId);
             const studentsFound = state.enrollments.filter((item) => item.Id_course === searchId);
-            console.log(studentsFound);
             state.students = studentsFound;
-            console.log(state.students);
             state.error = studentsFound ? null : 'No tiene estudiantes';
+        },
+        setStudents: (state, action) => {
+            state.students = action.payload;
         },
     }
 })
 
-export const { setEnrollments, setError, addEnrollment, updateEnrollment, deleteEnrollment, getStudents } = enrollmentSlice.actions;
+export const { setEnrollments, setError, addEnrollment, updateEnrollment, deleteEnrollment, getStudents, setStudents } = enrollmentSlice.actions;
 export default enrollmentSlice.reducer;

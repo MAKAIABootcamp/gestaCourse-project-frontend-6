@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 import { Students } from './StudentsForCourseStyle';
-import { getDataEnrollment } from '../../store/enrollment/enrollmentActions';
-import { getStudents } from '../../store/enrollment/enrollmentSlice';
+import { getDataEnrollment, updateDataEnrollment } from '../../store/enrollment/enrollmentActions';
+import { getStudents, setStudents } from '../../store/enrollment/enrollmentSlice';
 
 export default function StudentsForCourse() {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { students } = useSelector((store) => store.enrollment);
+  const [stateStudent, setStateStudent] = useState([]);
 
   useEffect(() => {
     dispatch(getDataEnrollment());
@@ -17,17 +19,54 @@ export default function StudentsForCourse() {
 
   useEffect(()=> {
     dispatch(getStudents(id));
+    const aux = [];
+    students.map((student, item) => {
+      aux[item] = student.state;
+    });
+    setStateStudent(aux);
   },[dispatch,id])
 
-
-  const handleChangeEstado = (id, nuevoEstado) => {
-    // Implement your logic here
-    console.log(`Changing state for student with ID ${id} to ${nuevoEstado}`);
+  const handleChangeEstado = (index, newState) => {
+    let stateStudentNew = [...stateStudent];
+    stateStudentNew[index] = newState;
+    setStateStudent(stateStudentNew);
   };
 
-  const handleGuardarAccion = (id) => {
-    // Implement your logic here
-    console.log(`Guardando acción para el estudiante con ID ${id}`);
+  const handleGuardarAccion = async (id, index) => {
+    const result = await Swal.fire({
+      title: 'Confirmar',
+      text: '¿Estás seguro de que deseas cambiar el estado?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, guardar',
+      cancelButtonText: 'Cancelar',
+    });
+
+    if (result.isConfirmed) {
+      let enrollmentsAux = [...students];
+      const enrollmentToUpdate = enrollmentsAux.find(enrollment => enrollment.id === id);
+      if (enrollmentToUpdate) {
+        const updatedEnrollment = { ...enrollmentToUpdate, state: stateStudent[index] };
+        dispatch(updateDataEnrollment(updatedEnrollment));
+        Swal.fire({
+          icon: 'success',
+          title: 'Actualización exitosa',
+          text: 'La información se ha actualizado correctamente.',
+        });
+        // dispatch(getStudents(id));
+        // const aux = [];
+        // students.map((student, item) => {
+        //   aux[item] = student.state;
+        // });
+        // setStateStudent(aux);
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se encontró la información para actualizar.',
+        });
+      }
+    }
   };
 
   return (
@@ -43,15 +82,15 @@ export default function StudentsForCourse() {
           </tr>
         </thead>
         <tbody>
-          {students.map((estudiante) => (
+          {students.map((estudiante, index) => (
             <tr key={estudiante.Id_student}>
               <td>{estudiante.Id_student}</td>
               <td>{estudiante.id}</td>
               <td>{estudiante.state}</td>
               <td>
                 <select
-                  value={estudiante.state}
-                  onChange={(e) => handleChangeEstado(estudiante.id, e.target.value)}
+                  value={stateStudent[index]}
+                  onChange={(e) => handleChangeEstado(index, e.target.value)}
                 >
                   <option value="Pendiente">Pendiente</option>
                   <option value="Aprobado">Aprobado</option>
@@ -62,7 +101,7 @@ export default function StudentsForCourse() {
                 </select>
               </td>
               <td>
-                <button onClick={() => handleGuardarAccion(estudiante.id)}>Guardar</button>
+                <button onClick={() => handleGuardarAccion(estudiante.id, index)}>Guardar</button>
               </td>
             </tr>
           ))}
