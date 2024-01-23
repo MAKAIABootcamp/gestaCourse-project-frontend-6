@@ -3,29 +3,41 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import { Students } from './StudentsForCourseStyle';
-import { getDataEnrollment, updateDataEnrollment, getNameStudent } from '../../store/enrollment/enrollmentActions';
+import { getDataEnrollment, updateDataEnrollment, getDataStudentsInfo } from '../../store/enrollment/enrollmentActions';
 import { getStudents, setStudents } from '../../store/enrollment/enrollmentSlice';
 
 export default function StudentsForCourse() {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { students } = useSelector((store) => store.enrollment);
+  const { students, studentsInfo } = useSelector((store) => store.enrollment);
   const [stateStudent, setStateStudent] = useState([]);
+  const [nameStudent, setNameStudent] = useState([]);
 
   useEffect(() => {
-    dispatch(getDataEnrollment());  
-  }, []);
-
-  useEffect(()=> {
-    dispatch(getStudents(id));
-  },[dispatch,id])
+    const hiddenDateStudents = async () => {
+      try {
+        await dispatch(getDataEnrollment());
+        await dispatch(getDataStudentsInfo());
+        dispatch(getStudents(id));
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    hiddenDateStudents();
+  }, [dispatch, id]);
 
   useEffect(()=>{
     if (students.length > 0) {
       setStateStudent(students.map(student => student.state));
     }
   }, [students]);
+
+  useEffect(()=>{
+    if (studentsInfo.length > 0){
+      setNameStudent(studentsInfo.map(student => student.fullName));
+    }
+  }, [studentsInfo]);
 
   const handleChangeEstado = (index, newState) => {
     let stateStudentNew = [...stateStudent];
@@ -42,7 +54,6 @@ export default function StudentsForCourse() {
       confirmButtonText: 'Sí, guardar',
       cancelButtonText: 'Cancelar',
     });
-
     if (result.isConfirmed) {
       const enrollmentToUpdate = students.find(enrollment => enrollment.id === id);
       if (enrollmentToUpdate) {
@@ -67,6 +78,10 @@ export default function StudentsForCourse() {
     }
   };
 
+  if (!students || !studentsInfo) {
+    return <div>Cargando...</div>;
+  }  
+
   return (
     <Students>
       <h2>Tabla de Estudiantes</h2>
@@ -83,7 +98,7 @@ export default function StudentsForCourse() {
           {students.map((estudiante, index) => (
             <tr key={index}>
               <td>{estudiante.Id_student}</td>
-              <td>{estudiante.id}</td>
+              <td>{nameStudent[index]}</td>
               <td>{estudiante.state}</td>
               <td>
                 <select
