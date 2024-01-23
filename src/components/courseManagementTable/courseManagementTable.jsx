@@ -27,10 +27,6 @@ const columns = [
     accessor: "description",
   },
   {
-    Header: "",
-    accessor: "",
-  },
-  {
     Header: "Categoría",
     accessor: "category",
   },
@@ -141,14 +137,9 @@ function CourseManagementTable( { searchTerm }) {
                       <StudentsButton onClick={() => handleGoToNextPage("/EstudiantesPorCurso/",course.id)}>Estudiantes</StudentsButton>
                       <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
                   </TdAccion>
-                  <StyledTableCell $expanded={columnExpansion[index]}>
+                  <StyledTableCell onClick={() => toggleExpand(index)} $expanded={columnExpansion[index]}>
                     {course.description}{" "}
                   </StyledTableCell>
-                  <td>
-                    <ShowMoreButton onClick={() => toggleExpand(index)}>
-                      {columnExpansion[index] ? "Mostrar menos" : "Mostrar más"}
-                    </ShowMoreButton>
-                  </td>
                   <td>{course.category}</td>
                   <td>{course.intensity}</td>
                   <td>{course.dates.date_init}</td>
@@ -165,14 +156,9 @@ function CourseManagementTable( { searchTerm }) {
                       <StudentsButton onClick={() => handleGoToNextPage("/EstudiantesPorCurso/",course.id)}>Estudiantes</StudentsButton>
                       <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
                   </TdAccion>
-                  <StyledTableCell $expanded={columnExpansion[index]}>
+                  <StyledTableCell onClick={() => toggleExpand(index)} $expanded={columnExpansion[index]}>
                     {course.description}{" "}
                   </StyledTableCell>
-                  <td>
-                    <ShowMoreButton onClick={() => toggleExpand(index)}>
-                      {columnExpansion[index] ? "Mostrar menos" : "Mostrar más"}
-                    </ShowMoreButton>
-                  </td>
                   <td>{course.category}</td>
                   <td>{course.intensity}</td>
                   <td>{course.dates.date_init}</td>

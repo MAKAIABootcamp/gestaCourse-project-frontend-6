@@ -1,5 +1,6 @@
 import { logoutAsync } from "../../store/users/userActions";
 import BurgerButton from "../BtnHamburguesa/BurgerButton";
+import photoGeneric from "../../assets/usuario.png";
 import {
   StyleNavBar,
   StyleLogoText,
@@ -46,7 +47,7 @@ const NavBar = () => {
 
   useEffect(() => {
     let timeout;
-
+    console.log("user",user)
     const handleScroll = () => {
       clearTimeout(timeout);
 
@@ -106,7 +107,7 @@ const NavBar = () => {
               {user === null ? (
                 <div></div>
               ) : (
-              <StyledNavDropdown className="no-caret" title={<StyleUser src={user.photoURL}/>}>
+              <StyledNavDropdown className="no-caret" title={<StyleUser src={user.photoURL? user.photoURL : photoGeneric}/>}>
                 {user.rol === "admin" ? (
                   itemsAdmin.map((item, index) => (
                     <NavDropdown.Item key={index} as={Link} to={item[0]}>
