@@ -90,6 +90,7 @@ export const StudentsButton = styled.button`
   width: 80%;
   padding: 0.5rem;
   margin-bottom: 20%;
+  word-wrap: break-word;
   &:hover{
     cursor: pointer;
     background-color: #fff;
@@ -142,6 +143,9 @@ export const StyledTableCell = styled.td`
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: ${({ $expanded }) => ($expanded ? 'none' : '200px')};
+  :hover{
+    cursor: pointer;
+  }
 `;
 
 export const ShowMoreButton = styled.button`
