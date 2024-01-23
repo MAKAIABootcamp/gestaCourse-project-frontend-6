@@ -1,42 +1,75 @@
 import styled from "styled-components";
 
 export const Students = styled.div`
-    padding: 5%;
+    padding: 2%;
     font-family: 'DM Sans', sans-serif;
-    width: 100%;
     h2{
+        margin-top: 3%;
         font-weight: 900;
     }
+`
+export const ButtonBack = styled.button`
+    font-family: 'DM Sans', sans-serif;
+    text-align: center;
+    background-color: #2a559b;
+    border: 2px solid #2a559b;
+    color: #fff;
+    border-radius: 15px;
+    transition: transform 0.3s ease; 
+    padding: 10px 5px 10px 5px;
+    width: 100px;
+    &:hover{
+        cursor: pointer;
+        background-color: #fff;
+        color: #2a559b;
+        transform: scale(1.1);
+    }
+`
+
+export const CardsContainer = styled.div`
+    margin-top: 2%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap !important;
+`
+
+export const CardStudent = styled.div`
+    display: flex;
+    flex-direction: column;
+    border: 2px solid;
+    border-color: linear-gradient(to right, #06153B, #860F1B);;
+    border-radius: 25px;
+    width: 40% !important;
+    padding: 2%;
+    margin-bottom: 2%;
+    @media only screen and (max-width: 767px) {
+        width: 100% !important;
+    }
+    label{
+        font-weight: 900;
+    }
+    p{
+        word-wrap: break-word;
+    }
     div{
-        width: auto;
-        overflow-x: auto;
-        table{
-            width: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        select{
+            width: 40% !important;
+            flex: none !important;
             font-size: 100%;
-            th{
-                padding: 2%;
-            }
-            td {
-                padding: 2%;
-                width: 100%;
-                text-align: justify;
-                white-space: nowrap;
-                select{
-                    font-size: 100%;
-                    font-weight: 500;
-                }
+            option{
+                font-weight: 900;
             }
         }
     }
-    @media (max-width: 768px) {
-      /* Estilos específicos para pantallas más pequeñas */
-      /* Puedes ajustar según tus necesidades */
-      padding: 2%;
-      font-size: 80%;
-   }
 `
 
 export const ButtonChange = styled.button`
+    width: 40%;
     font-family: 'DM Sans', sans-serif;
     font-size: 100%;
     color: #fff;

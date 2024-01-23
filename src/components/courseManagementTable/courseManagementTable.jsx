@@ -141,7 +141,7 @@ function CourseManagementTable( { searchTerm }) {
                       <StudentsButton onClick={() => handleGoToNextPage("/EstudiantesPorCurso/",course.id)}>Estudiantes</StudentsButton>
                       <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
                   </TdAccion>
-                  <StyledTableCell expanded={columnExpansion[index]}>
+                  <StyledTableCell $expanded={columnExpansion[index]}>
                     {course.description}{" "}
                   </StyledTableCell>
                   <td>
@@ -165,7 +165,7 @@ function CourseManagementTable( { searchTerm }) {
                       <StudentsButton onClick={() => handleGoToNextPage("/EstudiantesPorCurso/",course.id)}>Estudiantes</StudentsButton>
                       <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
                   </TdAccion>
-                  <StyledTableCell expanded={columnExpansion[index]}>
+                  <StyledTableCell $expanded={columnExpansion[index]}>
                     {course.description}{" "}
                   </StyledTableCell>
                   <td>
