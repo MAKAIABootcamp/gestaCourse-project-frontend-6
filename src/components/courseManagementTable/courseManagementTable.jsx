@@ -152,7 +152,7 @@ function CourseManagementTable( { searchTerm }) {
                   </TdAccion>
                   <td width={"5%"}>{index + 1}</td>
                 <td width={"15%"}>{course.name}</td>
-                <StyledTableCell expanded={columnExpansion[index]}>
+                <StyledTableCell $expanded={columnExpansion[index]}>
                   {course.description}{" "}
                 </StyledTableCell>
                 <td>
