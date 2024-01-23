@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
-import { Students, ButtonChange, CardStudent, CardsContainer } from './StudentsForCourseStyle';
+import { Students, ButtonChange, CardStudent, CardsContainer, ButtonBack } from './StudentsForCourseStyle';
 import { getDataEnrollment, updateDataEnrollment, getDataStudentsInfo } from '../../store/enrollment/enrollmentActions';
 import { getStudents, setStudents } from '../../store/enrollment/enrollmentSlice';
 
@@ -99,7 +99,8 @@ export default function StudentsForCourse() {
 
   return (
     <Students>
-      <h2>Solicitudes de studiantes</h2>
+      <ButtonBack onClick={() => navigate("/gestionCursos")}>Volver</ButtonBack>
+      <h2>Solicitudes de Estudiantes</h2>
       <CardsContainer>
           {students.map((estudiante, index) => (
             <CardStudent key={index}>

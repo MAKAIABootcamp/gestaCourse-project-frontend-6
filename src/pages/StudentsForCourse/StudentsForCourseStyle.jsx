@@ -4,7 +4,25 @@ export const Students = styled.div`
     padding: 2%;
     font-family: 'DM Sans', sans-serif;
     h2{
+        margin-top: 3%;
         font-weight: 900;
+    }
+`
+export const ButtonBack = styled.button`
+    font-family: 'DM Sans', sans-serif;
+    text-align: center;
+    background-color: #2a559b;
+    border: 2px solid #2a559b;
+    color: #fff;
+    border-radius: 15px;
+    transition: transform 0.3s ease; 
+    padding: 10px 5px 10px 5px;
+    width: 100px;
+    &:hover{
+        cursor: pointer;
+        background-color: #fff;
+        color: #2a559b;
+        transform: scale(1.1);
     }
 `
 
@@ -42,6 +60,10 @@ export const CardStudent = styled.div`
         select{
             width: 40% !important;
             flex: none !important;
+            font-size: 100%;
+            option{
+                font-weight: 900;
+            }
         }
     }
 `
