@@ -22,7 +22,9 @@ export default function StudentsForCourse() {
   },[dispatch,id])
 
   useEffect(()=>{
-    setStateStudent(students.map(student => student.state));
+    if (students.length > 0) {
+      setStateStudent(students.map(student => student.state));
+    }
   }, [students]);
 
   const handleChangeEstado = (index, newState) => {
