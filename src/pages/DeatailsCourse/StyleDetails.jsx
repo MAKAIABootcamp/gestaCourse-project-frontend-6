@@ -17,7 +17,8 @@ export const StyleImg = styled.img`
     float:left;
     margin-left:15px;
     margin-right:15px;
-
+    border-radius:10px;
+ 
     @media screen and (max-width: 768px) {
         margin-top: 15px;
         margin-left:none;
