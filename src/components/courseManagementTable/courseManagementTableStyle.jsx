@@ -138,10 +138,10 @@ export const TdAccion = styled.td`
 export const StyledTableCell = styled.td`
   width: 40%;
   padding: 8px;
-  white-space: ${({ expanded }) => (expanded ? ' normal' : ' nowrap')};;
+  white-space: ${({ $expanded }) => ($expanded ? ' normal' : ' nowrap')};;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: ${({ expanded }) => (expanded ? 'none' : '200px')};
+  max-width: ${({ $expanded }) => ($expanded ? 'none' : '200px')};
 `;
 
 export const ShowMoreButton = styled.button`

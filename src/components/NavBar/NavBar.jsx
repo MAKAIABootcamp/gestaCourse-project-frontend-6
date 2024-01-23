@@ -78,7 +78,7 @@ const NavBar = () => {
           handleClick={handleClick}
         />
       )}
-      <StyleNavBar className="bg-body-tertiary" visible={isNavbarVisible && !isScrolling}>
+      <StyleNavBar className="bg-body-tertiary" $visible={isNavbarVisible && !isScrolling}>
         <StyleLogoText>
           <Link to={"/"}>
             <StyleLogo
@@ -106,22 +106,24 @@ const NavBar = () => {
               {user === null ? (
                 <div></div>
               ) : (
-                <StyledNavDropdown className="no-caret"  title={<StyleUser src={user.photoURL}/>}>
-                  {user.rol === "admin"
-                    ? itemsAdmin.map((item, index) => (
-                        <NavDropdown.Item key={index} as={Link} to={item[0]}>
-                          {item[1]}
-                        </NavDropdown.Item>
-                      ))
-                    : itemsEstudent.map((item, index) => (
-                        <NavDropdown.Item key={index}  as={Link} to={item[0]}>
-                          {item[1]}
-                        </NavDropdown.Item>
-                      ))}
-                    <NavDropdown.Item >
-                        <a onClick={() => dispatch(logoutAsync(navigate))}>Cerrar sesión</a>
+              <StyledNavDropdown className="no-caret" title={<StyleUser src={user.photoURL}/>}>
+                {user.rol === "admin" ? (
+                  itemsAdmin.map((item, index) => (
+                    <NavDropdown.Item key={index} as={Link} to={item[0]}>
+                      {item[1]}
                     </NavDropdown.Item>
-                </StyledNavDropdown>
+                  ))
+                ) : (
+                  itemsEstudent.map((item, index) => (
+                    <NavDropdown.Item key={index} as={Link} to={item[0]}>
+                      {item[1]}
+                    </NavDropdown.Item>
+                  ))
+                )}
+                <NavDropdown.Item>
+                  <span onClick={() => dispatch(logoutAsync(navigate))}>Cerrar sesión</span>
+                </NavDropdown.Item>
+              </StyledNavDropdown>
               )}
             </StyleLi>
             <Burguer>

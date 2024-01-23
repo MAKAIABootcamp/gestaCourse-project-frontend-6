@@ -5,7 +5,7 @@ export const StyleNavBar = styled.div`
      background: linear-gradient(to right, #06153B, #860F1B);
      font-family: 'DM Sans', sans-serif;
      transition: transform 0.3s ease-in-out;
-     transform: translateY(${(props) => (props.visible ? '0' : '-100%')});
+     transform: translateY(${(props) => (props.$visible ? '0' : '-100%')});
      position: sticky;
      top: 0;
      width: 100%;
@@ -13,7 +13,7 @@ export const StyleNavBar = styled.div`
      z-index: 1000;
 `;
 export const StyleLogoText = styled.nav`
-     display: flex;   
+     display: flex;
      justify-content: space-between;
      padding-right: 5rem;
      align-items: center;
@@ -23,7 +23,7 @@ export const StyleLogo = styled.img`
      width:8rem;
 `;
 export const StyleLi = styled.li`
-     list-style: none; 
+     list-style: none;
      display: none;
      button {
           font-family: 'DM Sans', sans-serif;
