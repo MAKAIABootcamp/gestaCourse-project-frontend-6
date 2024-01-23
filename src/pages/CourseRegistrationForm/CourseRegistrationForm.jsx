@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { ContainerData, DivLabelAndInput, ContainerArticle, ButtonInscription } from './StylesComponents'
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { createDataEnrrollment } from '../../store/enrollment/enrollmentActions';
+import { createDataEnrollment } from '../../store/enrollment/enrollmentActions';
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
@@ -17,7 +17,7 @@ function CourseRegistrationForm() {
 
   const handleEnviar = (data) => {
     const {direccion,profesion,entidad,tipoIns} = data;
-    dispatch(createDataEnrrollment({Id_course:id, Id_student: user.id,tipoIns:tipoIns, addres: direccion, entity : entidad , profesion: profesion, state: 'Pendiente'}));
+    dispatch(createDataEnrollment({Id_course:id, Id_student: user.id,tipoIns:tipoIns, addres: direccion, entity : entidad , profesion: profesion, state: 'Pendiente'}));
     Swal.fire({
       position: "top-end",
       title: 'Enviado',

@@ -61,12 +61,12 @@ export const BotonBuscar = styled.button`
 //   `;
 
 export const DivCards = styled.div`
-    width:100%;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(3,1fr);
     justify-items:center;
-    justify-content:center;  
-    
+    justify-content:center;
+    margin-bottom: 3%;
     @media screen and (max-width: 768px) {
         grid-template-columns: repeat(1,1fr);
         width: 90%;
@@ -74,11 +74,9 @@ export const DivCards = styled.div`
 `;
 export const Cards = styled.div`
     margin-top: 10%;
-    width:95%;
+    width:90%;
     margin-bottom:10px;
     transition: transform 0.3s ease;
-
-    
     &:hover{
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
         border-radius:10px;
@@ -98,10 +96,10 @@ export const ImgCard = styled.img`
 `;
 export const TitleCard = styled.h2`
     display:flex;
-    justify-content:center;
+    justify-content: center;
+    text-align: center;
     @media screen and (max-width: 768px) {
         text-align:center;
-        
     }
 `;
 export const TextCard = styled.p`

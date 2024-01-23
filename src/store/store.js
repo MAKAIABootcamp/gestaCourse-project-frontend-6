@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './users/userSlice';
 import courseReducer from './courses/courseSlice'
-import enrrollmentReducer from './enrollment/enrollmentSlice';
+import enrollmentReducer from './enrollment/enrollmentSlice';
 import { thunk } from 'redux-thunk';
 
 const store = configureStore({
   reducer: {
     user: userReducer,
     course: courseReducer,
-    enrrollment: enrrollmentReducer,
+    enrollment: enrollmentReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     serializableCheck: false,

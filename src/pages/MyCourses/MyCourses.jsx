@@ -7,7 +7,7 @@ import arrowPageFinal from '../../assets/hacia-adelante.png'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import {getData} from '../../store/courses/courseActions';
-import { getDataEnrrollment } from '../../store/enrollment/enrollmentActions';
+import { getDataEnrollment } from '../../store/enrollment/enrollmentActions';
 function MyCourses() {
   const {courses} = useSelector(store => store.course);
   const {enrollments} = useSelector(store => store.enrrollment);
@@ -47,7 +47,7 @@ function MyCourses() {
 
   useEffect(() => {
     dispatch(getData())
-    dispatch(getDataEnrrollment())
+    dispatch(getDataEnrollment())
   }, []);
 
   return (

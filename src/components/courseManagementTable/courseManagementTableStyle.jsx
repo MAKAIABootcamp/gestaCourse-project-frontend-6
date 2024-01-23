@@ -44,7 +44,8 @@ export const DivTableTitle = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
+  padding-left: 15px;
+  padding-right: 15px;
 `;
 export const EditButton = styled.button`
   font-family: 'DM Sans', sans-serif;
@@ -130,6 +131,8 @@ export const OddRow = styled.tr`
 
 export const TdAccion = styled.td`
   border: none;
+  padding-top: 1%;
+  padding-bottom: 1%;
 `;
 
 export const StyledTableCell = styled.td`
