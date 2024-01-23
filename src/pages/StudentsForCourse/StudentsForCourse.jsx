@@ -19,11 +19,7 @@ export default function StudentsForCourse() {
 
   useEffect(()=> {
     dispatch(getStudents(id));
-    const aux = [];
-    students.map((student, item) => {
-      aux[item] = student.state;
-    });
-    setStateStudent(aux);
+    setStateStudent(students.map(student => student.state));
   },[dispatch,id])
 
   const handleChangeEstado = (index, newState) => {
@@ -31,7 +27,7 @@ export default function StudentsForCourse() {
     stateStudentNew[index] = newState;
     setStateStudent(stateStudentNew);
   };
-
+  
   const handleGuardarAccion = async (id, index) => {
     const result = await Swal.fire({
       title: 'Confirmar',
@@ -43,8 +39,7 @@ export default function StudentsForCourse() {
     });
 
     if (result.isConfirmed) {
-      let enrollmentsAux = [...students];
-      const enrollmentToUpdate = enrollmentsAux.find(enrollment => enrollment.id === id);
+      const enrollmentToUpdate = students.find(enrollment => enrollment.id === id);
       if (enrollmentToUpdate) {
         const updatedEnrollment = { ...enrollmentToUpdate, state: stateStudent[index] };
         dispatch(updateDataEnrollment(updatedEnrollment));
@@ -53,12 +48,10 @@ export default function StudentsForCourse() {
           title: 'Actualización exitosa',
           text: 'La información se ha actualizado correctamente.',
         });
-        // dispatch(getStudents(id));
-        // const aux = [];
-        // students.map((student, item) => {
-        //   aux[item] = student.state;
-        // });
-        // setStateStudent(aux);
+        const updatedStudents = students.map((student) =>
+          student.id === id ? { ...student, state: stateStudent[index] } : student
+        );
+        dispatch(setStudents(updatedStudents));
       } else {
         Swal.fire({
           icon: 'error',
