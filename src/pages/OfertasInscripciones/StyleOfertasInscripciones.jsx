@@ -4,6 +4,7 @@ export const StylesPrincipal = styled.div`
     width:100%;
     font-family: 'DM Sans', sans-serif;
     margin-top: 2%;
+    
 `;
 
 export const Title = styled.div`
@@ -19,9 +20,10 @@ export const Search = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-    @media screen and (max-width: 768px) {
-        width: 90%;
-    }
+    /* position:absolute;
+    z-index:1;
+    margin-top:20px; */
+    
 `;
 export const Lupa = styled.img`
     width:30px;
@@ -33,7 +35,7 @@ export const Lupa = styled.img`
 
 export const Input = styled.input`
     width: 20rem;
-    height:30px;
+    height:32px;
     background-color: #ECECEC;
     border: none;
     border-radius:0 10px 10px 0;
@@ -67,6 +69,10 @@ export const DivCards = styled.div`
     justify-items:center;
     justify-content:center;
     margin-bottom: 3%;
+    /* z-index:1;
+    position: relative;
+    margin-top:19rem; */
+    
     @media screen and (max-width: 768px) {
         grid-template-columns: repeat(1,1fr);
         width: 90%;
@@ -74,30 +80,35 @@ export const DivCards = styled.div`
 `;
 export const Cards = styled.div`
     margin-top: 10%;
-    width:90%;
+    width:70%;
     margin-bottom:10px;
     transition: transform 0.3s ease;
+
+    border-radius:10px;
     &:hover{
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
         border-radius:10px;
         transform: scale(1.03);
-        border: 1px solid #06153B;
+        
+
     } 
 `;
 export const CardImg = styled.div`
     display: flex;
     justify-content:center;
-    margin-top: 10px;
 `;
 export const ImgCard = styled.img`
-    width:15rem;
-    height:15rem;
-    border-radius:15px;
+    width:100%;
+    height:13rem;
+    border-radius:10px;
+    
 `;
 export const TitleCard = styled.h2`
     display:flex;
     justify-content: center;
     text-align: center;
+    height:80px;
+
     @media screen and (max-width: 768px) {
         text-align:center;
     }
@@ -116,7 +127,11 @@ export const Botones = styled.div`
     justify-content:space-around;
     align-items:center;
     margin-bottom:10px;
-    
+    margin-top:30px;
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        margin-top:150px;
+    }
 `;
 export const BotonDetalles = styled.button`
     width:150px;
@@ -129,6 +144,7 @@ export const BotonDetalles = styled.button`
     &:hover{
         cursor: pointer;
     }
+    
 `;
 
 export const BotonInscripcion = styled.button`
@@ -142,4 +158,15 @@ export const BotonInscripcion = styled.button`
     &:hover{
         cursor: pointer;
     }
+   
+`;
+
+export const StyleImgPrincipal = styled.div`
+    width:100%; 
+    /* position:absolute;
+    z-index:0;
+     */
+`;
+export const StyleImgP = styled.img`
+    width:100%;
 `;

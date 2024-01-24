@@ -14,6 +14,8 @@ import {
   BotonDetalles,
   Botones,
   BotonInscripcion,
+  StyleImgPrincipal,
+  StyleImgP
 } from "./StyleOfertasInscripciones";
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "../../store/courses/courseActions";
@@ -64,6 +66,9 @@ const OfertasInscripciones = () => {
           />
         </form>
       </Search>
+      {/* <StyleImgPrincipal>
+        <StyleImgP src="https://res.cloudinary.com/dbktnqag9/image/upload/v1706044461/imagen-curso-programacion-desde-cero-57_stjbdo.jpg" alt="principal" />
+      </StyleImgPrincipal> */}
       <DivCards>
         {filteredCourses.map((curso, index) => {
           return (
