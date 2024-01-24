@@ -23,9 +23,7 @@ export const Search = styled.div`
     /* position:absolute;
     z-index:1;
     margin-top:20px; */
-    @media screen and (max-width: 768px) {
-        width: 90%;
-    }
+    
 `;
 export const Lupa = styled.img`
     width:30px;
@@ -91,8 +89,8 @@ export const Cards = styled.div`
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
         border-radius:10px;
         transform: scale(1.03);
-        border: 1px solid #06153B;
-       
+        
+
     } 
 `;
 export const CardImg = styled.div`
@@ -130,6 +128,10 @@ export const Botones = styled.div`
     align-items:center;
     margin-bottom:10px;
     margin-top:30px;
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        margin-top:150px;
+    }
 `;
 export const BotonDetalles = styled.button`
     width:150px;
@@ -142,6 +144,7 @@ export const BotonDetalles = styled.button`
     &:hover{
         cursor: pointer;
     }
+    
 `;
 
 export const BotonInscripcion = styled.button`
@@ -155,6 +158,7 @@ export const BotonInscripcion = styled.button`
     &:hover{
         cursor: pointer;
     }
+   
 `;
 
 export const StyleImgPrincipal = styled.div`

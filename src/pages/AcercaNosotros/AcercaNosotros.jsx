@@ -1,5 +1,5 @@
 import React from 'react'
-import {StylePrincipal,StyleContenedor, StyleLeft, StyleRigth, StyleTitle,StylePararfo,StyleImg,StyleImgMision} from './StyleAcercaNosotros'
+import {StylePrincipal,StyleContenedor, StyleLeft, StyleRigth, StyleTitle,StylePararfo,StyleImg,StyleImgMision,StyleImgMisio} from './StyleAcercaNosotros'
 const AcercaNosotros = () => {
   return (
     <StylePrincipal>
@@ -25,7 +25,7 @@ const AcercaNosotros = () => {
         </StyleContenedor>
         <StyleContenedor>
             <StyleRigth>
-                <StyleImgMision src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703741560/2_du3okb.jpg" alt='img mision'/>
+                <StyleImgMisio src="https://res.cloudinary.com/dbktnqag9/image/upload/v1703741560/2_du3okb.jpg" alt='img mision'/>
             </StyleRigth>
             <StyleLeft>
                 <StyleTitle>Misión  </StyleTitle>
