@@ -7,19 +7,15 @@ export const FormContent = styled.form`
 export const ContendDiv = styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     flex-wrap: wrap;
     margin: 0;
     width: 100%;
     color: #04153B;
     font-family: 'DM Sans', sans-serif;
     @media screen and (max-width: 767px) {
-        /* Estilos para dispositivos móviles */
         flex-direction: column;
-      }
-    @media screen and (min-width: 768px) and (max-width: 1023px) {
-        /* Estilos para tabletas */
-        flex-direction: column;
-      }
+    }
 `
 export const Divsecundary = styled.div`
     display: flex;
@@ -27,13 +23,15 @@ export const Divsecundary = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
-
 `
 export const Div = styled.div`
     width: 40%;
     display: flex;
     flex-direction: column;
     margin: 10px;
+    @media screen and (max-width: 767px) {
+        width: 100%;
+    }
 `
 
 export const DivInput = styled.div`

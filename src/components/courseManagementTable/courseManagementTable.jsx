@@ -5,7 +5,7 @@ import {
   deleteData,
   getData
 } from '../../store/courses/courseActions';
-import { DeleteButton, DivTable, DivTableTitle, EditButton, EvenRow, OddRow, StudentsButton, Table, TdAccion, ButtonsDiv, NextButton, NumPage, StyledTableCell, ShowMoreButton } from './courseManagementTableStyle';
+import { DeleteButton, DivTable, DivTableTitle, EditButton, EvenRow, OddRow, StudentsButton, Table, TdAccion, ButtonsDiv, NextButton, NumPage } from './courseManagementTableStyle';
 import Swal from "sweetalert2";
 import { useNavigate } from 'react-router-dom';
 
@@ -22,10 +22,10 @@ const columns = [
     Header: "Acción",
     accessor: "action",
   },
-  {
-    Header: "Descripción",
-    accessor: "description",
-  },
+  // {
+  //   Header: "Descripción",
+  //   accessor: "description",
+  // },
   {
     Header: "Categoría",
     accessor: "category",
@@ -137,15 +137,15 @@ function CourseManagementTable( { searchTerm }) {
                       <StudentsButton onClick={() => handleGoToNextPage("/EstudiantesPorCurso/",course.id)}>Estudiantes</StudentsButton>
                       <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
                   </TdAccion>
-                  <StyledTableCell onClick={() => toggleExpand(index)} $expanded={columnExpansion[index]}>
+                  {/* <StyledTableCell onClick={() => toggleExpand(index)} $expanded={columnExpansion[index]}>
                     {course.description}{" "}
-                  </StyledTableCell>
+                  </StyledTableCell> */}
                   <td>{course.category}</td>
                   <td>{course.intensity}</td>
                   <td>{course.dates.date_init}</td>
                   <td>{course.dates.date_end}</td>
                   <td>{course.entity}</td>
-                  <td>{course.cost}</td>
+                  <td width={'15%'} >{course.cost}</td>
                 </EvenRow>
               ) : (
                 <OddRow key={index}>
@@ -156,9 +156,9 @@ function CourseManagementTable( { searchTerm }) {
                       <StudentsButton onClick={() => handleGoToNextPage("/EstudiantesPorCurso/",course.id)}>Estudiantes</StudentsButton>
                       <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
                   </TdAccion>
-                  <StyledTableCell onClick={() => toggleExpand(index)} $expanded={columnExpansion[index]}>
+                  {/* <StyledTableCell onClick={() => toggleExpand(index)} $expanded={columnExpansion[index]}>
                     {course.description}{" "}
-                  </StyledTableCell>
+                  </StyledTableCell> */}
                   <td>{course.category}</td>
                   <td>{course.intensity}</td>
                   <td>{course.dates.date_init}</td>
