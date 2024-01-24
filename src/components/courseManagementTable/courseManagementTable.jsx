@@ -22,10 +22,6 @@ const columns = [
     Header: "Acción",
     accessor: "action",
   },
-  // {
-  //   Header: "Descripción",
-  //   accessor: "description",
-  // },
   {
     Header: "Categoría",
     accessor: "category",
@@ -55,15 +51,6 @@ const columns = [
 function CourseManagementTable( { searchTerm }) {
   const itemsPerPage = 5;
   const [currentPage, setCurrentPage] = useState(1);
-  const [columnExpansion, setColumnExpansion] = useState({});
-
-
-  const toggleExpand = (column) => {
-    setColumnExpansion((prevExpansion) => ({
-      ...prevExpansion,
-      [column]: !prevExpansion[column] || false,
-    }));
-  };
 
   const dispatch = useDispatch();
   const { courses } = useSelector(store => store.course);
@@ -132,14 +119,11 @@ function CourseManagementTable( { searchTerm }) {
                 <EvenRow key={index}>
                   <td width={"5%"}>{index + 1}</td>
                   <td width={"15%"}>{course.name}</td>
-                  <TdAccion width={'10%'} >
+                  <TdAccion width={'15%'} >
                       <EditButton onClick={() => handleGoToNextPage("/EditarCurso/",course.id)}>Editar</EditButton>
                       <StudentsButton onClick={() => handleGoToNextPage("/EstudiantesPorCurso/",course.id)}>Estudiantes</StudentsButton>
                       <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
                   </TdAccion>
-                  {/* <StyledTableCell onClick={() => toggleExpand(index)} $expanded={columnExpansion[index]}>
-                    {course.description}{" "}
-                  </StyledTableCell> */}
                   <td>{course.category}</td>
                   <td>{course.intensity}</td>
                   <td>{course.dates.date_init}</td>
@@ -156,9 +140,6 @@ function CourseManagementTable( { searchTerm }) {
                       <StudentsButton onClick={() => handleGoToNextPage("/EstudiantesPorCurso/",course.id)}>Estudiantes</StudentsButton>
                       <DeleteButton onClick={() => handleDelete(course.id)}>Eliminar</DeleteButton>
                   </TdAccion>
-                  {/* <StyledTableCell onClick={() => toggleExpand(index)} $expanded={columnExpansion[index]}>
-                    {course.description}{" "}
-                  </StyledTableCell> */}
                   <td>{course.category}</td>
                   <td>{course.intensity}</td>
                   <td>{course.dates.date_init}</td>

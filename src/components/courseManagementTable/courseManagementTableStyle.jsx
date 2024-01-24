@@ -135,21 +135,3 @@ export const TdAccion = styled.td`
   padding-top: 1%;
   padding-bottom: 1%;
 `;
-
-// export const StyledTableCell = styled.td`
-//   width: 25%;
-//   padding: 8px;
-//   white-space: ${({ $expanded }) => ($expanded ? ' normal' : ' nowrap')};;
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-//   max-width: ${({ $expanded }) => ($expanded ? 'none' : '200px')};
-//   :hover{
-//     cursor: pointer;
-//   }
-// `;
-
-// export const ShowMoreButton = styled.button`
-//     background: none;
-//     border: none;
-//     cursor: pointer;
-// `;
