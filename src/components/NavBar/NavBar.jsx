@@ -47,7 +47,6 @@ const NavBar = () => {
 
   useEffect(() => {
     let timeout;
-    console.log("user",user)
     const handleScroll = () => {
       clearTimeout(timeout);
 
