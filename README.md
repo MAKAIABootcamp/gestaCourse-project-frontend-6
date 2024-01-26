@@ -32,12 +32,12 @@ Después de construir el proyecto, puedes ejecutarlo en un servidor estático. U
    ```
 Visita http://localhost:5000 en tu navegador.
 ##Otras Tareas
-###Linting
+####Linting
 Para ejecutar el linter y corregir posibles problemas, puedes usar:
    ```bash
    npm run lint
    ```
-###Pruebas
+####Pruebas
 Para ejecutar las pruebas, utiliza:
    ```bash
    npm test
