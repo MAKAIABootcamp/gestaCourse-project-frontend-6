@@ -12,8 +12,8 @@ export const StyleDivImg = styled.div`
     }
 `;
 export const StyleImg = styled.img`
-    width:20rem;
-    height:20rem;
+    width:25rem;
+    height:15rem;
     float:left;
     margin-left:15px;
     margin-right:15px;
