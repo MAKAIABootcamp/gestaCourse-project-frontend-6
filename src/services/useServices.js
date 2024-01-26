@@ -12,7 +12,7 @@ export const createUserInCollection = async (uid, newUser) => {
       ...newUser,
     };
   } catch (error) {
-    console.log(error);
+    consolr.warn(error);
     return null;
   }
 };

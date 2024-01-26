@@ -88,7 +88,7 @@ function CourseManagementTable( { searchTerm }) {
         text: 'El curso ha sido eliminado correctamente.',
         icon: 'success'
       });
-      console.log('Campo eliminado correctamente');
+      console.info('Campo eliminado correctamente');
     } catch (error) {
       console.error('Error al eliminar el campo:', error);
       await Swal.fire({

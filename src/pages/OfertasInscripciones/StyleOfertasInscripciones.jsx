@@ -79,6 +79,10 @@ export const DivCards = styled.div`
         grid-template-columns: repeat(1,1fr);
         width: 90%;
     }
+
+    @media screen and (min-width: 1000px) {
+        min-height: 40vh;
+    }
 `;
 // export const Cards = styled.div`
 //     margin-top: 10%;

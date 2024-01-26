@@ -14,6 +14,7 @@ export const getData = () => {
       });
       dispatch(setCourses(tempArr));
     } catch (error) {
+      console.error(error)
       dispatch(
         setError({ error: true, code: error.code, message: error.message })
       );
@@ -25,13 +26,12 @@ export const createData = (course) => {
   return async (dispatch) => {
     try {
       let tempObject = { ...course }
-      console.log("Va a hacer la peticion", tempObject);
       const response = await addDoc(courseCollection, course);
-      console.log("create course",response);
       tempObject.id = response.id;
       dispatch(addCourse(tempObject));
       dispatch(getData());
     } catch (error) {
+      console.error(error);
       dispatch(
         setError({ error: true, code: error.code, message: error.message })
       );
@@ -46,9 +46,9 @@ export const updateData = (course) => {
       dispatch(updateCourse(course));
       delete course.id;
       const response = await setDoc( documentRef, course);
-      console.log("update course",response);
       dispatch(getData());
     } catch (error) {
+      console.error(error);
       dispatch(
         setError({ error: true, code: error.code, message: error.message })
       );
@@ -62,9 +62,8 @@ export const deleteData = (id) => {
     try {
       dispatch(deleteCourse(id));
       const response = await deleteDoc(documentRef);
-      console.log(response);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       dispatch(
         setError({ error: true, code: error.code, message: error.message })
       );

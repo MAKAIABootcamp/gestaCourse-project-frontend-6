@@ -66,7 +66,6 @@ export default function StudentsForCourse() {
         }
       });
       if(array.length > 0){
-        console.log(array);
         setNameStudent(array.map((student) => student.fullName));
       }
     }
@@ -148,8 +147,6 @@ export default function StudentsForCourse() {
 
   return (
     <Students>
-      {console.log(students)}
-      {console.log(studentsInfo)}
       <ButtonBack onClick={() => navigate('/gestionCursos')}>Volver</ButtonBack>
       <h2>Solicitudes de Estudiantes</h2>
       <SearchDiv>

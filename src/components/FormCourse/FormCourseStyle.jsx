@@ -13,6 +13,9 @@ const fadeIn = keyframes`
 
 export const FormContent = styled.form`
     width: 100%;
+    @media screen and (min-width: 1000px) {
+        min-height: 50vh;
+    }
 `
 export const DivButtonsNextPreview = styled.div`
     width: 100%;

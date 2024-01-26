@@ -119,7 +119,6 @@ function FormCourse() {
       if (!confirmSave.isConfirmed) {
         return;
       }
-      console.log(data);
       if (data.image.length > 0) {
         const photo = await uploadFile(data.image[0]);
         data = {
@@ -154,11 +153,9 @@ function FormCourse() {
       delete data.image;
       if (rutaActual.includes("/EditarCurso")) {
         data = { ...data, id: id };
-        console.log("Editar Curso", data);
         dispatch(updateData(data));
         navigate("/gestionCursos");
       } else {
-        console.log("Añadir Curso", data);
         dispatch(createData(data));
         navigate("/gestionCursos");
       }
@@ -168,11 +165,9 @@ function FormCourse() {
         text: "El curso ha sido guardado correctamente.",
         icon: "success",
       });
-
-      console.log("Curso guardado correctamente");
+      console.info("Curso guardado correctamente");
     } catch (error) {
       console.error("Error al guardar el curso:", error);
-
       await Swal.fire({
         title: "Error",
         text: "Ha ocurrido un error al intentar guardar el curso.",

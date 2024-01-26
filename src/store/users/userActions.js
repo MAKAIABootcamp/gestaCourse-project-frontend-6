@@ -60,7 +60,6 @@ export const createAnAccountAsync = (newUser) => async (dispatch) => {
         photoURL: newUser.photoURL,
         rol: 'student',
       });
-
     } catch (error) {
       console.warn(error);
       dispatch(
@@ -79,7 +78,7 @@ export  const loginWithGoogle = () =>{
       dispatch(setError(false))
       dispatch(setRol(userLogged.rol))
     } catch (error) {
-        console.log(error);
+        console.error(error);
         dispatch(setError({error: true , code: error.code , message: error.message}));
     }
 }
@@ -102,7 +101,7 @@ export const loginWithEmailAndPassword = (email,password) => async (dispatch) =>
           )
         }
     } catch (error) {
-        console.log(error);
+        console.error(error);
         dispatch(setError({error: true , code: error.code , message: error.message}));
     }
 }
@@ -146,6 +145,7 @@ export const updateUserDataAsync = (user) => {
       dispatch(setUser(user));
       dispatch(setError(null));
     } catch (error) {
+      console.error(error);
       dispatch(
         setError({ error: true, code: error.code, message: error.message })
       );

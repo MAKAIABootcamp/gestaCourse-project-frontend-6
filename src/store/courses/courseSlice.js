@@ -25,9 +25,7 @@ const courseSlice = createSlice({
     },
     searchCourseById: (state, action) => {
       const searchId = action.payload;
-      console.log(state.courses);
       const foundCourse = state.courses.find((course) => course.id === searchId);
-      console.log(foundCourse)
       state.searchedCourse = foundCourse;
       state.error = foundCourse ? null : 'Curso no encontrado';
     },

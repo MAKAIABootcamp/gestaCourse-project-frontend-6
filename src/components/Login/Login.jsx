@@ -20,7 +20,7 @@ const Login = () => {
     dispatch(loginWithGoogle());
   }
   const handleRegister = async (data) => {
-    const photoURL = await uploadFile(data.imagen[0]);
+    const photoURL = await uploadFile(data.image[0]);
     dispatch(createAnAccountAsync({photoURL,...data}));
     reset();
   };
@@ -104,7 +104,7 @@ const Login = () => {
           </div>
           <div className="file-input-container">
             <label htmlFor="fileInput" className="custom-file-input">Seleccionar Archivo</label>
-            <input type="file" id="fileInput" className="hidden" />
+            <input type="file" accept="image/*" id="fileInput" className="hidden" {...register("image")} />
           </div>
           <button type="submit" className="btn">Registrar</button>
           <p className="account-text">
