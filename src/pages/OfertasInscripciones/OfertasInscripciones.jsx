@@ -60,7 +60,7 @@ const OfertasInscripciones = () => {
             type="text"
             id="buscar"
             name="buscar"
-            placeholder="Buscar"
+            placeholder="Explora los cursos, desata tu potencial"
             value={search}
             onChange={handleChange}
           />
@@ -76,7 +76,7 @@ const OfertasInscripciones = () => {
               <CardImg>
                 <ImgCard src={curso.photo} alt="course" />
               </CardImg>
-              <div>
+              {/* <div>
                 <TitleCard>{curso.name}</TitleCard>
                 <TextCard>
                   Costo: {curso.cost} <br />
@@ -86,13 +86,12 @@ const OfertasInscripciones = () => {
                   <br />
                   Fecha de finalización: {curso.dates.date_end}
                 </TextCard>
-              </div>
+              </div> */}
               <Botones>
                   <ModalDetails id={curso.id}/>
-                <Link to={`/inscripcion/${curso.id}`}>
-                  <BotonInscripcion type="submit">Inscribirse</BotonInscripcion>
-                </Link>
-                    
+                  <Link to={`/inscripcion/${curso.id}`}>
+                    <BotonInscripcion type="submit">Inscribirse</BotonInscripcion>
+                  </Link>  
               </Botones>
             </Cards>
           );

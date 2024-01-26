@@ -21,7 +21,7 @@ function ModalDetails(props) {
     const detailCourse = courses.filter(curso=>curso.id === id)
   return (
     <>
-      <Button variant="primary" onClick={() => setShow(true)} style={{ width: '150px', height: '35px', borderRadius: '13px', color:'white', fontSize:'16px',fontWeight: 'normal', textTransform: 'capitalize' }} >
+      <Button variant="primary" onClick={() => setShow(true)} style={{ width: '150px', height: '35px', borderRadius: '13px', color:'white', fontSize:'16px',fontWeight: 'normal', textTransform: 'capitalize', background:'#004AAD' }} >
         Más detalles
       </Button>
 
