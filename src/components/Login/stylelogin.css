@@ -238,3 +238,23 @@ a {
       width: 90%;
   }
 }
+
+.file-input-container {
+  position: relative;
+  display: flex;
+}
+
+.custom-file-input {
+  appearance: none;
+  background-color: #04153b;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.hidden {
+  display: none;
+}
