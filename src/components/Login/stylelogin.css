@@ -94,6 +94,7 @@
   font-size: 13px;
 }
 .btn:hover {
+  color: #fff !important;
   background: rgba(69,18,43,1);
 }
 .social-text {
@@ -253,6 +254,11 @@ a {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+}
+
+.custom-file-input:hover{
+  color: #fff !important;
+  background-color: #45122b;
 }
 
 .hidden {
