@@ -153,8 +153,8 @@ export const Botones = styled.div`
     margin-top:-60px;
    
     @media screen and (max-width: 768px) {
-        flex-direction: column;
-        margin-top:150px;
+        gap:5px;
+        margin-top:15px;
     }
 `;
 export const BotonDetalles = styled.button`
