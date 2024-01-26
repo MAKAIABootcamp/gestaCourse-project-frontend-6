@@ -1,5 +1,6 @@
 # GestaCourse
-GestaCourse es una aplicación web cuyo propósito es facilitar y mejorar la gestión de la oferta académica, así como la simplificación en el proceso de inscripción a los cursos ofertados por las diversas entidades educativas.
+GestaCourse es una aplicación web cuyo propósito es facilitar y mejorar la gestión de la oferta académica, así como la simplificación en el proceso de inscripción a los cursos ofertados por las diversas entidades educativas. Ya que, normalmente al inscribirse en cursos en línea con procesos de admisión, las personas deben esperar un tiempo determinado sin conocer el desarrollo interno del proceso, lo que genera incertidumbre sobre el resultado. Por esta razón, se propone la creación de una plataforma en línea donde los usuarios puedan explorar una variedad de cursos, realizar su inscripción directamente en la misma página sin depender de herramientas externas como Google Form, entre otras.
+
 ## Requisitos Previos
 Asegúrate de tener instalado Node.js en tu máquina. Puedes descargarlo desde [https://nodejs.org/](https://nodejs.org/).
 ## Configuración del Proyecto
