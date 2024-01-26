@@ -96,15 +96,15 @@ const Login = () => {
           </div>
           <div className="input-field">
             <i className="fas fa-user"></i>
-            <input type="file" {...register('imagen')}/>
-          </div>
-          <div className="input-field">
-            <i className="fas fa-user"></i>
             <input type="password" placeholder="Contraseña" {...register('password')} />
           </div>
           <div className="input-field">
             <i className="fas fa-user"></i>
             <input type="password" placeholder="Confirmar Contraseña" {...register("confirmedPassword")}/>
+          </div>
+          <div className="file-input-container">
+            <label htmlFor="fileInput" className="custom-file-input">Seleccionar Archivo</label>
+            <input type="file" id="fileInput" className="hidden" />
           </div>
           <button type="submit" className="btn">Registrar</button>
           <p className="account-text">
