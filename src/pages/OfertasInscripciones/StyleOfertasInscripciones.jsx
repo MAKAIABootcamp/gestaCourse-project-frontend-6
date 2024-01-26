@@ -20,14 +20,12 @@ export const Search = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-    /* position:absolute;
-    z-index:1;
-    margin-top:20px; */
+
     
 `;
 export const Lupa = styled.img`
     width:30px;
-    height:32px;
+    height:35px;
     background-color: #ECECEC;
     border-radius:10px 0 0 10px;
     
@@ -35,10 +33,14 @@ export const Lupa = styled.img`
 
 export const Input = styled.input`
     width: 20rem;
-    height:32px;
+    height:35px;
     background-color: #ECECEC;
     border: none;
     border-radius:0 10px 10px 0;
+    &:focus {
+        outline: none;
+        
+    }
     @media screen and (max-width: 768px) {
         width: 90%;
     }
@@ -78,36 +80,58 @@ export const DivCards = styled.div`
         width: 90%;
     }
 `;
-export const Cards = styled.div`
-    margin-top: 10%;
-    width:70%;
-    margin-bottom:10px;
-    transition: transform 0.3s ease;
+// export const Cards = styled.div`
+//     margin-top: 10%;
+//     width:70%;
+//     margin-bottom:10px;
+//     transition: transform 0.3s ease;
 
-    border-radius:10px;
-    &:hover{
-        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-        border-radius:10px;
-        transform: scale(1.03);
+//     border-radius:10px;
+//     &:hover{
+//         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+//         border-radius:10px;
+//         transform: scale(1.03);
         
 
-    } 
+//     } 
+// `;
+export const Cards = styled.div`
+    /* margin-top: 10%; */
+    width: 95%;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    color: #333; 
+    background-color: #fff; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+
+    &:hover {
+        background-color: #f8f8f8;
+        color: #333;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+        transform: scale(1.03);
+        
+        }
 `;
 export const CardImg = styled.div`
     display: flex;
     justify-content:center;
+    width: 100%;
 `;
 export const ImgCard = styled.img`
     width:100%;
-    height:13rem;
     border-radius:10px;
+
     
 `;
 export const TitleCard = styled.h2`
     display:flex;
     justify-content: center;
     text-align: center;
-    height:80px;
+    height:40px;
 
     @media screen and (max-width: 768px) {
         text-align:center;
@@ -126,8 +150,8 @@ export const Botones = styled.div`
     width:100%;
     justify-content:space-around;
     align-items:center;
-    margin-bottom:10px;
-    margin-top:30px;
+    margin-top:-60px;
+   
     @media screen and (max-width: 768px) {
         flex-direction: column;
         margin-top:150px;
@@ -143,6 +167,7 @@ export const BotonDetalles = styled.button`
     font-size:16px;
     &:hover{
         cursor: pointer;
+        transform: scale(1.03);
     }
     
 `;
@@ -157,6 +182,7 @@ export const BotonInscripcion = styled.button`
     background-color:#004AAD;
     &:hover{
         cursor: pointer;
+        transform: scale(1.03);
     }
    
 `;
